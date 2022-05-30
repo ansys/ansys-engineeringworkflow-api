@@ -18,9 +18,9 @@ class IAsyncWorkflowEngine(ABC):
         ...
 
 
-class IAsyncDesktopWorkflowEngine(IAsyncWorkflowEngine, ABC):
-    """Extends IWorkflowEngine with calls that are relevant for a desktop workflow engine, such
-     has handling local files"""
+class IAsyncFileBasedWorkflowEngine(IAsyncWorkflowEngine, ABC):
+    """Extends IWorkflowEngine with calls that are relevant for loading files from a local
+    filesystem. """
 
     @abstractmethod
     async def load_workflow(self, file_name: Union[PathLike, str]) -> IAsyncWorkflowInstance:

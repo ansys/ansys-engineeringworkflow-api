@@ -18,9 +18,9 @@ class IWorkflowEngine(ABC):
         ...
 
 
-class IDesktopWorkflowEngine(IWorkflowEngine, ABC):
-    """Extends IWorkflowEngine with calls that are relevant for a desktop workflow engine, such
-     has handling local files"""
+class IFileBasedWorkflowEngine(IWorkflowEngine, ABC):
+    """Extends IWorkflowEngine with calls that are relevant for loading files from a local
+    filesystem. """
 
     @abstractmethod
     def load_workflow(self, file_name: Union[PathLike, str]) -> IWorkflowInstance:

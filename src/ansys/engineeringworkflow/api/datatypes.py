@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+from typing import Optional
 
 from ansys.common.variableinterop import IVariableValue
 
@@ -28,18 +29,13 @@ class WorkflowEngineInfo:
     server_type: str
     """What server type is responding to this request. Will be a string similar to
     'optiSLang' or 'ModelCenter'"""
-
-
-@dataclass(frozen=True)
-class DesktopWorkflowEngineInfo(WorkflowEngineInfo):
-    """Information about a workflow engine that is specific to a desktop product installation"""
-    install_location: str
-
-
-@dataclass(frozen=True)
-class ServerWorkflowEngineInfo(WorkflowEngineInfo):
-    """Information about a workflow engine that is specific to a cloud product installation"""
-    base_url: str  # Should this be some type of URL class?
+    install_location: Optional[str]
+    """If the client is on the same box as the workflow engine, it may optionally provide
+    the installation folder. Typically server based products do not provide this field for 
+    security reasons."""
+    base_url: Optional[str]
+    """If this is a server based product ready to receive incoming connections from remote
+    clients, this field may be provided that gives the base URL for clients to connect to."""
 
 
 class WorkflowInstanceState(Enum):
