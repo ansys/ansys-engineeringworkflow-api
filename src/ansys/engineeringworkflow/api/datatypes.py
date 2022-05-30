@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum
 
@@ -22,7 +23,7 @@ class WorkflowEngineInfo:
     """The build type. Must be blank for production releases. May include arbitrary information
     like the branch a development build was built from."""
     version_as_string: str
-    """The version of the workflow engine encoded for human consumption. For example: 
+    """The version of the workflow engine encoded for human consumption. For example:
     2022r1 build 333 ALPHA"""
     server_type: str
     """What server type is responding to this request. Will be a string similar to
@@ -74,12 +75,12 @@ class Property:
     """
     A configurable setting on some component or algorithm in the workflow.
 
-    Cannot be linked to other variables or properties. Unless a property is explicitly, documented as supporting it, these values
-    should not be changed while the workflow is running. Examples that may support modification would be convergence criteria for
+    Cannot be linked to other variables or properties. Unless a property is explicitly,
+    documented as supporting it, these values should not be changed while the workflow
+    is running. Examples that may support modification would be convergence criteria for
     an optimization algorithm.
     """
 
     parent_element_id: str
     property_name: str
     property_value: IVariableValue
-

@@ -1,14 +1,17 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from os import PathLike
-from typing import Union, Mapping, AbstractSet, Optional, Collection
+from typing import AbstractSet, Collection, Mapping, Optional, Union
 
-from ansys.common.variableinterop import IVariableValue, CommonVariableMetadata
+from ansys.common.variableinterop import CommonVariableMetadata, IVariableValue
+
 from .datatypes import *
 
 
 class IWorkflowEngine(ABC):
-    """Interface defines the common behavior for an engineering workflow engine that can run and monitor instances"""
+    """Interface defines the common behavior for an engineering workflow engine that can run and
+     monitor instances"""
 
     @abstractmethod
     def get_server_info(self) -> WorkflowEngineInfo:
@@ -16,7 +19,8 @@ class IWorkflowEngine(ABC):
 
 
 class IDesktopWorkflowEngine(IWorkflowEngine, ABC):
-    """Extends IWorkflowEngine with calls that are relevant for a desktop workflow engine, such has handling local files"""
+    """Extends IWorkflowEngine with calls that are relevant for a desktop workflow engine, such
+     has handling local files"""
 
     @abstractmethod
     def load_workflow(self, file_name: Union[PathLike, str]) -> IWorkflowInstance:
@@ -96,7 +100,8 @@ class IVariableContainer(ABC):
 
 class IControlStatement(IElement, IVariableContainer, ABC):
     """
-    An element in the workflow that contains children and controls how those children will be executed.
+    An element in the workflow that contains children and controls how those children
+     will be executed.
 
     Examples are: sequential, parallel, looping, conditional, Trade Study.
     """
@@ -113,12 +118,14 @@ class IControlStatement(IElement, IVariableContainer, ABC):
 
 class IComponent(IElement, IVariableContainer, ABC):
     """
-    A black box analysis is defined as taking a set of inputs, executing, and resulting in a set of outputs.
+    A black box analysis is defined as taking a set of inputs, executing, and resulting in a set
+     of outputs.
 
-    May be a solver, simulation, co-simulation, calculation, or other third party analysis. While state may be kept as an optimization to help
-    performance for slow to start tools, the component definition does not require it so that we can parallelize the work onto an HPC cluster.
-    Synonymous in our context with Integrations and Analysis. This is the preferred go forward term to use in APIs and documentation about
-    Engineering Workflow
+    May be a solver, simulation, co-simulation, calculation, or other third party analysis. While
+    state may be kept as an optimization to help performance for slow to start tools, the
+    component definition does not require it so that we can parallelize the work onto an
+    HPC cluster. Synonymous in our context with Integrations and Analysis. This is the
+    preferred go forward term to use in APIs and documentation about Engineering Workflow
     """
 
     @property
@@ -126,14 +133,16 @@ class IComponent(IElement, IVariableContainer, ABC):
     def pacz_url(self):
         ...
 
-# TODO: We may want specific variable types that refine get/set value to specific variableinterop types?
+# TODO: We may want specific variable types that refine get/set value to specific
+#  variableinterop types?
 
 
 class IVariable(IElement, ABC):
     """
     A runtime placeholder for some value of a particular type.
 
-    Will change as the workflow runs and can be linked to other variables via direct links or equations
+    Will change as the workflow runs and can be linked to other variables via direct
+    links or equations
     """
 
     @abstractmethod
