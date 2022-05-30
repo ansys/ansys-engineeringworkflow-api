@@ -7,53 +7,51 @@ from ansys.common.variableinterop import IVariableValue, CommonVariableMetadata
 from .datatypes import *
 
 
-class IWorkflowEngine(ABC):
+class IAsyncWorkflowEngine(ABC):
     """Interface defines the common behavior for an engineering workflow engine that can run and monitor instances"""
 
     @abstractmethod
-    def get_server_info(self) -> WorkflowEngineInfo:
+    async def get_server_info(self) -> WorkflowEngineInfo:
         ...
 
 
-class IDesktopWorkflowEngine(IWorkflowEngine, ABC):
+class IAsyncDesktopWorkflowEngine(IAsyncWorkflowEngine, ABC):
     """Extends IWorkflowEngine with calls that are relevant for a desktop workflow engine, such has handling local files"""
 
     @abstractmethod
-    def load_workflow(self, file_name: Union[PathLike, str]) -> IWorkflowInstance:
+    async def load_workflow(self, file_name: Union[PathLike, str]) -> IAsyncWorkflowInstance:
         ...
 
 
-class IWorkflowInstance(ABC):
+class IAsyncWorkflowInstance(ABC):
     """Representation of an instantiated workflow instance"""
 
     @abstractmethod
-    def get_state(self) -> WorkflowInstanceState:
+    async def get_state(self) -> WorkflowInstanceState:
         ...
 
     @abstractmethod
-    def run(self, inputs: Mapping[str, VariableState], reset: bool,
-            validation_ids: AbstractSet[str]) -> Mapping[str, VariableState]:
+    async def run(self, inputs: Mapping[str, VariableState], reset: bool,
+                  validation_ids: AbstractSet[str]) -> Mapping[str, VariableState]:
         ...
 
     @abstractmethod
-    def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
-                  validation_ids: AbstractSet[str]) -> str:
+    async def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
+                        validation_ids: AbstractSet[str]) -> str:
         ...
 
     # TODO: How to wait for finish in second case?
 
     @abstractmethod
-    def get_root(self) -> IControlStatement:
+    async def get_root(self) -> IAsyncControlStatement:
         ...
 
     @abstractmethod
-    def get_element_by_id(self, element_id: str) -> IElement:
+    async def get_element_by_id(self, element_id: str) -> IAsyncElement:
         ...
 
 
-# TODO: Use UUID for ids?
-
-class IElement(ABC):
+class IAsyncElement(ABC):
     """Any one of Component, Control Statement, or Variable"""
 
     @property
@@ -72,29 +70,27 @@ class IElement(ABC):
         ...
 
     @abstractmethod
-    def get_property(self, property_name: str) -> Property:
+    async def get_property(self, property_name: str) -> Property:
         ...
 
     @abstractmethod
-    def get_properties(self) -> Collection[Property]:
+    async def get_properties(self) -> Collection[Property]:
         ...
 
     @abstractmethod
-    def set_property(self, property_name: str, property_value: IVariableValue) -> None:
+    async def set_property(self, property_name: str, property_value: IVariableValue) -> None:
         ...
 
 
-# TODO: Should control statements extend component?
-
-class IVariableContainer(ABC):
+class IAsyncVariableContainer(ABC):
     """An abstract base class for something that can contain variables"""
 
     @abstractmethod
-    def get_variables(self) -> Collection[IVariable]:
+    async def get_variables(self) -> Collection[IAsyncVariable]:
         ...
 
 
-class IControlStatement(IElement, IVariableContainer, ABC):
+class IAsyncControlStatement(IAsyncElement, IAsyncVariableContainer, ABC):
     """
     An element in the workflow that contains children and controls how those children will be executed.
 
@@ -107,11 +103,11 @@ class IControlStatement(IElement, IVariableContainer, ABC):
         ...
 
     @abstractmethod
-    def get_components(self) -> Collection[IElement]:
+    async def get_components(self) -> Collection[IAsyncElement]:
         ...
 
 
-class IComponent(IElement, IVariableContainer, ABC):
+class IAsyncComponent(IAsyncElement, IAsyncVariableContainer, ABC):
     """
     A black box analysis is defined as taking a set of inputs, executing, and resulting in a set of outputs.
 
@@ -126,10 +122,8 @@ class IComponent(IElement, IVariableContainer, ABC):
     def pacz_url(self):
         ...
 
-# TODO: We may want specific variable types that refine get/set value to specific variableinterop types?
 
-
-class IVariable(IElement, ABC):
+class IAsyncVariable(IAsyncElement, ABC):
     """
     A runtime placeholder for some value of a particular type.
 
@@ -137,13 +131,15 @@ class IVariable(IElement, ABC):
     """
 
     @abstractmethod
-    def get_metadata(self) -> CommonVariableMetadata:
+    async def get_metadata(self) -> CommonVariableMetadata:
         ...
 
     @abstractmethod
-    def get_value(self, hid: Optional[str]) -> VariableState:
+    async def get_value(self, hid: Optional[str]) -> VariableState:
         ...
 
     @abstractmethod
-    def set_value(self, value: VariableState) -> None:
+    async def set_value(self, value: VariableState) -> None:
         ...
+
+
