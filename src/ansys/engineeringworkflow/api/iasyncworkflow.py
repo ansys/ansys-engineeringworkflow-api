@@ -1,3 +1,11 @@
+"""
+Asynchronous API definitions.
+
+This module contains the common API for all Ansys workflow engines, written in an
+asynchronous style. It has the exact same API as iworkflow module and any
+changes to one file must be made to the other.
+"""
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod

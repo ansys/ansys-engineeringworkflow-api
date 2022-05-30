@@ -31,7 +31,7 @@ class WorkflowEngineInfo:
     'optiSLang' or 'ModelCenter'"""
     install_location: Optional[str]
     """If the client is on the same box as the workflow engine, it may optionally provide
-    the installation folder. Typically server based products do not provide this field for 
+    the installation folder. Typically server based products do not provide this field for
     security reasons."""
     base_url: Optional[str]
     """If this is a server based product ready to receive incoming connections from remote
