@@ -48,24 +48,6 @@ class WorkflowInstanceState(Enum):
     SUCCESS = 5
 
 
-class VariableValueInvalidException(AttributeError):
-    """TODO: This belongs in variableinterop"""
-    pass
-
-
-@dataclass(frozen=True)
-class VariableState:
-    """TODO: This belongs in variableinterop"""
-    is_valid: bool
-    value: IVariableValue
-
-    @property
-    def safe_value(self) -> IVariableValue:
-        if not self.is_valid:
-            raise VariableValueInvalidException()
-        return self.value
-
-
 @dataclass(frozen=True)
 class Property:
     """
