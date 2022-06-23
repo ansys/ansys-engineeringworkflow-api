@@ -10,9 +10,9 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from os import PathLike
-from typing import AbstractSet, Collection, Mapping, Optional, Union
+from typing import AbstractSet, Collection, Mapping, Union
 
-from ansys.common.variableinterop import CommonVariableMetadata, IVariableValue
+from ansys.common.variableinterop import CommonVariableMetadata, VariableState
 
 from .datatypes import *
 
