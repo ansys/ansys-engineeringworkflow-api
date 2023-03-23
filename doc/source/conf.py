@@ -1,9 +1,8 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 
+from ansys.engineeringworkflow.api import __version__
 from pyansys_sphinx_theme import pyansys_logo_black
-
-from ansys.common.variableinterop import __version__
 
 # Project information
 project = "ansys-common-variableinterop"

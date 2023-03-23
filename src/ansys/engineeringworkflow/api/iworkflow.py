@@ -23,6 +23,13 @@ class IWorkflowEngine(ABC):
 
     @abstractmethod
     def get_server_info(self) -> WorkflowEngineInfo:
+        """
+        Gets information about the server that is serving this request.
+
+        Returns
+        -------
+        A WorkflowEngineInfo object with information about the server that is serving this request
+        """
         ...
 
 
@@ -40,26 +47,78 @@ class IWorkflowInstance(ABC):
 
     @abstractmethod
     def get_state(self) -> WorkflowInstanceState:
+        """Gets the state of the workflow instance."""
         ...
 
+    # TODO: probably should not pre-emptively return all outputs as that could
+    # be quite expensive.
     @abstractmethod
     def run(self, inputs: Mapping[str, VariableState], reset: bool,
             validation_ids: AbstractSet[str]) -> Mapping[str, VariableState]:
+        """
+        Sets a workflow's input variables and runs it.
+     
+        Parameters
+        ----------
+        inputs : Mapping[str, VariableState]
+            A map of variable name to a VariableState object for all inputs to
+            be set before running.
+        reset : bool
+            Setting this to true will cause the workflow to be reset before running. 
+            Note that setting variable values could also implicitly reset some component's states
+        validation_ids : AbstractSet[str]
+            Supplying the names of the specific variables or components that are
+            required to be valid may enable the workflow engine to shortcut
+            evaluation of the workflow. If this list is non-empty, the workflow
+            engine may choose which portions of the workflow are run to satisfy
+            the given variables with the minimum runtime.
+        
+        Returns
+        -------
+        Mapping[str, VariableState] : A map of output variable names to VariableState objects for each output.
+        """
         ...
 
     @abstractmethod
     def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
-                  validation_ids: AbstractSet[str]) -> str:
+                  validation_ids: AbstractSet[str]) -> None:
+        """
+        Sets a workflow's input variables and starts the workflow running.
+     
+        Parameters
+        ----------
+        inputs : Mapping[str, VaraibleState]
+            A map of variable name to a VariableState object for all inputs to
+            be set before running.
+        reset : bool
+            Setting this to true will cause the workflow to be reset before running. 
+            Note that setting variable values could also implicitly reset some component's states
+        validation_ids : AbstractSet[str]
+            Supplying the names of the specific variables or components that are
+            required to be valid may enable the workflow engine to shortcut
+            evaluation of the workflow. If this list is non-empty, the workflow
+            engine may choose which portions of the workflow are run to satisfy
+            the given variables with the minimum runtime.
+        """
         ...
 
     # TODO: How to wait for finish in second case?
 
     @abstractmethod
     def get_root(self) -> IControlStatement:
+        """Gets the root element of the workflow instance."""
         ...
 
     @abstractmethod
-    def get_element_by_id(self, element_id: str) -> IElement:
+    def get_element_by_name(self, element_name: str) -> IElement:
+        """
+        Gets an element of the workflow instance by name.
+
+        Parameters
+        ----------
+        element_name : str
+            The name of the element to retrieve in dotted notation, e.g. "Root.Component.Thing".
+        """
         ...
 
 
