@@ -11,7 +11,12 @@ automatically generate class and method documentation.
    :toctree: _autosummary/
 
    ansys.engineeringworkflow.api
+   ansys.engineeringworkflow.api.IComponent
+   ansys.engineeringworkflow.api.IControlStatement
+   ansys.engineeringworkflow.api.IElement
    ansys.engineeringworkflow.api.IFileBasedWorkflowEngine
+   ansys.engineeringworkflow.api.IVariable
+   ansys.engineeringworkflow.api.IVariableContainer
    ansys.engineeringworkflow.api.IWorkflowEngine
    ansys.engineeringworkflow.api.IWorkflowInstance
    ansys.engineeringworkflow.api.Property

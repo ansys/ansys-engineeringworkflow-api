@@ -54,7 +54,7 @@ class IWorkflowInstance(ABC):
     # be quite expensive.
     @abstractmethod
     def run(self, inputs: Mapping[str, VariableState], reset: bool,
-            validation_ids: AbstractSet[str]) -> Mapping[str, VariableState]:
+            validation_names: AbstractSet[str]) -> Mapping[str, VariableState]:
         """
         Sets a workflow's input variables and runs it.
      
@@ -66,7 +66,7 @@ class IWorkflowInstance(ABC):
         reset : bool
             Setting this to true will cause the workflow to be reset before running. 
             Note that setting variable values could also implicitly reset some component's states
-        validation_ids : AbstractSet[str]
+        validation_names : AbstractSet[str]
             Supplying the names of the specific variables or components that are
             required to be valid may enable the workflow engine to shortcut
             evaluation of the workflow. If this list is non-empty, the workflow
@@ -81,7 +81,7 @@ class IWorkflowInstance(ABC):
 
     @abstractmethod
     def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
-                  validation_ids: AbstractSet[str]) -> None:
+                  validation_names: AbstractSet[str]) -> None:
         """
         Sets a workflow's input variables and starts the workflow running.
      
@@ -93,7 +93,7 @@ class IWorkflowInstance(ABC):
         reset : bool
             Setting this to true will cause the workflow to be reset before running. 
             Note that setting variable values could also implicitly reset some component's states
-        validation_ids : AbstractSet[str]
+        validation_names : AbstractSet[str]
             Supplying the names of the specific variables or components that are
             required to be valid may enable the workflow engine to shortcut
             evaluation of the workflow. If this list is non-empty, the workflow
@@ -122,36 +122,62 @@ class IWorkflowInstance(ABC):
         ...
 
 
-# TODO: Use UUID for ids?
-
 class IElement(ABC):
     """Any one of Component, Control Statement, or Variable"""
 
     @property
     @abstractmethod
     def element_id(self) -> str:
+        """A unique ID for this element, assigned by the system."""
         ...
 
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
+        """The parent element's id, or a blank string if this is the root
+           element of the workflow."""
+        ...
+
+    @abstractmethod
+    def get_parent_element(self) -> IElement:
+        """Returns the parent object of this element, or None if this is
+           the root element of the workflow."""
         ...
 
     @property
     @abstractmethod
-    def name(self):
+    def name(self) -> str:
+        """The name of this element."""
+        ...
+
+    @property
+    @abstractmethod
+    def full_name(self) -> str:
+        """The full name of this element in dotted notation starting from the root of the workflow."""
         ...
 
     @abstractmethod
     def get_property(self, property_name: str) -> Property:
+        """Gets a property by its property name."""
         ...
 
     @abstractmethod
     def get_properties(self) -> Collection[Property]:
+        """Gets all of the properties of this element."""
         ...
 
     @abstractmethod
     def set_property(self, property_name: str, property_value: IVariableValue) -> None:
+        """
+        Creates or sets a property on this element.
+
+        Parameters
+        ----------
+        property_name: str
+           The name of the property to create or set
+        property_value: IVariableValue
+           The value of the property
+        """
         ...
 
 
@@ -179,7 +205,7 @@ class IControlStatement(IElement, IVariableContainer, ABC):
         ...
 
     @abstractmethod
-    def get_components(self) -> Collection[IElement]:
+    def get_elements(self) -> Collection[IElement]:
         ...
 
 
@@ -195,14 +221,23 @@ class IComponent(IElement, IVariableContainer, ABC):
     preferred go forward term to use in APIs and documentation about Engineering Workflow
     """
 
+    #TODO: Is there a URL type in Python instead of using string below?
+
     @property
     @abstractmethod
-    def pacz_url(self):
+    def pacz_url(self) -> str:
+        """The URL Reference to the PACZ file or directory. May be an absolute or a relative
+        URL. If relative, it is relative to the workflow definition. While all components will be
+        represented by PACZ definitions, in the short term many components are not currently
+        defined this way. If there is not a PACZ definition of this component, this method 
+        will throw an exception. In those cases you will have to fall back on the engine specific
+        methods to determine what type of component this is."""
         ...
 
+# TODO: This API needs to be udpated with respect to the latest thinking on variables and
+#  structures of variables, including change to the datapin terminology.
 # TODO: We may want specific variable types that refine get/set value to specific
 #  variableinterop types?
-
 
 class IVariable(IElement, ABC):
     """
