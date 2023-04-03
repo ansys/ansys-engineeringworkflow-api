@@ -23,6 +23,12 @@ class IAsyncWorkflowEngine(ABC):
 
     @abstractmethod
     async def get_server_info(self) -> WorkflowEngineInfo:
+        """
+        Gets information about the server that is serving this request.
+        Returns
+        -------
+        A WorkflowEngineInfo object with information about the server that is serving this request
+        """        
         ...
 
 
@@ -40,26 +46,75 @@ class IAsyncWorkflowInstance(ABC):
 
     @abstractmethod
     async def get_state(self) -> WorkflowInstanceState:
+        """Gets the state of the workflow instance."""
         ...
 
     @abstractmethod
     async def run(self, inputs: Mapping[str, VariableState], reset: bool,
-                  validation_ids: AbstractSet[str]) -> Mapping[str, VariableState]:
+                  validation_names: AbstractSet[str]) -> Mapping[str, VariableState]:
+        """
+        Sets a workflow's input variables and runs it.
+     
+        Parameters
+        ----------
+        inputs : Mapping[str, VariableState]
+            A map of variable name to a VariableState object for all inputs to
+            be set before running.
+        reset : bool
+            Setting this to true will cause the workflow to be reset before running. 
+            Note that setting variable values could also implicitly reset some component's states
+        validation_names : AbstractSet[str]
+            Supplying the names of the specific variables or components that are
+            required to be valid may enable the workflow engine to shortcut
+            evaluation of the workflow. If this list is non-empty, the workflow
+            engine may choose which portions of the workflow are run to satisfy
+            the given variables with the minimum runtime.
+        
+        Returns
+        -------
+        Mapping[str, VariableState] : A map of output variable names to VariableState objects for each output.
+        """
         ...
 
     @abstractmethod
     async def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
-                        validation_ids: AbstractSet[str]) -> str:
+                        validation_names: AbstractSet[str]) -> str:
+        """
+        Sets a workflow's input variables and starts the workflow running.
+     
+        Parameters
+        ----------
+        inputs : Mapping[str, VaraibleState]
+            A map of variable name to a VariableState object for all inputs to
+            be set before running.
+        reset : bool
+            Setting this to true will cause the workflow to be reset before running. 
+            Note that setting variable values could also implicitly reset some component's states
+        validation_names : AbstractSet[str]
+            Supplying the names of the specific variables or components that are
+            required to be valid may enable the workflow engine to shortcut
+            evaluation of the workflow. If this list is non-empty, the workflow
+            engine may choose which portions of the workflow are run to satisfy
+            the given variables with the minimum runtime.
+        """
         ...
 
     # TODO: How to wait for finish in second case?
 
     @abstractmethod
     async def get_root(self) -> IAsyncControlStatement:
+        """Gets the root element of the workflow instance."""
         ...
 
     @abstractmethod
-    async def get_element_by_id(self, element_id: str) -> IAsyncElement:
+    async def get_element_by_name(self, element_name: str) -> IAsyncElement:
+        """
+        Gets an element of the workflow instance by name.
+        Parameters
+        ----------
+        element_name : str
+            The name of the element to retrieve in dotted notation, e.g. "Root.Component.Thing".
+        """
         ...
 
 
@@ -69,28 +124,55 @@ class IAsyncElement(ABC):
     @property
     @abstractmethod
     def element_id(self) -> str:
+        """A unique ID for this element, assigned by the system."""
         ...
 
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
+        """The parent element's id, or a blank string if this is the root
+           element of the workflow."""
+        ...
+
+    @abstractmethod
+    async def get_parent_element(self) -> IAsyncElement:
+        """Returns the parent object of this element, or None if this is
+           the root element of the workflow."""
         ...
 
     @property
     @abstractmethod
     def name(self):
+        """The name of this element."""
+        ...
+
+    @property
+    @abstractmethod
+    def full_name(self) -> str:
+        """The full name of this element in dotted notation starting from the root of the workflow."""
         ...
 
     @abstractmethod
     async def get_property(self, property_name: str) -> Property:
+        """Gets a property by its property name."""
         ...
 
     @abstractmethod
     async def get_properties(self) -> Collection[Property]:
+        """Gets all of the properties of this element."""
         ...
 
     @abstractmethod
     async def set_property(self, property_name: str, property_value: IVariableValue) -> None:
+        """
+        Creates or sets a property on this element.
+        Parameters
+        ----------
+        property_name: str
+           The name of the property to create or set
+        property_value: IVariableValue
+           The value of the property
+        """
         ...
 
 
@@ -116,7 +198,7 @@ class IAsyncControlStatement(IAsyncElement, IAsyncVariableContainer, ABC):
         ...
 
     @abstractmethod
-    async def get_components(self) -> Collection[IAsyncElement]:
+    async def get_elements(self) -> Collection[IAsyncElement]:
         ...
 
 
@@ -134,7 +216,13 @@ class IAsyncComponent(IAsyncElement, IAsyncVariableContainer, ABC):
 
     @property
     @abstractmethod
-    def pacz_url(self):
+    def pacz_url(self) -> str:
+        """The URL Reference to the PACZ file or directory. May be an absolute or a relative
+        URL. If relative, it is relative to the workflow definition. While all components will be
+        represented by PACZ definitions, in the short term many components are not currently
+        defined this way. If there is not a PACZ definition of this component, this method 
+        will throw an exception. In those cases you will have to fall back on the engine specific
+        methods to determine what type of component this is."""
         ...
 
 
