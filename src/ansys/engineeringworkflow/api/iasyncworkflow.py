@@ -66,7 +66,7 @@ class IAsyncWorkflowInstance(ABC):
         validation_names : AbstractSet[str]
             Supplying the names of the specific variables or components that are
             required to be valid may enable the workflow engine to shortcut
-            evaluation of the workflow. If this list is non-empty, the workflow
+            evaluation of the workflow. If this set is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
             the given variables with the minimum runtime.
         
