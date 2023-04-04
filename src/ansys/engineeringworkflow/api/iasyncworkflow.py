@@ -61,8 +61,10 @@ class IAsyncWorkflowInstance(ABC):
             A map of variable name to a VariableState object for all inputs to
             be set before running.
         reset : bool
-            Setting this to true will cause the workflow to be reset before running. 
-            Note that setting variable values could also implicitly reset some component's states
+            Setting this to true will cause the workflow to be reset before running. This causes all
+            run components and data links to become invalid such that the workflow will run from the
+            beginning, but does not reset any input values that have been set to non-default values.
+            Note that setting variable values could also implicitly reset some component's states.
         validation_names : AbstractSet[str]
             Supplying the names of the specific variables or components that are
             required to be valid may enable the workflow engine to shortcut
