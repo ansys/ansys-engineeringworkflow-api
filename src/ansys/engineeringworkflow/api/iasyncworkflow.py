@@ -51,7 +51,7 @@ class IAsyncWorkflowInstance(ABC):
 
     @abstractmethod
     async def run(self, inputs: Mapping[str, VariableState] = {}, reset: bool = False,
-                  validation_names: AbstractSet[str]) -> Mapping[str, VariableState]:
+                  validation_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
         """
         Sets a workflow's input variables and runs it.
      
