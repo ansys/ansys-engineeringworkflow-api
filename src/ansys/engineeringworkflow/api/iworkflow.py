@@ -187,7 +187,15 @@ class IVariableContainer(ABC):
     """An abstract base class for something that can contain variables"""
 
     @abstractmethod
-    def get_variables(self) -> Collection[IVariable]:
+    def get_variables(self) -> Mapping[str, IVariable]:
+        """
+        Get the variables in this container.
+
+        Returns
+        -------
+        A map of the variables in the container. The keys in the map are the short names
+        of the variables (relative to the container's name).
+        """
         ...
 
 
