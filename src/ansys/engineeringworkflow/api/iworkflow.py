@@ -50,11 +50,9 @@ class IWorkflowInstance(ABC):
         """Gets the state of the workflow instance."""
         ...
 
-    # TODO: probably should not pre-emptively return all outputs as that could
-    # be quite expensive.
-    @abstractmethod
-    def run(self, inputs: Mapping[str, VariableState], reset: bool,
-            validation_names: AbstractSet[str]) -> Mapping[str, VariableState]:
+    def run(self, inputs: Mapping[str, VariableState] = {}, reset: bool = False,
+            validation_names: AbstractSet[str] = set(),
+            collect_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
         """
         Sets a workflow's input variables and runs it.
      
@@ -72,10 +70,16 @@ class IWorkflowInstance(ABC):
             evaluation of the workflow. If this list is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
             the given variables with the minimum runtime.
+        collect_names: AbstractSet[str]
+            Supplying the names of the specific variables or elements here
+            will cause this function to return those values after running. If
+            an element is chosen, all of the children variables recursively will
+            be included. 
         
         Returns
         -------
-        Mapping[str, VariableState] : A map of output variable names to VariableState objects for each output.
+        Mapping[str, VariableState] : A map of output variable names to VariableState
+            objects for each variable specified in `collect_names`.
         """
         ...
 
