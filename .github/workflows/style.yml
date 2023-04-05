@@ -1,11 +1,6 @@
 # check spelling, codestyle
 name: Style checks
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 on:
   pull_request:
   push:
