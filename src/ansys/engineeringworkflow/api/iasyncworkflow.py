@@ -230,12 +230,12 @@ class IAsyncComponent(IAsyncElement, IAsyncVariableContainer, ABC):
 
     @property
     @abstractmethod
-    def pacz_url(self) -> str:
+    def pacz_url(self) -> Optional[str]:
         """The URL Reference to the PACZ file or directory. May be an absolute or a relative
         URL. If relative, it is relative to the workflow definition. While all components will be
         represented by PACZ definitions, in the short term many components are not currently
         defined this way. If there is not a PACZ definition of this component, this method 
-        will throw an exception. In those cases you will have to fall back on the engine specific
+        will return None. In those cases you will have to fall back on the engine specific
         methods to determine what type of component this is."""
         ...
 
