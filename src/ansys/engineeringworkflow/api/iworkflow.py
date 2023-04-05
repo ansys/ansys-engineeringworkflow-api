@@ -12,7 +12,7 @@ from abc import ABC, abstractmethod
 from os import PathLike
 from typing import AbstractSet, Collection, Mapping, Union
 
-from ansys.common.variableinterop import CommonVariableMetadata, VariableState
+from ansys.common.variableinterop import CommonVariableMetadata, VariableState, VariableType
 
 from .datatypes import *
 
@@ -268,6 +268,11 @@ class IVariable(IElement, ABC):
     def get_metadata(self) -> CommonVariableMetadata:
         ...
 
+    @property
+    @abstractmethod
+    def value_type(self) -> VariableType:
+        """Get the type of value this variable stores."""
+
     @abstractmethod
     def get_value(self, hid: Optional[str]) -> VariableState:
         ...
@@ -275,3 +280,18 @@ class IVariable(IElement, ABC):
     @abstractmethod
     def set_value(self, value: VariableState) -> None:
         ...
+
+    @property
+    @abstractmethod
+    def is_input_to_component(self) -> bool:
+        """Get whether this variable is an input in the context of the component it is on."""
+
+    @property
+    @abstractmethod
+    def is_input_to_workflow(self) -> bool:
+        """
+        Get whether this variable is an input in the context of the overall workflow.
+
+        Variables which are inputs in the context of their component will not be in the
+        overall workflow if they are the target of a link.
+        """
