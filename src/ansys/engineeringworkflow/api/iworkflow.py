@@ -280,3 +280,18 @@ class IVariable(IElement, ABC):
     @abstractmethod
     def set_value(self, value: VariableState) -> None:
         ...
+
+    @property
+    @abstractmethod
+    def is_input_to_component(self) -> bool:
+        """Get whether this variable is an input in the context of the component it is on."""
+
+    @property
+    @abstractmethod
+    def is_input_to_workflow(self) -> bool:
+        """
+        Get whether this variable is an input in the context of the overall workflow.
+
+        Variables which are inputs in the context of their component will not be in the
+        overall workflow if they are the target of a link.
+        """
