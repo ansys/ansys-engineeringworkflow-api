@@ -1,0 +1,101 @@
+# check spelling, codestyle
+name: Builds and publishes package
+
+on:
+  pull_request:
+  push:
+    tags:
+      - "*"
+    branches:
+      - main
+
+jobs:
+  main:
+    name: Build and Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Create wheel
+        run: |
+          pip install build
+          python -m build --wheel
+
+      - name: Validate wheel
+        run: |
+          pip install twine
+          twine check dist/*
+
+      - name: Install variableinterop, with test extra
+        run: pip install $(echo dist/*)[test]
+
+      - name: Setup locale for tests
+        run: |
+          sudo locale-gen de_DE.UTF-8
+
+      - name: Unit testing
+        run: |
+          cd tests  # so we're testing the install, not local
+          pytest -vx
+
+      - name: Upload wheel
+        uses: actions/upload-artifact@v2
+        with:
+          name: ansys-common-variableinterop-wheel
+          path: dist/
+          retention-days: 7
+
+  Release:
+    if: contains(github.ref, 'refs/tags')
+    needs: [main, style, docs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: ansys-common-variableinterop-wheel
+
+#      - uses: actions/download-artifact@v2
+#        with:
+#          name: Documentation-pdf
+
+# When we go to publish this on PyPi, if we want docs included we
+# will need to rewrite this section because the artifact was changed
+# to save using actions/upload-pages-artifact@v1actions/upload-pages-artifact@v1
+# This saves in a slightly different format (zip of a tar file)
+#      - uses: actions/download-artifact@v2
+#        with:
+#          name: Documentation-html
+#          path: ~/html
+
+      # list current directory
+      - name: List directory structure
+        run: ls -R
+
+      # note how we use the PyPI tokens
+      - name: Upload to Azure PyPi (disabled)
+        run: |
+          pip install twine
+          # twine upload --skip-existing ./**/*.whl
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./**/*.whl
+            ./**/*.zip
+            ./**/*.pdf
