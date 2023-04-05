@@ -167,7 +167,12 @@ class IAsyncElement(ABC):
         ...
 
     @abstractmethod
-    async def get_properties(self) -> Collection[Property]:
+    async def get_property_names(self) -> AbstractSet[str]:
+        """Gets the names of all of the properties."""
+        ...
+
+    @abstractmethod
+    async def get_properties(self) -> Mapping[str, Property]:
         """Gets all of the properties of this element."""
         ...
 

@@ -166,7 +166,12 @@ class IElement(ABC):
         ...
 
     @abstractmethod
-    def get_properties(self) -> Collection[Property]:
+    def get_property_names(self) -> AbstractSet[str]:
+        """Gets the names of all of the properties."""
+        ...
+
+    @abstractmethod
+    def get_properties(self) -> Mapping[str, Property]:
         """Gets all of the properties of this element."""
         ...
 
