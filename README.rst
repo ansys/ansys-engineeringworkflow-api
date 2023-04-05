@@ -43,6 +43,11 @@ This creates a new virtual environment, which can be activated with
 
    poetry shell
 
+A third alternative is to use DevContainers, either from the cli or
+with Visual Studio Code. Install VS Code and the Dev Extensions plug-in,
+then use `Dev Containers: Open Folder in Container`. The `poetry install`
+should happen for you.
+
 Documentation
 -------------
 Include a link to the full sphinx documentation.  For example `PyAnsys <https://docs.pyansys.com/>`_
