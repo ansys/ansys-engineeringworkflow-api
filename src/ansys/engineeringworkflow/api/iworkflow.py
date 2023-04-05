@@ -12,7 +12,7 @@ from abc import ABC, abstractmethod
 from os import PathLike
 from typing import AbstractSet, Collection, Mapping, Union
 
-from ansys.common.variableinterop import CommonVariableMetadata, VariableState
+from ansys.common.variableinterop import CommonVariableMetadata, VariableState, VariableType
 
 from .datatypes import *
 
@@ -267,6 +267,11 @@ class IVariable(IElement, ABC):
     @abstractmethod
     def get_metadata(self) -> CommonVariableMetadata:
         ...
+
+    @property
+    @abstractmethod
+    def value_type(self) -> VariableType:
+        """Get the type of value this variable stores."""
 
     @abstractmethod
     def get_value(self, hid: Optional[str]) -> VariableState:
