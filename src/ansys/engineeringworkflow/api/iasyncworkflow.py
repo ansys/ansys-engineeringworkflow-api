@@ -10,11 +10,11 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from os import PathLike
-from typing import AbstractSet, Collection, Mapping, Union
+from typing import AbstractSet, Collection, Mapping, Optional, Union
 
-from ansys.common.variableinterop import CommonVariableMetadata, VariableState
+from ansys.common.variableinterop import CommonVariableMetadata, IVariableValue, VariableState
 
-from .datatypes import *
+from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 
 
 class IAsyncWorkflowEngine(ABC):
@@ -28,7 +28,7 @@ class IAsyncWorkflowEngine(ABC):
         Returns
         -------
         A WorkflowEngineInfo object with information about the server that is serving this request
-        """        
+        """
         ...
 
 
@@ -55,7 +55,7 @@ class IAsyncWorkflowInstance(ABC):
                   collect_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
         """
         Sets a workflow's input variables and runs it.
-     
+
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
@@ -76,8 +76,8 @@ class IAsyncWorkflowInstance(ABC):
             Supplying the names of the specific variables or elements here
             will cause this function to return those values after running. If
             an element is chosen, all of the children variables recursively will
-            be included. 
-        
+            be included.
+
         Returns
         -------
         Mapping[str, VariableState] : A map of output variable names to VariableState
@@ -90,14 +90,14 @@ class IAsyncWorkflowInstance(ABC):
                         validation_names: AbstractSet[str]) -> str:
         """
         Sets a workflow's input variables and starts the workflow running.
-     
+
         Parameters
         ----------
         inputs : Mapping[str, VaraibleState]
             A map of variable name to a VariableState object for all inputs to
             be set before running.
         reset : bool
-            Setting this to true will cause the workflow to be reset before running. 
+            Setting this to true will cause the workflow to be reset before running.
             Note that setting variable values could also implicitly reset some component's states
         validation_names : AbstractSet[str]
             Supplying the names of the specific variables or components that are
@@ -158,28 +158,30 @@ class IAsyncElement(ABC):
     @property
     @abstractmethod
     def full_name(self) -> str:
-        """The full name of this element in dotted notation starting from the root of the workflow."""
+        """
+        The full name of this element in dotted notation starting from the root of the workflow.
+        """
         ...
 
     @abstractmethod
     async def get_property(self, property_name: str) -> Property:
-        """Gets a property by its property name."""
+        """Get a property by its property name."""
         ...
 
     @abstractmethod
     async def get_property_names(self) -> AbstractSet[str]:
-        """Gets the names of all of the properties."""
+        """Get the names of all of the properties."""
         ...
 
     @abstractmethod
     async def get_properties(self) -> Mapping[str, Property]:
-        """Gets all of the properties of this element."""
+        """Get all of the properties of this element."""
         ...
 
     @abstractmethod
     async def set_property(self, property_name: str, property_value: IVariableValue) -> None:
         """
-        Creates or sets a property on this element.
+        Create or set a property on this element.
         Parameters
         ----------
         property_name: str
@@ -234,7 +236,7 @@ class IAsyncComponent(IAsyncElement, IAsyncVariableContainer, ABC):
         """The URL Reference to the PACZ file or directory. May be an absolute or a relative
         URL. If relative, it is relative to the workflow definition. While all components will be
         represented by PACZ definitions, in the short term many components are not currently
-        defined this way. If there is not a PACZ definition of this component, this method 
+        defined this way. If there is not a PACZ definition of this component, this method
         will return None. In those cases you will have to fall back on the engine specific
         methods to determine what type of component this is."""
         ...
