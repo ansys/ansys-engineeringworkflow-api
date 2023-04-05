@@ -20,7 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: setup-git-credentials
+        run: |
+          git config --global url.https://${{ secrets.PHX_NIGHTLY_SECRET }}@github.com/pyansys/ansys-common-variableinterop.insteadOf https://github.com/pyansys/ansys-common-variableinterop
+ 
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PHX_NIGHTLY_SECRET }}      
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
