@@ -10,11 +10,16 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from os import PathLike
-from typing import AbstractSet, Collection, Mapping, Union
+from typing import AbstractSet, Collection, Mapping, Optional, Union
 
-from ansys.common.variableinterop import CommonVariableMetadata, VariableState
+from ansys.common.variableinterop import (
+    CommonVariableMetadata,
+    IVariableValue,
+    VariableState,
+    VariableType,
+)
 
-from .datatypes import *
+from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 
 
 class IWorkflowEngine(ABC):
@@ -23,6 +28,13 @@ class IWorkflowEngine(ABC):
 
     @abstractmethod
     def get_server_info(self) -> WorkflowEngineInfo:
+        """
+        Gets information about the server that is serving this request.
+
+        Returns
+        -------
+        A WorkflowEngineInfo object with information about the server that is serving this request
+        """
         ...
 
 
@@ -40,30 +52,84 @@ class IWorkflowInstance(ABC):
 
     @abstractmethod
     def get_state(self) -> WorkflowInstanceState:
+        """Gets the state of the workflow instance."""
         ...
 
-    @abstractmethod
-    def run(self, inputs: Mapping[str, VariableState], reset: bool,
-            validation_ids: AbstractSet[str]) -> Mapping[str, VariableState]:
+    def run(self, inputs: Mapping[str, VariableState] = {}, reset: bool = False,
+            validation_names: AbstractSet[str] = set(),
+            collect_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
+        """
+        Sets a workflow's input variables and runs it.
+
+        Parameters
+        ----------
+        inputs : Mapping[str, VariableState]
+            A map of variable name to a VariableState object for all inputs to
+            be set before running.
+        reset : bool
+            Setting this to true will cause the workflow to be reset before running.
+            Note that setting variable values could also implicitly reset some component's states
+        validation_names : AbstractSet[str]
+            Supplying the names of the specific variables or components that are
+            required to be valid may enable the workflow engine to shortcut
+            evaluation of the workflow. If this list is non-empty, the workflow
+            engine may choose which portions of the workflow are run to satisfy
+            the given variables with the minimum runtime.
+        collect_names: AbstractSet[str]
+            Supplying the names of the specific variables or elements here
+            will cause this function to return those values after running. If
+            an element is chosen, all of the children variables recursively will
+            be included.
+
+        Returns
+        -------
+        Mapping[str, VariableState] : A map of output variable names to VariableState
+            objects for each variable specified in `collect_names`.
+        """
         ...
 
     @abstractmethod
     def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
-                  validation_ids: AbstractSet[str]) -> str:
+                  validation_names: AbstractSet[str]) -> None:
+        """
+        Sets a workflow's input variables and starts the workflow running.
+
+        Parameters
+        ----------
+        inputs : Mapping[str, VaraibleState]
+            A map of variable name to a VariableState object for all inputs to
+            be set before running.
+        reset : bool
+            Setting this to true will cause the workflow to be reset before running.
+            Note that setting variable values could also implicitly reset some component's states
+        validation_names : AbstractSet[str]
+            Supplying the names of the specific variables or components that are
+            required to be valid may enable the workflow engine to shortcut
+            evaluation of the workflow. If this list is non-empty, the workflow
+            engine may choose which portions of the workflow are run to satisfy
+            the given variables with the minimum runtime.
+        """
         ...
 
     # TODO: How to wait for finish in second case?
 
     @abstractmethod
     def get_root(self) -> IControlStatement:
+        """Gets the root element of the workflow instance."""
         ...
 
     @abstractmethod
-    def get_element_by_id(self, element_id: str) -> IElement:
+    def get_element_by_name(self, element_name: str) -> IElement:
+        """
+        Gets an element of the workflow instance by name.
+
+        Parameters
+        ----------
+        element_name : str
+            The name of the element to retrieve in dotted notation, e.g. "Root.Component.Thing".
+        """
         ...
 
-
-# TODO: Use UUID for ids?
 
 class IElement(ABC):
     """Any one of Component, Control Statement, or Variable"""
@@ -71,28 +137,63 @@ class IElement(ABC):
     @property
     @abstractmethod
     def element_id(self) -> str:
+        """A unique ID for this element, assigned by the system."""
         ...
 
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
+        """The parent element's id, or a blank string if this is the root
+           element of the workflow."""
+        ...
+
+    @abstractmethod
+    def get_parent_element(self) -> IElement:
+        """Returns the parent object of this element, or None if this is
+           the root element of the workflow."""
         ...
 
     @property
     @abstractmethod
-    def name(self):
+    def name(self) -> str:
+        """The name of this element."""
+        ...
+
+    @property
+    @abstractmethod
+    def full_name(self) -> str:
+        """
+        The full name of this element in dotted notation starting from the root of the workflow.
+        """
         ...
 
     @abstractmethod
     def get_property(self, property_name: str) -> Property:
+        """Get a property by its property name."""
         ...
 
     @abstractmethod
-    def get_properties(self) -> Collection[Property]:
+    def get_property_names(self) -> AbstractSet[str]:
+        """Get the names of all of the properties."""
+        ...
+
+    @abstractmethod
+    def get_properties(self) -> Mapping[str, Property]:
+        """Get all of the properties of this element."""
         ...
 
     @abstractmethod
     def set_property(self, property_name: str, property_value: IVariableValue) -> None:
+        """
+        Create or set a property on this element.
+
+        Parameters
+        ----------
+        property_name: str
+           The name of the property to create or set
+        property_value: IVariableValue
+           The value of the property
+        """
         ...
 
 
@@ -102,7 +203,15 @@ class IVariableContainer(ABC):
     """An abstract base class for something that can contain variables"""
 
     @abstractmethod
-    def get_variables(self) -> Collection[IVariable]:
+    def get_variables(self) -> Mapping[str, IVariable]:
+        """
+        Get the variables in this container.
+
+        Returns
+        -------
+        A map of the variables in the container. The keys in the map are the short names
+        of the variables (relative to the container's name).
+        """
         ...
 
 
@@ -120,7 +229,7 @@ class IControlStatement(IElement, IVariableContainer, ABC):
         ...
 
     @abstractmethod
-    def get_components(self) -> Collection[IElement]:
+    def get_elements(self) -> Collection[IElement]:
         ...
 
 
@@ -136,14 +245,23 @@ class IComponent(IElement, IVariableContainer, ABC):
     preferred go forward term to use in APIs and documentation about Engineering Workflow
     """
 
+    #TODO: Is there a URL type in Python instead of using string below?
+
     @property
     @abstractmethod
-    def pacz_url(self):
-        ...
+    def pacz_url(self) -> Optional[str]:
+        """The URL Reference to the PACZ file or directory. May be an absolute or a relative
+        URL. If relative, it is relative to the workflow definition. While all components will be
+        represented by PACZ definitions, in the short term many components are not currently
+        defined this way. If there is not a PACZ definition of this component, this method
+        will return None. In those cases you will have to fall back on the engine specific
+        methods to determine what type of component this is."""
+    ...
 
+# TODO: This API needs to be updated with respect to the latest thinking on variables and
+#  structures of variables, including change to the datapin terminology.
 # TODO: We may want specific variable types that refine get/set value to specific
 #  variableinterop types?
-
 
 class IVariable(IElement, ABC):
     """
@@ -157,6 +275,11 @@ class IVariable(IElement, ABC):
     def get_metadata(self) -> CommonVariableMetadata:
         ...
 
+    @property
+    @abstractmethod
+    def value_type(self) -> VariableType:
+        """Get the type of value this variable stores."""
+
     @abstractmethod
     def get_value(self, hid: Optional[str]) -> VariableState:
         ...
@@ -164,3 +287,18 @@ class IVariable(IElement, ABC):
     @abstractmethod
     def set_value(self, value: VariableState) -> None:
         ...
+
+    @property
+    @abstractmethod
+    def is_input_to_component(self) -> bool:
+        """Get whether this variable is an input in the context of the component it is on."""
+
+    @property
+    @abstractmethod
+    def is_input_to_workflow(self) -> bool:
+        """
+        Get whether this variable is an input in the context of the overall workflow.
+
+        Variables which are inputs in the context of their component will not be in the
+        overall workflow if they are the target of a link.
+        """

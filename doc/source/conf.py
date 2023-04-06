@@ -1,9 +1,9 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 
-from pyansys_sphinx_theme import pyansys_logo_black
+from ansys_sphinx_theme import pyansys_logo_black
 
-from ansys.common.variableinterop import __version__
+from ansys.engineeringworkflow.api import __version__
 
 # Project information
 project = "ansys-common-variableinterop"
@@ -13,7 +13,7 @@ release = version = __version__
 
 # use the default pyansys logo
 html_logo = pyansys_logo_black
-html_theme = "pyansys_sphinx_theme"
+html_theme = "ansys_sphinx_theme"
 
 # specify the location of your github repo
 html_theme_options = {
