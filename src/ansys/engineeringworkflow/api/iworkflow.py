@@ -148,7 +148,7 @@ class IElement(ABC):
         ...
 
     @abstractmethod
-    def get_parent_element(self) -> IElement:
+    def get_parent_element(self) -> Optional[IElement]:
         """Returns the parent object of this element, or None if this is
            the root element of the workflow."""
         ...
