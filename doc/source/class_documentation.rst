@@ -15,8 +15,8 @@ automatically generate class and method documentation.
    ansys.engineeringworkflow.api.IControlStatement
    ansys.engineeringworkflow.api.IElement
    ansys.engineeringworkflow.api.IFileBasedWorkflowEngine
-   ansys.engineeringworkflow.api.IVariable
-   ansys.engineeringworkflow.api.IVariableContainer
+   ansys.engineeringworkflow.api.IDatapin
+   ansys.engineeringworkflow.api.IDatapinContainer
    ansys.engineeringworkflow.api.IWorkflowEngine
    ansys.engineeringworkflow.api.IWorkflowInstance
    ansys.engineeringworkflow.api.Property

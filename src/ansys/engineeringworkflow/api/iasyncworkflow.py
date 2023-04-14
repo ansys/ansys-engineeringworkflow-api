@@ -54,34 +54,34 @@ class IAsyncWorkflowInstance(ABC):
                   validation_names: AbstractSet[str] = set(),
                   collect_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
         """
-        Sets a workflow's input variables and runs it.
+        Sets a workflow's input datapins and runs it.
 
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
-            A map of variable name to a VariableState object for all inputs to
+            A map of datapin name to a VariableState object for all inputs to
             be set before running.
         reset : bool
             Setting this to true will cause the workflow to be reset before running. This causes all
             run components and data links to become invalid such that the workflow will run from the
             beginning, but does not reset any input values that have been set to non-default values.
-            Note that setting variable values could also implicitly reset some component's states.
+            Note that setting datapin values could also implicitly reset some component's states.
         validation_names : AbstractSet[str]
-            Supplying the names of the specific variables or components that are
+            Supplying the names of the specific datapins or components that are
             required to be valid may enable the workflow engine to shortcut
             evaluation of the workflow. If this set is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
-            the given variables with the minimum runtime.
+            the given datapins with the minimum runtime.
         collect_names: AbstractSet[str]
-            Supplying the names of the specific variables or elements here
+            Supplying the names of the specific datapins or elements here
             will cause this function to return those values after running. If
-            an element is chosen, all of the children variables recursively will
+            an element is chosen, all of the children datapins recursively will
             be included.
 
         Returns
         -------
-        Mapping[str, VariableState] : A map of output variable names to VariableState
-            objects for each variable specified in `collect_names`.
+        Mapping[str, VariableState] : A map of output datapin names to VariableState
+            objects for each datapin specified in `collect_names`.
         """
         ...
 
@@ -89,22 +89,22 @@ class IAsyncWorkflowInstance(ABC):
     async def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
                         validation_names: AbstractSet[str]) -> str:
         """
-        Sets a workflow's input variables and starts the workflow running.
+        Sets a workflow's input datapins and starts the workflow running.
 
         Parameters
         ----------
         inputs : Mapping[str, VaraibleState]
-            A map of variable name to a VariableState object for all inputs to
+            A map of datapin name to a VariableState object for all inputs to
             be set before running.
         reset : bool
             Setting this to true will cause the workflow to be reset before running.
-            Note that setting variable values could also implicitly reset some component's states
+            Note that setting datapin values could also implicitly reset some component's states
         validation_names : AbstractSet[str]
-            Supplying the names of the specific variables or components that are
+            Supplying the names of the specific datapins or components that are
             required to be valid may enable the workflow engine to shortcut
             evaluation of the workflow. If this list is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
-            the given variables with the minimum runtime.
+            the given datapins with the minimum runtime.
         """
         ...
 
@@ -128,7 +128,7 @@ class IAsyncWorkflowInstance(ABC):
 
 
 class IAsyncElement(ABC):
-    """Any one of Component, Control Statement, or Variable"""
+    """Any one of Component, Control Statement, or Datapin"""
 
     @property
     @abstractmethod
@@ -192,15 +192,15 @@ class IAsyncElement(ABC):
         ...
 
 
-class IAsyncVariableContainer(ABC):
-    """An abstract base class for something that can contain variables"""
+class IAsyncDatapinContainer(ABC):
+    """An abstract base class for something that can contain datapins"""
 
     @abstractmethod
-    async def get_variables(self) -> Collection[IAsyncVariable]:
+    async def get_datapins(self) -> Collection[IAsyncDatapin]:
         ...
 
 
-class IAsyncControlStatement(IAsyncElement, IAsyncVariableContainer, ABC):
+class IAsyncControlStatement(IAsyncElement, IAsyncDatapinContainer, ABC):
     """
     An element in the workflow that contains children and controls how those children
      will be executed.
@@ -218,7 +218,7 @@ class IAsyncControlStatement(IAsyncElement, IAsyncVariableContainer, ABC):
         ...
 
 
-class IAsyncComponent(IAsyncElement, IAsyncVariableContainer, ABC):
+class IAsyncComponent(IAsyncElement, IAsyncDatapinContainer, ABC):
     """
     A black box analysis is defined as taking a set of inputs, executing, and resulting in a set
      of outputs.
@@ -242,11 +242,11 @@ class IAsyncComponent(IAsyncElement, IAsyncVariableContainer, ABC):
         ...
 
 
-class IAsyncVariable(IAsyncElement, ABC):
+class IAsyncDatapin(IAsyncElement, ABC):
     """
     A runtime placeholder for some value of a particular type.
 
-    Will change as the workflow runs and can be linked to other variables via direct
+    Will change as the workflow runs and can be linked to other datapins via direct
     links or equations
     """
 
