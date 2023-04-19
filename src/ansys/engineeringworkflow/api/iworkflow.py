@@ -59,32 +59,32 @@ class IWorkflowInstance(ABC):
             validation_names: AbstractSet[str] = set(),
             collect_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
         """
-        Sets a workflow's input variables and runs it.
+        Sets a workflow's input datapins and runs it.
 
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
-            A map of variable name to a VariableState object for all inputs to
+            A map of datapin name to a VariableState object for all inputs to
             be set before running.
         reset : bool
             Setting this to true will cause the workflow to be reset before running.
-            Note that setting variable values could also implicitly reset some component's states
+            Note that setting datapin values could also implicitly reset some component's states
         validation_names : AbstractSet[str]
-            Supplying the names of the specific variables or components that are
+            Supplying the names of the specific datapins or components that are
             required to be valid may enable the workflow engine to shortcut
             evaluation of the workflow. If this list is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
-            the given variables with the minimum runtime.
+            the given datapins with the minimum runtime.
         collect_names: AbstractSet[str]
-            Supplying the names of the specific variables or elements here
+            Supplying the names of the specific datapins or elements here
             will cause this function to return those values after running. If
-            an element is chosen, all of the children variables recursively will
+            an element is chosen, all of the children datapins recursively will
             be included.
 
         Returns
         -------
-        Mapping[str, VariableState] : A map of output variable names to VariableState
-            objects for each variable specified in `collect_names`.
+        Mapping[str, VariableState] : A map of output datapin names to VariableState
+            objects for each datapin specified in `collect_names`.
         """
         ...
 
@@ -92,22 +92,22 @@ class IWorkflowInstance(ABC):
     def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
                   validation_names: AbstractSet[str]) -> None:
         """
-        Sets a workflow's input variables and starts the workflow running.
+        Sets a workflow's input datapins and starts the workflow running.
 
         Parameters
         ----------
         inputs : Mapping[str, VaraibleState]
-            A map of variable name to a VariableState object for all inputs to
+            A map of datapin name to a VariableState object for all inputs to
             be set before running.
         reset : bool
             Setting this to true will cause the workflow to be reset before running.
-            Note that setting variable values could also implicitly reset some component's states
+            Note that setting datapin values could also implicitly reset some component's states
         validation_names : AbstractSet[str]
-            Supplying the names of the specific variables or components that are
+            Supplying the names of the specific datapin or components that are
             required to be valid may enable the workflow engine to shortcut
             evaluation of the workflow. If this list is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
-            the given variables with the minimum runtime.
+            the given datapins with the minimum runtime.
         """
         ...
 
@@ -199,23 +199,23 @@ class IElement(ABC):
 
 # TODO: Should control statements extend component?
 
-class IVariableContainer(ABC):
-    """An abstract base class for something that can contain variables"""
+class IDatapinContainer(ABC):
+    """An abstract base class for something that can contain datapins"""
 
     @abstractmethod
-    def get_variables(self) -> Mapping[str, IVariable]:
+    def get_datapins(self) -> Mapping[str, IDatapin]:
         """
-        Get the variables in this container.
+        Get the datapins in this container.
 
         Returns
         -------
-        A map of the variables in the container. The keys in the map are the short names
-        of the variables (relative to the container's name).
+        A map of the datapins in the container. The keys in the map are the short names
+        of the datapins (relative to the container's name).
         """
         ...
 
 
-class IControlStatement(IElement, IVariableContainer, ABC):
+class IControlStatement(IElement, IDatapinContainer, ABC):
     """
     An element in the workflow that contains children and controls how those children
      will be executed.
@@ -233,7 +233,7 @@ class IControlStatement(IElement, IVariableContainer, ABC):
         ...
 
 
-class IComponent(IElement, IVariableContainer, ABC):
+class IComponent(IElement, IDatapinContainer, ABC):
     """
     A black box analysis is defined as taking a set of inputs, executing, and resulting in a set
      of outputs.
@@ -258,16 +258,14 @@ class IComponent(IElement, IVariableContainer, ABC):
         methods to determine what type of component this is."""
     ...
 
-# TODO: This API needs to be updated with respect to the latest thinking on variables and
-#  structures of variables, including change to the datapin terminology.
-# TODO: We may want specific variable types that refine get/set value to specific
+# TODO: We may want specific datapin types that refine get/set value to specific
 #  variableinterop types?
 
-class IVariable(IElement, ABC):
+class IDatapin(IElement, ABC):
     """
     A runtime placeholder for some value of a particular type.
 
-    Will change as the workflow runs and can be linked to other variables via direct
+    Will change as the workflow runs and can be linked to other datapins via direct
     links or equations
     """
 
@@ -278,7 +276,7 @@ class IVariable(IElement, ABC):
     @property
     @abstractmethod
     def value_type(self) -> VariableType:
-        """Get the type of value this variable stores."""
+        """Get the type of value this datapin stores."""
 
     @abstractmethod
     def get_value(self, hid: Optional[str]) -> VariableState:
@@ -291,13 +289,13 @@ class IVariable(IElement, ABC):
     @property
     @abstractmethod
     def is_input_to_component(self) -> bool:
-        """Get whether this variable is an input in the context of the component it is on."""
+        """Get whether this datapin is an input in the context of the component it is on."""
 
     @property
     @abstractmethod
     def is_input_to_workflow(self) -> bool:
         """
-        Get whether this variable is an input in the context of the overall workflow.
+        Get whether this datapin is an input in the context of the overall workflow.
 
         Variables which are inputs in the context of their component will not be in the
         overall workflow if they are the target of a link.
