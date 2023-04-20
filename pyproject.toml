@@ -28,7 +28,7 @@ packages = [
 python = ">=3.8,<4.0"
 numpy = "^1.22.4"
 # ansys-common-variableinterop = "^0.1.dev0"
-ansys-common-variableinterop = {git = "https://github.com/pyansys/ansys-common-variableinterop.git", rev = "3c0a8f7"}
+ansys-common-variableinterop = {git = "https://github.com/pyansys/ansys-common-variableinterop.git", rev = "ac4311c"}
 
 Sphinx =  {version="^4.4", optional=true}
 numpydoc =  {version="^1.2", optional=true}
