@@ -23,43 +23,50 @@ from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 
 
 class IWorkflowEngine(ABC):
-    """Interface defines the common behavior for an engineering workflow engine that can run and
-     monitor instances"""
+    """Interface defines the common behavior for an engineering workflow engine that can run and \
+    monitor instances."""
 
     @abstractmethod
     def get_server_info(self) -> WorkflowEngineInfo:
         """
-        Gets information about the server that is serving this request.
+        Get information about the server that is serving this request.
 
         Returns
         -------
-        A WorkflowEngineInfo object with information about the server that is serving this request
+        WorkflowEngineInfo
+            A WorkflowEngineInfo object with information about the server that is serving this
+            request.
         """
         ...
 
 
 class IFileBasedWorkflowEngine(IWorkflowEngine, ABC):
-    """Extends IWorkflowEngine with calls that are relevant for loading files from a local
-    filesystem. """
+    """Extends IWorkflowEngine with calls that are relevant for loading files from a local \
+    filesystem."""
 
     @abstractmethod
     def load_workflow(self, file_name: Union[PathLike, str]) -> IWorkflowInstance:
+        """Load a workflow from a local file into the Engine."""
         ...
 
 
 class IWorkflowInstance(ABC):
-    """Representation of an instantiated workflow instance"""
+    """Representation of an instantiated workflow instance."""
 
     @abstractmethod
     def get_state(self) -> WorkflowInstanceState:
-        """Gets the state of the workflow instance."""
+        """Get the state of the workflow instance."""
         ...
 
-    def run(self, inputs: Mapping[str, VariableState] = {}, reset: bool = False,
-            validation_names: AbstractSet[str] = set(),
-            collect_names: AbstractSet[str] = set()) -> Mapping[str, VariableState]:
+    def run(
+        self,
+        inputs: Mapping[str, VariableState] = {},
+        reset: bool = False,
+        validation_names: AbstractSet[str] = set(),
+        collect_names: AbstractSet[str] = set(),
+    ) -> Mapping[str, VariableState]:
         """
-        Sets a workflow's input datapins and runs it.
+        Set a workflow's input datapins and run it.
 
         Parameters
         ----------
@@ -75,7 +82,7 @@ class IWorkflowInstance(ABC):
             evaluation of the workflow. If this list is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
             the given datapins with the minimum runtime.
-        collect_names: AbstractSet[str]
+        collect_names : AbstractSet[str]
             Supplying the names of the specific datapins or elements here
             will cause this function to return those values after running. If
             an element is chosen, all of the children datapins recursively will
@@ -83,20 +90,22 @@ class IWorkflowInstance(ABC):
 
         Returns
         -------
-        Mapping[str, VariableState] : A map of output datapin names to VariableState
-            objects for each datapin specified in `collect_names`.
+        Mapping[str, VariableState]
+            A map of output datapin names to VariableState objects for each datapin specified in
+            `collect_names`.
         """
         ...
 
     @abstractmethod
-    def start_run(self, inputs: Mapping[str, VariableState], reset: bool,
-                  validation_names: AbstractSet[str]) -> None:
+    def start_run(
+        self, inputs: Mapping[str, VariableState], reset: bool, validation_names: AbstractSet[str]
+    ) -> None:
         """
-        Sets a workflow's input datapins and starts the workflow running.
+        Set a workflow's input datapins and start running the workflow.
 
         Parameters
         ----------
-        inputs : Mapping[str, VaraibleState]
+        inputs : Mapping[str, VariableState]
             A map of datapin name to a VariableState object for all inputs to
             be set before running.
         reset : bool
@@ -115,13 +124,13 @@ class IWorkflowInstance(ABC):
 
     @abstractmethod
     def get_root(self) -> IControlStatement:
-        """Gets the root element of the workflow instance."""
+        """Get the root element of the workflow instance."""
         ...
 
     @abstractmethod
     def get_element_by_name(self, element_name: str) -> IElement:
         """
-        Gets an element of the workflow instance by name.
+        Get an element of the workflow instance by name.
 
         Parameters
         ----------
@@ -132,7 +141,7 @@ class IWorkflowInstance(ABC):
 
 
 class IElement(ABC):
-    """Any one of Component, Control Statement, or Variable"""
+    """Any one of Component, Control Statement, or Variable."""
 
     @property
     @abstractmethod
@@ -143,14 +152,14 @@ class IElement(ABC):
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
-        """The parent element's id, or a blank string if this is the root
-           element of the workflow."""
+        """The parent element's id, or a blank string if this is the root element of the \
+        workflow."""
         ...
 
     @abstractmethod
     def get_parent_element(self) -> Optional[IElement]:
-        """Returns the parent object of this element, or None if this is
-           the root element of the workflow."""
+        """Return the parent object of this element, or None if this is the root element of the \
+        workflow."""
         ...
 
     @property
@@ -162,9 +171,8 @@ class IElement(ABC):
     @property
     @abstractmethod
     def full_name(self) -> str:
-        """
-        The full name of this element in dotted notation starting from the root of the workflow.
-        """
+        """The full name of this element in dotted notation starting from the root of the \
+        workflow."""
         ...
 
     @abstractmethod
@@ -189,9 +197,9 @@ class IElement(ABC):
 
         Parameters
         ----------
-        property_name: str
+        property_name : str
            The name of the property to create or set
-        property_value: IVariableValue
+        property_value : IVariableValue
            The value of the property
         """
         ...
@@ -199,8 +207,9 @@ class IElement(ABC):
 
 # TODO: Should control statements extend component?
 
+
 class IDatapinContainer(ABC):
-    """An abstract base class for something that can contain datapins"""
+    """An abstract base class for something that can contain datapins."""
 
     @abstractmethod
     def get_datapins(self) -> Mapping[str, IDatapin]:
@@ -209,16 +218,17 @@ class IDatapinContainer(ABC):
 
         Returns
         -------
-        A map of the datapins in the container. The keys in the map are the short names
-        of the datapins (relative to the container's name).
+        Mapping[str, IDatapin]
+            A map of the datapins in the container. The keys in the map are the short names of the
+            datapins (relative to the container's name).
         """
         ...
 
 
 class IControlStatement(IElement, IDatapinContainer, ABC):
     """
-    An element in the workflow that contains children and controls how those children
-     will be executed.
+    An element in the workflow that contains children and controls how those children will be \
+    executed.
 
     Examples are: sequential, parallel, looping, conditional, Trade Study.
     """
@@ -226,17 +236,19 @@ class IControlStatement(IElement, IDatapinContainer, ABC):
     @property
     @abstractmethod
     def control_type(self) -> str:
+        """Get the type of this control statement."""
         ...
 
     @abstractmethod
     def get_elements(self) -> Collection[IElement]:
+        """Get all the elements of this control statement."""
         ...
 
 
 class IComponent(IElement, IDatapinContainer, ABC):
     """
-    A black box analysis is defined as taking a set of inputs, executing, and resulting in a set
-     of outputs.
+    A black box analysis is defined as taking a set of inputs, executing, and resulting in a set \
+    of outputs.
 
     May be a solver, simulation, co-simulation, calculation, or other third party analysis. While
     state may be kept as an optimization to help performance for slow to start tools, the
@@ -245,21 +257,27 @@ class IComponent(IElement, IDatapinContainer, ABC):
     preferred go forward term to use in APIs and documentation about Engineering Workflow
     """
 
-    #TODO: Is there a URL type in Python instead of using string below?
+    # TODO: Is there a URL type in Python instead of using string below?
 
     @property
     @abstractmethod
     def pacz_url(self) -> Optional[str]:
-        """The URL Reference to the PACZ file or directory. May be an absolute or a relative
-        URL. If relative, it is relative to the workflow definition. While all components will be
-        represented by PACZ definitions, in the short term many components are not currently
-        defined this way. If there is not a PACZ definition of this component, this method
-        will return None. In those cases you will have to fall back on the engine specific
-        methods to determine what type of component this is."""
+        """
+        The URL Reference to the PACZ file or directory.
+
+        May be an absolute or a relative URL. If relative, it is relative to the workflow
+        definition. While all components will be represented by PACZ definitions, in the short term
+        many components are not currently defined this way. If there is not a PACZ definition of
+        this component, this method will return None. In those cases you will have to fall back on
+        the engine specific methods to determine what type of component this is.
+        """
+
     ...
+
 
 # TODO: We may want specific datapin types that refine get/set value to specific
 #  variableinterop types?
+
 
 class IDatapin(IElement, ABC):
     """
@@ -271,6 +289,7 @@ class IDatapin(IElement, ABC):
 
     @abstractmethod
     def get_metadata(self) -> CommonVariableMetadata:
+        """Get the metadata for this datapin."""
         ...
 
     @property
@@ -280,10 +299,12 @@ class IDatapin(IElement, ABC):
 
     @abstractmethod
     def get_value(self, hid: Optional[str]) -> VariableState:
+        """Get the value of this datapin."""
         ...
 
     @abstractmethod
     def set_value(self, value: VariableState) -> None:
+        """Set the value of this datapin."""
         ...
 
     @property

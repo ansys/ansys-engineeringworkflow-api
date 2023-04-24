@@ -1,3 +1,4 @@
+"""API Datatype definitions."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -9,13 +10,13 @@ from ansys.common.variableinterop import IVariableValue
 
 @dataclass(frozen=True)
 class WorkflowEngineInfo:
-    """Information about a workflow engine as collected by get_server_info call"""
+    """Information about a workflow engine as collected by get_server_info call."""
 
     # TODO: this style documentation does not appear to be working?
     release_year: int
     """The year portion of the release, such as 2022"""
     release_id: int
-    """release_id"""
+    """The id portion of the release, such as 2 for 2022 R2"""
     build: int
     """The build number"""
     is_release_build: bool
@@ -39,7 +40,8 @@ class WorkflowEngineInfo:
 
 
 class WorkflowInstanceState(Enum):
-    """The state that a workflow instance can be in"""
+    """The state that a workflow instance can be in."""
+
     UNKNOWN = 0
     INVALID = 1
     RUNNING = 2
