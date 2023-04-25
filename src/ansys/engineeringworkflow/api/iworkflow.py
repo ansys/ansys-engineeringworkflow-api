@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from os import PathLike
-from typing import AbstractSet, Collection, Mapping, Optional, Union
+from typing import AbstractSet, Mapping, Optional, Union
 
 from ansys.common.variableinterop import (
     CommonVariableMetadata,
@@ -240,8 +240,22 @@ class IControlStatement(IElement, IDatapinContainer, ABC):
         ...
 
     @abstractmethod
-    def get_elements(self) -> Collection[IElement]:
-        """Get all the elements of this control statement."""
+    def get_elements(self) -> Mapping[str, IElement]:
+        """
+        Get all the elements of this control statement.
+
+        Because Python dictionaries are ordered, the order in which elements appear in the map
+        may be significant depending on the engine / workflow instance implementation;
+        for example, some workflows may execute each element in a control statement
+        in a defined order, which should be reflected here.
+
+        Returns
+        -------
+        Mapping[str, IElement]
+            The child elements of this control statement.
+            Each key is the short name (relative to the parent element) of the corresponding
+            element object.
+        """
         ...
 
 
