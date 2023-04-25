@@ -4,6 +4,11 @@ Synchronous API definitions.
 This module contains the common API for all Ansys workflow engines, written in a
 synchronous style. It has the exact same API as iasyncworkflow module and any
 changes to one file must be made to the other.
+
+Generally speaking, in addition to other exceptions that are otherwise noted,
+implementations of this API may raise :class:`.exceptions.EngineInternalError` to indicate that
+they have encountered an internal error that should be reported to the engine implementation
+maintainer.
 """
 
 from __future__ import annotations
