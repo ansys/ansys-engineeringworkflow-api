@@ -4,6 +4,11 @@ Asynchronous API definitions.
 This module contains the common API for all Ansys workflow engines, written in an
 asynchronous style. It has the exact same API as iworkflow module and any
 changes to one file must be made to the other.
+
+Generally speaking, in addition to other exceptions that are otherwise noted,
+implementations of this API may raise :class:`.exceptions.EngineInternalError` to indicate that
+they have encountered an internal error that should be reported to the engine implementation
+maintainer.
 """
 
 from __future__ import annotations
@@ -86,6 +91,11 @@ class IAsyncWorkflowInstance(ABC):
             an element is chosen, all of the children datapins recursively will
             be included.
 
+        Raises
+        ------
+        ValueOutOfRangeError
+            If one of the values in inputs violates its datapin's bounds or enumerated values.
+
         Returns
         -------
         Mapping[str, VariableState] :
@@ -115,6 +125,11 @@ class IAsyncWorkflowInstance(ABC):
             evaluation of the workflow. If this list is non-empty, the workflow
             engine may choose which portions of the workflow are run to satisfy
             the given datapins with the minimum runtime.
+
+        Raises
+        ------
+        ValueOutOfRangeError
+            If one of the values in inputs violates its datapin's bounds or enumerated values.
         """
         ...
 
