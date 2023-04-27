@@ -328,7 +328,7 @@ class IDatapin(IElement, ABC):
         """Get the type of value this datapin stores."""
 
     @abstractmethod
-    def get_value(self, hid: Optional[str]) -> VariableState:
+    def get_value(self, hid: Optional[str] = None) -> VariableState:
         """Get the value of this datapin."""
         ...
 

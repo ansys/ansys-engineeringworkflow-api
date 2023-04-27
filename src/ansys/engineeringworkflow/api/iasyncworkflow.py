@@ -294,7 +294,7 @@ class IAsyncDatapin(IAsyncElement, ABC):
         ...
 
     @abstractmethod
-    async def get_value(self, hid: Optional[str]) -> VariableState:
+    async def get_value(self, hid: Optional[str] = None) -> VariableState:
         """Get the value of this datapin."""
         ...
 
