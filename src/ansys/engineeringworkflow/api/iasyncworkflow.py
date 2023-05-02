@@ -17,7 +17,7 @@ from abc import ABC, abstractmethod
 from os import PathLike
 from typing import AbstractSet, Collection, Mapping, Optional, Union
 
-from ansys.common.variableinterop import CommonVariableMetadata, IVariableValue, VariableState
+from ansys.tools.variableinterop import CommonVariableMetadata, IVariableValue, VariableState
 
 from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 

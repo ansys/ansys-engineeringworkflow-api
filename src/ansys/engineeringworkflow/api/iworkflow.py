@@ -17,7 +17,7 @@ from abc import ABC, abstractmethod
 from os import PathLike
 from typing import AbstractSet, Mapping, Optional, Union
 
-from ansys.common.variableinterop import (
+from ansys.tools.variableinterop import (
     CommonVariableMetadata,
     IVariableValue,
     VariableState,

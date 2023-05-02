@@ -27,8 +27,11 @@ packages = [
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
 numpy = "^1.22.4"
-# ansys-common-variableinterop = "^0.1.dev0"
-ansys-common-variableinterop = {git = "https://github.com/pyansys/ansys-common-variableinterop.git", rev = "ac4311c"}
+
+# TODO: the commit referenced below is unmerged
+#       and the URL will also be changed.
+#       Before this change is merged to its repo, the commit and URL should be updated.
+pyansys-tools-variableinterop = {git = "https://github.com/pyansys/ansys-common-variableinterop.git", rev = "c8e4295"}
 
 Sphinx =  {version="^4.4", optional=true}
 numpydoc =  {version="^1.2", optional=true}
