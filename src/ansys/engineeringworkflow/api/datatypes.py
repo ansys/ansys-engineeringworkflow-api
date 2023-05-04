@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
 
-from ansys.common.variableinterop import IVariableValue
+from ansys.tools.variableinterop import IVariableValue
 
 
 @dataclass(frozen=True)
