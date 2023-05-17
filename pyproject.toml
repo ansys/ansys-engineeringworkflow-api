@@ -28,7 +28,9 @@ packages = [
 python = ">=3.8,<4.0"
 numpy = "^1.22.4"
 
-pyansys-tools-variableinterop = {git = "https://github.com/pyansys/pyansys-tools-variableinterop.git", rev = "0988df6c6aa4df885082cc4dd88acdcecdc97b68"}
+# TODO: the below commit is unmerged. Before merging this branch, ensure that the below commit is merged
+#       and use the merged hash.
+pyansys-tools-variableinterop = {git = "https://github.com/ansys/pyansys-tools-variableinterop.git", rev = "a5288a625f908c5db0ed978d1321572bd15ed3cb"}
 
 Sphinx =  {version="^4.4", optional=true}
 numpydoc =  {version="^1.2", optional=true}
