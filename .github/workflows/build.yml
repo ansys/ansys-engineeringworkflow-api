@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: setup-git-credentials
         run: |
-          git config --global url.https://${{ secrets.PHX_NIGHTLY_SECRET }}@github.com/pyansys/pyansys-tools-variableinterop.insteadOf https://github.com/pyansys/pyansys-tools-variableinterop
+          git config --global url.https://${{ secrets.PHX_NIGHTLY_SECRET }}@github.com/ansys/pyansys-tools-variableinterop.insteadOf https://github.com/ansys/pyansys-tools-variableinterop
  
       - uses: actions/checkout@v2
         with:
