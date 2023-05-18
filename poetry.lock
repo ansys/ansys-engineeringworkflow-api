@@ -761,8 +761,8 @@ test = ["pytest (>=7.0,<8.0)", "pytest-cov (>=3.0,<4.0)", "pytest-mock (>=3.7,<4
 [package.source]
 type = "git"
 url = "https://github.com/ansys/pyansys-tools-variableinterop.git"
-reference = "a5288a625f908c5db0ed978d1321572bd15ed3cb"
-resolved_reference = "a5288a625f908c5db0ed978d1321572bd15ed3cb"
+reference = "6e9a179e23e38377e671736eb71b86a5d7f656ec"
+resolved_reference = "6e9a179e23e38377e671736eb71b86a5d7f656ec"
 
 [[package]]
 name = "pycodestyle"
@@ -1247,4 +1247,4 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4.0"
-content-hash = "519fa12d733934327d2f3a2ad43b94e89f3a31d5e7b25414400351c6388cdf21"
+content-hash = "3a022210b99aa612e606b92aa1df6e0785393c7d9b29e8bd5e18c36791fab753"

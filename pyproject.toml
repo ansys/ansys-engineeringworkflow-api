@@ -30,7 +30,7 @@ numpy = "^1.22.4"
 
 # TODO: the below commit is unmerged. Before merging this branch, ensure that the below commit is merged
 #       and use the merged hash.
-pyansys-tools-variableinterop = {git = "https://github.com/ansys/pyansys-tools-variableinterop.git", rev = "a5288a625f908c5db0ed978d1321572bd15ed3cb"}
+pyansys-tools-variableinterop = {git = "https://github.com/ansys/pyansys-tools-variableinterop.git", rev = "6e9a179e23e38377e671736eb71b86a5d7f656ec"}
 
 Sphinx =  {version="^4.4", optional=true}
 numpydoc =  {version="^1.2", optional=true}
