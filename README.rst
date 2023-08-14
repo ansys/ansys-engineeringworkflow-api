@@ -1,5 +1,5 @@
-ANSYS Engineering Workflow API
-##############################
+Engineering Workflow API
+########################
 
 Project Overview
 ----------------
