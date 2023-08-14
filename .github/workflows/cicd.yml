@@ -1,5 +1,5 @@
 # check spelling, codestyle
-name: CICD
+name: GitHub CI
 
 on:
   pull_request:
