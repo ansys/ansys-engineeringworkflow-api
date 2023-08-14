@@ -1,11 +1,6 @@
-Generate API documentation
-##########################
+API documentation
+=================
 
-Autosummary directive
----------------------
-
-We use a custom class template (included in ``_template`` to
-automatically generate class and method documentation.
 
 .. autosummary::
    :toctree: _autosummary/
