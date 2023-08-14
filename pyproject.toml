@@ -1,51 +1,81 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
 
-[tool.poetry]
+[project]
 name = "ansys-engineeringworkflow-api"
 version = "0.1.dev0"
 description = "API specification for an engineering workflow engine"
 readme = "README.rst"
-authors = ["ANSYS, Inc. <ansys.support@ansys.com>"]
-maintainers = ["PyAnsys developers <pyansys.support@ansys.com>"] # You can change the name. The email group works.
-license = "MIT"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+authors = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
+maintainers = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
 repository = "https://github.com/pyansys/ansys-engineering-workflow-api"
 
-# Less than critical but helpful
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 
-packages = [
-    { include = "ansys", from = "src" },
+[tool.flit.module]
+name = "ansys.engineeringworkflow.api"
+
+dependencies = [
+    "anyio>=3.6",
+    "numpy>=1.20.3",
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-numpy = "^1.22.4"
+[project.optional-dependencies]
+doc = [
+    "ansys-sphinx-theme==0.10.2",
+    "numpydoc==1.5.0",
+    "pyansys-tools-variableinterop",
+    "Sphinx==7.1.1",
+    "sphinx-copybutton==0.5.2",
+]
 
-pyansys-tools-variableinterop = {git = "https://github.com/ansys/pyansys-tools-variableinterop.git", rev = "6e9a179e23e38377e671736eb71b86a5d7f656ec"}
+tests = [
+    "numpy==1.25.2",
+    "pytest==7.4.0",
+    "pytest-cov==4.1.0",
+]
 
-Sphinx =  {version="^4.4", optional=true}
-numpydoc =  {version="^1.2", optional=true}
-ansys_sphinx_theme =  {version="^0.9", optional=true}
-sphinx-copybutton =  {version="^0.4", optional=true}
+[project.urls]
+Source = "https://github.com/ansys/ansys-engineeringworkflow-api"
+Issues = "https://github.com/ansys/ansys-engineeringworkflow-api/issues"
+Discussions = "https://github.com/ansys/ansys-engineeringworkflow-api/discussions"
 
-codespell = {version="^2.1", optional=true}
-flake8 = {version="^3.9", optional=true}
+[tool.black]
+line-length = 100
 
-pytest = {version="^7.0", optional=true}
-pytest-cov = {version="^3.0", optional=true}
-pre-commit = {version="^2.18", optional=true}
-mypy = {version="^0.940", optional=true}
-anyio = "^3.6.2"
+[tool.isort]
+profile = "black"
+force_sort_within_sections = true
+line_length = 100
+default_section = "THIRDPARTY"
+src_paths = ["doc", "src", "tests"]
 
-[tool.poetry.extras]
-dev = ["Sphinx", "numpydoc", "ansys_sphinx_theme", "sphinx-copybutton", "codespell", "flake8", "pytest", "pytest-cov", "pre-commit", "mypy"]
-docs = ["Sphinx", "numpydoc", "ansys_sphinx_theme", "sphinx-copybutton"]
-style = ["codespell", "flake8"]
-test = ["pytest", "pytest-cov"]
+[tool.docformatter]
+in-place = true
+pre-summary-newline = true
+wrap-descriptions = 88
+wrap-summaries = 88
+
+[tool.coverage.run]
+source = ["ansys.engineeringworkflow.api"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.pytest.ini_options]
+minversion = "7.1"
+addopts = "-ra --cov=ansys.engineeringworkflow.api --cov-report html:.cov/html --cov-report xml:.cov/xml --cov-report term -vv"
+testpaths = [
+    "tests",
+]
