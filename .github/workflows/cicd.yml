@@ -48,7 +48,7 @@ jobs:
         exclude:
           - should-release: false
             os: macos-latest
-  
+
     steps:
       - name: Build wheelhouse and perform smoke test
         uses: ansys/actions/build-wheelhouse@v4
@@ -56,7 +56,7 @@ jobs:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
           python-version: ${{ matrix.python-version }}
-        
+
   build-test:
     name: "Build and unit testing"
     runs-on: ubuntu-latest
@@ -105,21 +105,21 @@ jobs:
     steps:
       - name: "Install Git and checkout project"
         uses: actions/checkout@v3
-  
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-  
+
       - name: Create Python venv
         run: |
           python -m venv .venv
           .venv/bin/activate
-  
+
       - name: "Documentation requirements installation"
         run: |
           pip install .[doc]
-  
+
       - name: "Run Ansys documentation building action"
         uses: ansys/actions/doc-build@v4
         with:
