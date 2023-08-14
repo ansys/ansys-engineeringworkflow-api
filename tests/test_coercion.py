@@ -1,6 +1,4 @@
-"""
-Tests for the type coercion module
-"""
+"""Tests for the type coercion module."""
 
 import ansys.engineeringworkflow.api as api
 

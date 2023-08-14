@@ -14,29 +14,48 @@ class WorkflowEngineInfo:
 
     # TODO: this style documentation does not appear to be working?
     release_year: int
-    """The year portion of the release, such as 2022"""
+    """The year portion of the release, such as 2022."""
     release_id: int
-    """The id portion of the release, such as 2 for 2022 R2"""
+    """The id portion of the release, such as 2 for 2022 R2."""
     build: int
-    """The build number"""
+    """The build number."""
     is_release_build: bool
-    """True for production releases. False for development, alpha, beta, and other releases"""
+    """
+    True for production releases.
+
+    False for development, alpha, beta, and other releases
+    """
     build_type: str
-    """The build type. Must be blank for production releases. May include arbitrary information
-    like the branch a development build was built from."""
+    """
+    The build type.
+
+    Must be blank for production releases. May include arbitrary information like the
+    branch a development build was built from.
+    """
     version_as_string: str
-    """The version of the workflow engine encoded for human consumption. For example:
-    2022r1 build 333 ALPHA"""
+    """
+    The version of the workflow engine encoded for human consumption.
+
+    For example:
+    2022r1 build 333 ALPHA
+    """
     server_type: str
-    """What server type is responding to this request. Will be a string similar to
-    'optiSLang' or 'ModelCenter'"""
+    """
+    What server type is responding to this request.
+
+    Will be a string similar to 'optiSLang' or 'ModelCenter'
+    """
     install_location: Optional[str]
-    """If the client is on the same box as the workflow engine, it may optionally provide
-    the installation folder. Typically server based products do not provide this field for
-    security reasons."""
+    """
+    If the client is on the same box as the workflow engine, it may optionally provide
+    the installation folder.
+
+    Typically server based products do not provide this field for security reasons.
+    """
     base_url: Optional[str]
-    """If this is a server based product ready to receive incoming connections from remote
-    clients, this field may be provided that gives the base URL for clients to connect to."""
+    """If this is a server based product ready to receive incoming connections from
+    remote clients, this field may be provided that gives the base URL for clients to
+    connect to."""
 
 
 class WorkflowInstanceState(Enum):

@@ -18,10 +18,10 @@ jobs:
       - name: setup-git-credentials
         run: |
           git config --global url.https://${{ secrets.PHX_NIGHTLY_SECRET }}@github.com/ansys/pyansys-tools-variableinterop.insteadOf https://github.com/ansys/pyansys-tools-variableinterop
- 
+
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PHX_NIGHTLY_SECRET }}      
+          token: ${{ secrets.PHX_NIGHTLY_SECRET }}
 
       - name: Setup Python
         uses: actions/setup-python@v2

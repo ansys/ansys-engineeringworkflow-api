@@ -1,5 +1,5 @@
-"""This package contains a common API specification for all automated \
-engineering workflow engines at Ansys."""
+"""This package contains a common API specification for all automated \ engineering
+workflow engines at Ansys."""
 
 try:
     import importlib.metadata as importlib_metadata

@@ -24,12 +24,17 @@ Rendered Python Code
 
 .. code:: python
 
-   >>> num = 10
-   >>> if num > 0:
-   ...     print("Positive number")
-   ... elif num == 0:
-   ...     print("Zero")
-   ... else:
-   ...     print("Negative number")
-   Positive number
+   num = 10
+   if num > 0:
+       print("Positive number")
+   elif num == 0:
+       print("Zero")
+   else:
+       print("Negative number")
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+      Positive number
 

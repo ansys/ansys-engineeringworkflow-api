@@ -28,8 +28,8 @@ from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 
 
 class IWorkflowEngine(ABC):
-    """Interface defines the common behavior for an engineering workflow engine that can run and \
-    monitor instances."""
+    """Interface defines the common behavior for an engineering workflow engine that can
+    run and \ monitor instances."""
 
     @abstractmethod
     def get_server_info(self) -> WorkflowEngineInfo:
@@ -46,8 +46,8 @@ class IWorkflowEngine(ABC):
 
 
 class IFileBasedWorkflowEngine(IWorkflowEngine, ABC):
-    """Extends IWorkflowEngine with calls that are relevant for loading files from a local \
-    filesystem."""
+    """Extends IWorkflowEngine with calls that are relevant for loading files from a
+    local \ filesystem."""
 
     @abstractmethod
     def load_workflow(self, file_name: Union[PathLike, str]) -> IWorkflowInstance:
@@ -168,14 +168,14 @@ class IElement(ABC):
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
-        """The parent element's id, or a blank string if this is the root element of the \
-        workflow."""
+        """The parent element's id, or a blank string if this is the root element of the
+        \ workflow."""
         ...
 
     @abstractmethod
     def get_parent_element(self) -> Optional[IElement]:
-        """Return the parent object of this element, or None if this is the root element of the \
-        workflow."""
+        """Return the parent object of this element, or None if this is the root element
+        of the \ workflow."""
         ...
 
     @property
@@ -187,8 +187,8 @@ class IElement(ABC):
     @property
     @abstractmethod
     def full_name(self) -> str:
-        """The full name of this element in dotted notation starting from the root of the \
-        workflow."""
+        """The full name of this element in dotted notation starting from the root of
+        the \ workflow."""
         ...
 
     @abstractmethod
@@ -243,8 +243,8 @@ class IDatapinContainer(ABC):
 
 class IControlStatement(IElement, IDatapinContainer, ABC):
     """
-    An element in the workflow that contains children and controls how those children will be \
-    executed.
+    An element in the workflow that contains children and controls how those children
+    will be \ executed.
 
     Examples are: sequential, parallel, looping, conditional, Trade Study.
     """
@@ -277,14 +277,15 @@ class IControlStatement(IElement, IDatapinContainer, ABC):
 
 class IComponent(IElement, IDatapinContainer, ABC):
     """
-    A black box analysis is defined as taking a set of inputs, executing, and resulting in a set \
-    of outputs.
+    A black box analysis is defined as taking a set of inputs, executing, and resulting
+    in a set \ of outputs.
 
-    May be a solver, simulation, co-simulation, calculation, or other third party analysis. While
-    state may be kept as an optimization to help performance for slow to start tools, the
-    component definition does not require it so that we can parallelize the work onto an
-    HPC cluster. Synonymous in our context with Integrations and Analysis. This is the
-    preferred go forward term to use in APIs and documentation about Engineering Workflow
+    May be a solver, simulation, co-simulation, calculation, or other third party
+    analysis. While state may be kept as an optimization to help performance for slow to
+    start tools, the component definition does not require it so that we can parallelize
+    the work onto an HPC cluster. Synonymous in our context with Integrations and
+    Analysis. This is the preferred go forward term to use in APIs and documentation
+    about Engineering Workflow
     """
 
     # TODO: Is there a URL type in Python instead of using string below?
@@ -295,11 +296,12 @@ class IComponent(IElement, IDatapinContainer, ABC):
         """
         The URL Reference to the PACZ file or directory.
 
-        May be an absolute or a relative URL. If relative, it is relative to the workflow
-        definition. While all components will be represented by PACZ definitions, in the short term
-        many components are not currently defined this way. If there is not a PACZ definition of
-        this component, this method will return None. In those cases you will have to fall back on
-        the engine specific methods to determine what type of component this is.
+        May be an absolute or a relative URL. If relative, it is relative to the
+        workflow definition. While all components will be represented by PACZ
+        definitions, in the short term many components are not currently defined this
+        way. If there is not a PACZ definition of this component, this method will
+        return None. In those cases you will have to fall back on the engine specific
+        methods to determine what type of component this is.
         """
 
     ...
@@ -340,7 +342,8 @@ class IDatapin(IElement, ABC):
     @property
     @abstractmethod
     def is_input_to_component(self) -> bool:
-        """Get whether this datapin is an input in the context of the component it is on."""
+        """Get whether this datapin is an input in the context of the component it is
+        on."""
 
     @property
     @abstractmethod
