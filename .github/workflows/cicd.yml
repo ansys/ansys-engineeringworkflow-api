@@ -81,8 +81,8 @@ jobs:
 
       - name: "Unit testing"
         run: |
-          pytest -v --durations=10 --maxfail=10 --reruns 7\
-            --reruns-delay 3 --cov=ansys.tools.variableinterop\
+          pytest -v --durations=10 --maxfail=10
+            --cov=ansys.engineeringworkflow.api\
             --cov-report=xml:coverage.xml\
             --cov-report=html --cov-report term
 

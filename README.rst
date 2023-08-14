@@ -54,8 +54,8 @@ version of the project with:
 
 .. code::
 
-   git clone https://github.com/pyansys/pyansys-tools-variableinterop.git
-   cd pyansys-tools-variableinterop
+   git clone https://github.com/ansys/ansys-engineeringworkflow-api.git
+   cd ansys-engineeringworkflow-api
    pip install -e .
 
 
@@ -69,28 +69,28 @@ Install the required dependencies for the documentation with:
     pip install .[doc]
 
     # For Linux and MacOS
-    make -C doc/ html && your_browser_name doc/build/html/index.html
+    make -C doc/ html && your_browser_name doc/_build/html/index.html
 
     # For Windows
     .\doc\make.bat html
-    .\doc\build\html\index.html
+    .\doc\_build\html\index.html
 
 TODO
 -------
-  	- [ ] Finish documentation such that pre-commit works as intended
-	- [ ] Copy (manually, automatically?) main package documentation to README
-	- [ ] To/FromAPI String
-		- No extension methods in Python, add to base interface explicitly?
-		- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)
-	- [ ] To/From Formatted String
-	- [ ] Scalar Types
-	- [ ] Array Types
-		- Strong typing of ndarray in numpy only added in version of numpy that doesn't support Python 3.7
-	- [ ] File Types
-		- Use interface to separate behavior of files from library
-		- Implement default behavior
-	- [ ] Clone
-	- [ ] LinkingRules
-	- [ ] Variable Factory
-	- [ ] Variable State
-	- [ ] Variable Scope
+- [ ] Finish documentation such that pre-commit works as intended
+- [ ] Copy (manually, automatically?) main package documentation to README
+- [ ] To/FromAPI String
+	- No extension methods in Python, add to base interface explicitly?
+	- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)
+- [ ] To/From Formatted String
+- [ ] Scalar Types
+- [ ] Array Types
+	- Strong typing of ndarray in numpy only added in version of numpy that doesn't support Python 3.7
+- [ ] File Types
+	- Use interface to separate behavior of files from library
+	- Implement default behavior
+- [ ] Clone
+- [ ] LinkingRules
+- [ ] Variable Factory
+- [ ] Variable State
+- [ ] Variable Scope

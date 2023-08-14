@@ -11,7 +11,7 @@ requires-python = ">=3.8"
 license = {file = "LICENSE"}
 authors = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
 maintainers = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
-repository = "https://github.com/pyansys/ansys-engineering-workflow-api"
+repository = "https://github.com/ansys/ansys-engineering-workflow-api"
 
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -38,6 +38,9 @@ doc = [
     "pyansys-tools-variableinterop",
     "Sphinx==7.1.1",
     "sphinx-copybutton==0.5.2",
+    "sphinx-design==0.5.0",
+    "sphinx-gallery==0.13.0",
+    "sphinx-notfound-page==0.8.3",
 ]
 
 tests = [

@@ -22,7 +22,7 @@ html_short_title = html_title = "Engineering Workflow API"
 
 # specify the location of your github repo
 html_theme_options = {
-    "github_url": "https://github.com/pyansys/ansys-engineeringworkflow-api",
+    "github_url": "https://github.com/ansys/ansys-engineeringworkflow-api",
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "collapse_navigation": True,
@@ -53,11 +53,15 @@ html_context = {
 
 # Sphinx extensions
 extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
+    "notfound.extension",  # for the not found page.
     "numpydoc",
-    "sphinx.ext.intersphinx",
     "sphinx_copybutton",
+    "sphinx_design",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.coverage",
+    "sphinx.ext.intersphinx",
 ]
 
 # Intersphinx mapping
@@ -74,6 +78,8 @@ intersphinx_mapping = {
 # numpydoc configuration
 numpydoc_show_class_members = False
 numpydoc_xref_param_type = True
+numpydoc_xref_param_type = True
+autosectionlabel_prefix_document = True
 
 # Consider enabling numpydoc validation. See:
 # https://numpydoc.readthedocs.io/en/latest/validation.html#
