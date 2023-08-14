@@ -12,14 +12,14 @@
    class_documentation
 
 
-Code Examples
+Code examples
 ~~~~~~~~~~~~~
 Here's a quick preview for how Python code looks using the
 ``ansys-common-variableinterop``.  For more examples, click the links at the
 top of the page to see function, method, and class documentation.
 
 
-Rendered Python Code
+Rendered Python code
 --------------------
 
 .. code:: python

@@ -284,7 +284,7 @@ class IComponent(IElement, IDatapinContainer, ABC):
     analysis. While state may be kept as an optimization to help performance for slow to
     start tools, the component definition does not require it so that we can parallelize
     the work onto an HPC cluster. Synonymous in our context with Integrations and
-    Analysis. This is the preferred go forward term to use in APIs and documentation
+    Analysis. This is the preferred go forward term to use in API and documentation
     about Engineering Workflow
     """
 
