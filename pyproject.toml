@@ -67,8 +67,8 @@ src_paths = ["doc", "src", "tests"]
 [tool.docformatter]
 in-place = true
 pre-summary-newline = true
-wrap-descriptions = 88
-wrap-summaries = 88
+wrap-descriptions = 100
+wrap-summaries = 100
 
 [tool.coverage.run]
 source = ["ansys.engineeringworkflow.api"]

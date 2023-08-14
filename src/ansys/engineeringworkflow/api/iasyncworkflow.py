@@ -23,8 +23,11 @@ from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 
 
 class IAsyncWorkflowEngine(ABC):
-    """Interface defines the common behavior for an engineering workflow engine that can
-    run and \ monitor instances."""
+    """
+    Interface defines the common behavior for an engineering workflow engine.
+
+    It can run and monitor instances.
+    """
 
     @abstractmethod
     async def get_server_info(self) -> WorkflowEngineInfo:
@@ -41,8 +44,11 @@ class IAsyncWorkflowEngine(ABC):
 
 
 class IAsyncFileBasedWorkflowEngine(IAsyncWorkflowEngine, ABC):
-    """Extends IWorkflowEngine with calls that are relevant for loading files from a
-    local \ filesystem."""
+    """
+    Extends IWorkflowEngine with calls.
+
+    They need to be relevant for loading files from a local filesystem.
+    """
 
     @abstractmethod
     async def load_workflow(self, file_name: Union[PathLike, str]) -> IAsyncWorkflowInstance:
@@ -165,14 +171,20 @@ class IAsyncElement(ABC):
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
-        """The parent element's id, or a blank string if this is the root element of the
-        \ workflow."""
+        """
+        The parent element's id.
+
+        If this is the root element of the workflow, it will be a blank string.
+        """
         ...
 
     @abstractmethod
     async def get_parent_element(self) -> IAsyncElement:
-        """Return the parent object of this element, or None if this is the root element
-        of the \ workflow."""
+        """
+        Return the parent object of this element.
+
+        If this is the root element of the workflow., it will return None.
+        """
         ...
 
     @property
@@ -184,8 +196,11 @@ class IAsyncElement(ABC):
     @property
     @abstractmethod
     def full_name(self) -> str:
-        """The full name of this element in dotted notation starting from the root of
-        the \ workflow."""
+        """
+        The full name of this element.
+
+        It is returned in dotted notation starting from the root of the workflow.
+        """
         ...
 
     @abstractmethod
@@ -237,10 +252,10 @@ class IAsyncDatapinContainer(ABC):
 
 class IAsyncControlStatement(IAsyncElement, IAsyncDatapinContainer, ABC):
     """
-    An element in the workflow that contains children and controls how those children
-    will be \ executed.
+    Element in the workflow that contains children and how they will be executed.
 
-    Examples are: sequential, parallel, looping, conditional, Trade Study.
+    For example it can be a sequential, a parallel, a looping, a conditional or a Trade
+    Study.
     """
 
     @property
@@ -257,8 +272,10 @@ class IAsyncControlStatement(IAsyncElement, IAsyncDatapinContainer, ABC):
 
 class IAsyncComponent(IAsyncElement, IAsyncDatapinContainer, ABC):
     """
-    A black box analysis is defined as taking a set of inputs, executing, and resulting
-    in a set \ of outputs.
+    A black box analysis.
+
+    It is defined as taking a set of inputs, executing, and resulting in a set of
+    outputs.
 
     May be a solver, simulation, co-simulation, calculation, or other third party
     analysis. While state may be kept as an optimization to help performance for slow to
