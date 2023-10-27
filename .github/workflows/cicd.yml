@@ -76,8 +76,11 @@ jobs:
           python -m venv .venv
           .venv/bin/activate
 
-      - name: Install variableinterop, with test extra
-        run: pip install .[tests]
+      # Specific pyansys-tools-variableinterop installation will be removed once released
+      - name: Install ansys-engineeringworkflow-api and its test dependencies
+        run: |
+          pip install -e .[tests]
+          pip install git+https://github.com/ansys/pyansys-tools-variableinterop@main
 
       - name: "Unit testing"
         run: |
@@ -116,9 +119,11 @@ jobs:
           python -m venv .venv
           .venv/bin/activate
 
-      - name: "Documentation requirements installation"
+      # Specific pyansys-tools-variableinterop installation will be removed once released
+      - name: Install ansys-engineeringworkflow-api and its doc dependencies
         run: |
-          pip install .[doc]
+          pip install -e .[doc]
+          pip install git+https://github.com/ansys/pyansys-tools-variableinterop@main
 
       - name: "Run Ansys documentation building action"
         uses: ansys/actions/doc-build@v4
