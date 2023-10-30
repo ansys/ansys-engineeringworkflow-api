@@ -294,11 +294,11 @@ class IAsyncDatapin(IAsyncElement, ABC):
         ...
 
     @abstractmethod
-    async def get_value(self, hid: Optional[str] = None) -> VariableState:
-        """Get the value of this datapin."""
+    async def get_state(self, hid: Optional[str] = None) -> VariableState:
+        """Get the state of this datapin."""
         ...
 
     @abstractmethod
-    async def set_value(self, value: VariableState) -> None:
-        """Set the value of this datapin."""
+    async def set_state(self, state: VariableState) -> None:
+        """Set the state of this datapin."""
         ...

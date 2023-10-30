@@ -328,13 +328,13 @@ class IDatapin(IElement, ABC):
         """Get the type of value this datapin stores."""
 
     @abstractmethod
-    def get_value(self, hid: Optional[str] = None) -> VariableState:
-        """Get the value of this datapin."""
+    def get_state(self, hid: Optional[str] = None) -> VariableState:
+        """Get the state of this datapin."""
         ...
 
     @abstractmethod
-    def set_value(self, value: VariableState) -> None:
-        """Set the value of this datapin."""
+    def set_state(self, state: VariableState) -> None:
+        """Set the state of this datapin."""
         ...
 
     @property
