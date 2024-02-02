@@ -29,8 +29,8 @@ class WorkflowEngineInfo:
     """
     The build type.
 
-    Must be blank for production releases. May include arbitrary information like the
-    branch a development build was built from.
+    Must be blank for production releases. May include arbitrary information like the branch a
+    development build was built from.
     """
     version_as_string: str
     """
@@ -47,15 +47,14 @@ class WorkflowEngineInfo:
     """
     install_location: Optional[str]
     """
-    If the client is on the same box as the workflow engine, it may optionally provide
-    the installation folder.
+    If the client is on the same box as the workflow engine, it may optionally provide the
+    installation folder.
 
     Typically server based products do not provide this field for security reasons.
     """
     base_url: Optional[str]
-    """If this is a server based product ready to receive incoming connections from
-    remote clients, this field may be provided that gives the base URL for clients to
-    connect to."""
+    """If this is a server based product ready to receive incoming connections from remote clients,
+    this field may be provided that gives the base URL for clients to connect to."""
 
 
 class WorkflowInstanceState(Enum):
@@ -74,10 +73,9 @@ class Property:
     """
     A configurable setting on some component or algorithm in the workflow.
 
-    Cannot be linked to other variables or properties. Unless a property is explicitly,
-    documented as supporting it, these values should not be changed while the workflow
-    is running. Examples that may support modification would be convergence criteria for
-    an optimization algorithm.
+    Cannot be linked to other variables or properties. Unless a property is explicitly, documented
+    as supporting it, these values should not be changed while the workflow is running. Examples
+    that may support modification would be convergence criteria for an optimization algorithm.
     """
 
     parent_element_id: str

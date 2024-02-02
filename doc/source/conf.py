@@ -18,7 +18,7 @@ switcher_version = get_version_match(__version__)
 html_logo = pyansys_logo_black
 html_favicon = ansys_favicon
 html_theme = "ansys_sphinx_theme"
-html_short_title = html_title = "Engineering Workflow API"
+html_short_title = html_title = "Ansys Engineering Workflow API"
 
 # specify the location of your github repo
 html_theme_options = {
@@ -126,6 +126,11 @@ language = "en"
 exclude_patterns = [
     "_build",
     "links.rst",
+]
+
+linkcheck_ignore = [
+    "https://github.com/ansys/ansys-engineeringworkflow-api/*",  # this site is private
+    "https://engineeringworkflow.docs.pyansys.com/*",  # this site is private
 ]
 
 # make rst_epilog a variable, so you can add other epilog parts to it

@@ -6,35 +6,36 @@ Contribute
 Overall guidance on contributing to a PyAnsys library appears in the
 `Contributing <dev_guide_contributing_>`_ topic
 in the *PyAnsys Developer's Guide*. Ensure that you are thoroughly familiar
-with this guide before attempting to contribute to Engineering Workflow API .
+with this guide before attempting to contribute to Ansys Engineering Workflow API.
 
-The following contribution information is specific to Engineering Workflow API .
+The following contribution information is specific to Ansys Engineering Workflow API.
 
 Installation
 ------------
-The ``ansys-engineeringworkflow-api`` package currently supports Python
-3.8 through 3.11 on Windows, MacOS and Linux.
 
-You can install ``ansys-engineeringworkflow-api`` with:
+The ``ansys-engineeringworkflow-api`` package currently supports Python
+3.9 through 3.12 on Windows, MacOS, and Linux.
+
+You can install the ``ansys-engineeringworkflow-api`` package with this command:
 
 .. code::
 
    pip install ansys-engineeringworkflow-api
 
 Alternatively, install the latest version from `ansys-engineeringworkflow-api GitHub
-<https://github.com/ansys/ansys-engineeringworkflow-api>`_ via:
+<ansys-engineeringworkflow-api_repo_>`_ with this command:
 
 .. code::
 
-   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api.git
+   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api
 
-For a local development version, you can create a new virtual environment:
+For a local development version, you can create a new virtual environment with this command:
 
 .. code:: bash
 
     python -m venv .venv
 
-It can be activated with:
+You can then activate the virtual environment with the command appropriate for your operating system:
 
 .. tab-set::
 
@@ -60,11 +61,11 @@ It can be activated with:
           .\.venv\Scripts\activate
 
 
-You can then install the development version of the project:
+Next, install the development version of the project with these commands:
 
 .. code::
 
-   git clone https://github.com/ansys/ansys-engineeringworkflow-api.git
+   git clone https://github.com/ansys/ansys-engineeringworkflow-api
    cd ansys-engineeringworkflow-api
    pip install -e .
 
@@ -72,14 +73,14 @@ You can then install the development version of the project:
 Documentation
 -------------
 
-Install the required dependencies for the documentation with:
+Install the required dependencies for the documentation with this command:
 
 .. code::
 
     pip install .[doc]
 
 
-For building documentation, you can run the usual rules provided in the Sphinx Makefile, such as:
+For building documentation, you run the usual rules provided in the Sphinx Makefile for your operating system:
 
 .. tab-set::
 
@@ -109,36 +110,29 @@ For building documentation, you can run the usual rules provided in the Sphinx M
 Post issues
 -----------
 
-Use the `Engineering Workflow API Issues <ansys-engineeringworkflow-api_issues>`_ page to submit questions,
+Use the `Ansys Engineering Workflow API Issues <ansys-engineeringworkflow-api_issues_>`_ page to submit questions,
 report bugs, and request new features. When possible, use these issue
 templates:
 
 * Bug report template
 * Feature request template
+* Documentation issue template
+* Example request template
 
 If your issue does not fit into one of these categories, create your own issue.
 
 To reach the PyAnsys support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
 
 
-Build documentation
--------------------
-
-To build the Engineering Workflow API documentation locally, in the root directory of the repository,
-run these commands::
-
-    pip install .[doc]
-    .\doc\make.bat html
-
 Testing
 -------
-Dependencies required for testing can be installed via:
+You can install the dependencies required for testing with this command:
 
 .. code:: bash
 
     pip install .[tests]
 
-The tests can then be run via pytest with:
+You can then run the tests via ``pytest`` with this command:
 
 .. code:: bash
 
@@ -148,25 +142,25 @@ The tests can then be run via pytest with:
 Adhere to code style
 --------------------
 
-Engineering Workflow API follows the PEP8 standard as outlined in the `PyAnsys Developer's Guide
-<dev_guide_pyansys_>`_ and implements style checking using
+Ansys Engineering Workflow API follows the PEP8 standard as indicated in the 
+`PyAnsys Developer's Guide <dev_guide_pyansys_pep8_>`_ and implements style checking using
 `pre-commit <pre-commit_>`_.
 
-To ensure your code meets minimum code styling standards, run this code:
+To ensure your code meets minimum code styling standards, run these commands:
 
 .. code:: console
 
   pip install pre-commit
   pre-commit run --all-files
 
-You can also install this as a pre-commit hook by running this code:
+You can also install this as a pre-commit hook by running this command:
 
 .. code:: console
 
   pre-commit install
 
 
-This way, it's not possible for you to push code that fails the style checks
+This way, it's not possible for you to push code that fails the style checks:
 
 .. code:: text
 
@@ -175,10 +169,11 @@ This way, it's not possible for you to push code that fails the style checks
   blacken-docs.............................................................Passed
   isort....................................................................Passed
   flake8...................................................................Passed
+  docformatter.............................................................Passed
   codespell................................................................Passed
-  pydocstyle...............................................................Passed
   check for merge conflicts................................................Passed
   debug statements (python)................................................Passed
   check yaml...............................................................Passed
   trim trailing whitespace.................................................Passed
+  Add License Headers......................................................Passed
   Validate GitHub Workflows................................................Passed

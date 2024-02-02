@@ -66,19 +66,19 @@ jobs:
       - name: "Install Git and checkout project"
         uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: "Setup Python"
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
-      - name: Create Python venv
+      - name: "Create Python venv"
         run: |
           python -m venv .venv
           .venv/bin/activate
 
-      - name: Install ansys-engineeringworkflow-api and its test dependencies
+      - name: "Install ansys-engineeringworkflow-api and its test dependencies"
         run: |
-          pip install -e .[tests]
+          pip install .[tests]
 
       - name: "Unit testing"
         run: |
@@ -88,13 +88,13 @@ jobs:
             --cov-report=html --cov-report term
 
       - name: "Upload coverage to Codecov"
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           name: remote.xml
           flags: remote
 
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v3
+      - name: "Upload coverage artifacts"
+        uses: actions/upload-artifact@v4
         with:
           name: remote.xml
           path: ./remote.xml
@@ -119,7 +119,7 @@ jobs:
 
       - name: Install ansys-engineeringworkflow-api and its doc dependencies
         run: |
-          pip install -e .[doc]
+          pip install .[doc]
 
       - name: "Run Ansys documentation building action"
         uses: ansys/actions/doc-build@v4
@@ -129,52 +129,58 @@ jobs:
           skip-install: true
           sphinxopts: -j auto
 
-  release:
-    if: contains(github.ref, 'refs/tags')
-    needs: [build-test]
+  package:
+    name: Package library
+    needs: [doc-build, build-test]
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v1
+      - name: Build library source and wheel artifacts
+        uses: ansys/actions/build-library@v4
         with:
-          python-version: 3.9
+          library-name: ${{ env.PACKAGE_NAME }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
-      - uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@v2
+  doc-deploy-dev:
+    name: "Deploy development documentation"
+    # Deploy development only when merging to main
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [package]
+    steps:
+      - name: "Deploy the latest documentation"
+        uses: ansys/actions/doc-deploy-dev@v4
         with:
-          name: ansys-common-variableinterop-wheel
+          cname: ${{ env.DOCUMENTATION_CNAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-#      - uses: actions/download-artifact@v2
-#        with:
-#          name: Documentation-pdf
+  release:
+    name: "Release project to public PyPI and GitHub"
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    needs:  [package]
+    runs-on: ubuntu-latest
+    steps:
 
-# When we go to publish this on PyPi, if we want docs included we
-# will need to rewrite this section because the artifact was changed
-# to save using actions/upload-pages-artifact@v1actions/upload-pages-artifact@v1
-# This saves in a slightly different format (zip of a tar file)
-#      - uses: actions/download-artifact@v2
-#        with:
-#          name: Documentation-html
-#          path: ~/html
+    - name: "Release to the public PyPI repository"
+      uses: ansys/actions/release-pypi-public@v4
+      with:
+        library-name: ${{ env.PACKAGE_NAME }}
+        twine-username: "__token__"
+        twine-token: ${{ secrets.PYPI_TOKEN }}
 
-      # list current directory
-      - name: List directory structure
-        run: ls -R
+    - name: "Release to GitHub"
+      uses: ansys/actions/release-github@v4
+      with:
+        library-name: ${{ env.PACKAGE_NAME }}
 
-      # note how we use the PyPI tokens
-      - name: Upload to Azure PyPi (disabled)
-        run: |
-          pip install twine
-          # twine upload --skip-existing ./**/*.whl
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
+  doc-deploy-stable:
+    name: "Deploy stable documentation"
+    # Deploy release documentation when creating a new tag
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    needs: [release]
+    steps:
+      - name: "Deploy the stable documentation"
+        uses: ansys/actions/doc-deploy-stable@v4
         with:
-          files: |
-            ./**/*.whl
-            ./**/*.zip
-            ./**/*.pdf
+            cname: ${{ env.DOCUMENTATION_CNAME }}
+            token: ${{ secrets.GITHUB_TOKEN }}

@@ -31,8 +31,8 @@ class IWorkflowEngine(ABC):
     """
     Interface for the Workflow Engine.
 
-    It defines the common behavior for an engineering workflow engine that can run and
-    monitor instances.
+    It defines the common behavior for an engineering workflow engine that can run and monitor
+    instances.
     """
 
     @abstractmethod
@@ -261,8 +261,7 @@ class IControlStatement(IElement, IDatapinContainer, ABC):
     """
     Element in the workflow that contains children and how they will be executed.
 
-    For example it can be a sequential, a parallel, a looping, a conditional or a Trade
-    Study.
+    For example it can be a sequential, a parallel, a looping, a conditional or a Trade Study.
     """
 
     @property
@@ -295,15 +294,13 @@ class IComponent(IElement, IDatapinContainer, ABC):
     """
     A black box analysis.
 
-    It is defined as taking a set of inputs, executing, and resulting in a set of
-    outputs.
+    It is defined as taking a set of inputs, executing, and resulting in a set of outputs.
 
-    May be a solver, simulation, co-simulation, calculation, or other third party
-    analysis. While state may be kept as an optimization to help performance for slow to
-    start tools, the component definition does not require it so that we can parallelize
-    the work onto an HPC cluster. Synonymous in our context with Integrations and
-    Analysis. This is the preferred go forward term to use in API and documentation
-    about Engineering Workflow
+    May be a solver, simulation, co-simulation, calculation, or other third party analysis. While
+    state may be kept as an optimization to help performance for slow to start tools, the component
+    definition does not require it so that we can parallelize the work onto an HPC cluster.
+    Synonymous in our context with Integrations and Analysis. This is the preferred go forward term
+    to use in API and documentation about Engineering Workflow
     """
 
     # TODO: Is there a URL type in Python instead of using string below?
@@ -314,12 +311,11 @@ class IComponent(IElement, IDatapinContainer, ABC):
         """
         The URL Reference to the PACZ file or directory.
 
-        May be an absolute or a relative URL. If relative, it is relative to the
-        workflow definition. While all components will be represented by PACZ
-        definitions, in the short term many components are not currently defined this
-        way. If there is not a PACZ definition of this component, this method will
-        return None. In those cases you will have to fall back on the engine specific
-        methods to determine what type of component this is.
+        May be an absolute or a relative URL. If relative, it is relative to the workflow
+        definition. While all components will be represented by PACZ definitions, in the short term
+        many components are not currently defined this way. If there is not a PACZ definition of
+        this component, this method will return None. In those cases you will have to fall back on
+        the engine specific methods to determine what type of component this is.
         """
 
     ...
@@ -333,8 +329,8 @@ class IDatapin(IElement, ABC):
     """
     A runtime placeholder for some value of a particular type.
 
-    Will change as the workflow runs and can be linked to other datapins via direct
-    links or equations
+    Will change as the workflow runs and can be linked to other datapins via direct links or
+    equations
     """
 
     @abstractmethod
@@ -368,6 +364,6 @@ class IDatapin(IElement, ABC):
         """
         Get whether this datapin is an input in the context of the overall workflow.
 
-        Variables which are inputs in the context of their component will not be in the
-        overall workflow if they are the target of a link.
+        Variables which are inputs in the context of their component will not be in the overall
+        workflow if they are the target of a link.
         """
