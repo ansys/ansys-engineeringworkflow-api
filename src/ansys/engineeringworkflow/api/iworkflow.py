@@ -99,17 +99,17 @@ class IWorkflowInstance(ABC):
             will cause this function to return those values after running. If
             an element is chosen, all of the children datapins recursively will
 
-        Raises
-        ------
-        ValueOutOfRangeError
-            If one of the values in inputs violates its datapin's bounds or enumerated values.
-            be included.
-
         Returns
         -------
         Mapping[str, VariableState]
             A map of output datapin names to VariableState objects for each datapin specified in
             `collect_names`.
+
+        Raises
+        ------
+        ValueOutOfRangeError
+            If one of the values in inputs violates its datapin's bounds or enumerated values.
+            be included.
         """
         ...
 
