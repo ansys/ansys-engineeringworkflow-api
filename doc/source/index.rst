@@ -5,7 +5,7 @@
 
 .. include:: ../../README.rst
 
-.. include:: ./static/README.rst
+.. include:: ./_static/README.rst
 
 
 .. toctree::
