@@ -5,6 +5,8 @@
 
 .. include:: ../../README.rst
 
+.. include:: ./static/README.rst
+
 
 .. toctree::
    :hidden:
