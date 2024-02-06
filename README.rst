@@ -33,7 +33,7 @@ This creates a new virtual environment, which can be activated with
 Installation
 ------------
 The ``ansys-engineeringworkflow-api`` package currently supports Python
-3.8 through 3.11 on Windows, MacOS and Linux.
+3.9 through 3.12 on Windows, MacOS and Linux.
 
 You can install ``ansys-engineeringworkflow-api`` with:
 
