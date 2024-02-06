@@ -127,7 +127,7 @@ jobs:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
           checkout: false
           skip-install: true
-          sphinxopts: -j auto
+          sphinxopts: -j auto -W
 
   package:
     name: Package library
