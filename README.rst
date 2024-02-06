@@ -5,31 +5,6 @@ Project Overview
 ----------------
 Provide a description of your PyAnsys Python library.
 
-
-Installation
-------------
-
-You can install the ``ansys-engineeringworkflow-api`` library with:
-
-.. code::
-
-   pip install ansys-engineeringworkflow-api
-
-Alternatively, clone and install in development mode with:
-
-.. code::
-
-   git clone https://github.com/ansys/ansys-engineeringworkflow-api
-   cd ansys-engineeringworkflow-api
-   python -m venv .venv
-
-This creates a new virtual environment, which can be activated with
-
-.. code::
-
-	.\.venv\Scripts\activate
-
-
 Installation
 ------------
 The ``ansys-engineeringworkflow-api`` package currently supports Python
