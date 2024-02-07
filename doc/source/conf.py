@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 from ansys_sphinx_theme import (
-    ansys_favicon,
+    # ansys_favicon,
     get_autoapi_templates_dir_relative_path,
     get_version_match,
     pyansys_logo_black,
@@ -23,7 +23,7 @@ switcher_version = get_version_match(__version__)
 
 # use the default pyansys logo
 html_logo = pyansys_logo_black
-html_favicon = ansys_favicon
+# html_favicon = ansys_favicon
 html_theme = "ansys_sphinx_theme"
 html_short_title = html_title = "Ansys Engineering Workflow API"
 
