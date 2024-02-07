@@ -1,10 +1,11 @@
 """Sphinx documentation configuration file."""
+
 from datetime import datetime
 import os
 from pathlib import Path
 
 from ansys_sphinx_theme import (
-    ansys_favicon,
+    # ansys_favicon,
     get_autoapi_templates_dir_relative_path,
     get_version_match,
     pyansys_logo_black,
@@ -15,14 +16,14 @@ from ansys.engineeringworkflow.api import __version__
 # Project information
 project = "ansys-engineeringworkflow-api"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
-author = "Ansys Inc."
+author = "ANSYS, Inc."
 release = version = __version__
 cname = os.getenv("DOCUMENTATION_CNAME", "<DEFAULT_CNAME>")
 switcher_version = get_version_match(__version__)
 
 # use the default pyansys logo
 html_logo = pyansys_logo_black
-html_favicon = ansys_favicon
+# html_favicon = ansys_favicon
 html_theme = "ansys_sphinx_theme"
 html_short_title = html_title = "Ansys Engineering Workflow API"
 

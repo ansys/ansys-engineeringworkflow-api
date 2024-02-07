@@ -11,7 +11,7 @@ on:
 
 env:
   DOCUMENTATION_CNAME: 'engineeringworkflow.docs.pyansys.com'
-  MAIN_PYTHON_VERSION: '3.10'
+  MAIN_PYTHON_VERSION: '3.11'
   PACKAGE_NAME: 'ansys-engineeringworkflow-api'
   PACKAGE_NAMESPACE: 'ansys.engineeringworkflow.api'
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PyAnsys code style checks
-        uses: ansys/actions/code-style@v4
+        uses: ansys/actions/code-style@v5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PyAnsys documentation style checks
-        uses: ansys/actions/doc-style@v4
+        uses: ansys/actions/doc-style@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Build wheelhouse and perform smoke test
-        uses: ansys/actions/build-wheelhouse@v4
+        uses: ansys/actions/build-wheelhouse@v5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           operating-system: ${{ matrix.os }}
@@ -61,72 +61,33 @@ jobs:
     name: "Build and unit testing"
     runs-on: ubuntu-latest
     needs: [smoke-tests]
-
     steps:
-      - name: "Install Git and checkout project"
-        uses: actions/checkout@v3
-
-      - name: "Setup Python"
-        uses: actions/setup-python@v4
+      - name: Run pytest
+        uses: ansys/actions/tests-pytest@v5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - name: "Create Python venv"
-        run: |
-          python -m venv .venv
-          .venv/bin/activate
-
-      - name: "Install ansys-engineeringworkflow-api and its test dependencies"
-        run: |
-          pip install .[tests]
-
-      - name: "Unit testing"
-        run: |
-          pytest -v --durations=10 --maxfail=10
-            --cov=ansys.engineeringworkflow.api\
-            --cov-report=xml:coverage.xml\
-            --cov-report=html --cov-report term
+          pytest-extra-args: -v --durations=10 --maxfail=10 --cov=${{ env.PACKAGE_NAMESPACE }} --cov-report=xml:coverage.xml --cov-report=html --cov-report term
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v4
         with:
-          name: remote.xml
-          flags: remote
+          files: coverage.xml
 
       - name: "Upload coverage artifacts"
         uses: actions/upload-artifact@v4
         with:
-          name: remote.xml
-          path: ./remote.xml
+          name: coverage-html
+          path: htmlcov
 
   doc-build:
     name: "Documentation building"
     runs-on: ubuntu-latest
     needs: [doc-style]
     steps:
-      - name: "Install Git and checkout project"
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - name: Create Python venv
-        run: |
-          python -m venv .venv
-          .venv/bin/activate
-
-      - name: Install ansys-engineeringworkflow-api and its doc dependencies
-        run: |
-          pip install .[doc]
-
       - name: "Run Ansys documentation building action"
-        uses: ansys/actions/doc-build@v4
+        uses: ansys/actions/doc-build@v5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          checkout: false
-          skip-install: true
           sphinxopts: -j auto -W
 
   package:
@@ -135,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build library source and wheel artifacts
-        uses: ansys/actions/build-library@v4
+        uses: ansys/actions/build-library@v5
         with:
           library-name: ${{ env.PACKAGE_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -148,7 +109,7 @@ jobs:
     needs: [package]
     steps:
       - name: "Deploy the latest documentation"
-        uses: ansys/actions/doc-deploy-dev@v4
+        uses: ansys/actions/doc-deploy-dev@v5
         with:
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -161,14 +122,14 @@ jobs:
     steps:
 
     - name: "Release to the public PyPI repository"
-      uses: ansys/actions/release-pypi-public@v4
+      uses: ansys/actions/release-pypi-public@v5
       with:
         library-name: ${{ env.PACKAGE_NAME }}
         twine-username: "__token__"
         twine-token: ${{ secrets.PYPI_TOKEN }}
 
     - name: "Release to GitHub"
-      uses: ansys/actions/release-github@v4
+      uses: ansys/actions/release-github@v5
       with:
         library-name: ${{ env.PACKAGE_NAME }}
 
@@ -180,7 +141,7 @@ jobs:
     needs: [release]
     steps:
       - name: "Deploy the stable documentation"
-        uses: ansys/actions/doc-deploy-stable@v4
+        uses: ansys/actions/doc-deploy-stable@v5
         with:
             cname: ${{ env.DOCUMENTATION_CNAME }}
             token: ${{ secrets.GITHUB_TOKEN }}
