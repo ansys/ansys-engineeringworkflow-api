@@ -1,4 +1,5 @@
 """Sphinx documentation configuration file."""
+
 from datetime import datetime
 import os
 from pathlib import Path
@@ -15,7 +16,7 @@ from ansys.engineeringworkflow.api import __version__
 # Project information
 project = "ansys-engineeringworkflow-api"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
-author = "Ansys Inc."
+author = "ANSYS, Inc."
 release = version = __version__
 cname = os.getenv("DOCUMENTATION_CNAME", "<DEFAULT_CNAME>")
 switcher_version = get_version_match(__version__)
