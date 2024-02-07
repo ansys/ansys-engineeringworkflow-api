@@ -11,7 +11,7 @@ on:
 
 env:
   DOCUMENTATION_CNAME: 'engineeringworkflow.docs.pyansys.com'
-  MAIN_PYTHON_VERSION: '3.10'
+  MAIN_PYTHON_VERSION: '3.11'
   PACKAGE_NAME: 'ansys-engineeringworkflow-api'
   PACKAGE_NAMESPACE: 'ansys.engineeringworkflow.api'
 
@@ -104,29 +104,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [doc-style]
     steps:
-      - name: "Install Git and checkout project"
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-      - name: Create Python venv
-        run: |
-          python -m venv .venv
-          .venv/bin/activate
-
-      - name: Install ansys-engineeringworkflow-api and its doc dependencies
-        run: |
-          pip install .[doc]
-
       - name: "Run Ansys documentation building action"
         uses: ansys/actions/doc-build@v4
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          checkout: false
-          skip-install: true
           sphinxopts: -j auto -W
 
   package:
