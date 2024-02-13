@@ -87,7 +87,7 @@ jobs:
       - name: "Install Git and checkout project"
         uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: "Setup Python"
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
@@ -95,10 +95,10 @@ jobs:
       - name: "Create Python venv"
         run: |
           python -m venv .venv
-          .venv/bin/activate
   
       - name: "Documentation requirements installation"
         run: |
+          .venv/bin/activate
           pip install .[doc]
           pip list
 
