@@ -2,18 +2,16 @@
 
 from datetime import datetime
 import os
+from pathlib import Path
 
 from ansys_sphinx_theme import (
-    get_autoapi_templates_dir_relative_path,
     ansys_favicon,
+    get_autoapi_templates_dir_relative_path,
     get_version_match,
     pyansys_logo_black,
 )
 
 from ansys.engineeringworkflow.api import __version__
-
-from pathlib import Path
-
 
 # Project information
 project = "ansys-engineeringworkflow-api"
