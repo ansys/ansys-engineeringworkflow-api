@@ -11,8 +11,7 @@ from ansys_sphinx_theme import (
     pyansys_logo_black,
 )
 
-# from ansys.engineeringworkflow.api import __version__
-__version__ = "0.0.1"
+from ansys.engineeringworkflow.api import __version__
 
 # Project information
 project = "ansys-engineeringworkflow-api"
