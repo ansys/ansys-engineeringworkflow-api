@@ -1,9 +1,12 @@
 Ansys Engineering Workflow API
 ==============================
 
-Project Overview
-----------------
-Provide a description of your PyAnsys Python library.
+Overview
+--------
+The Ansys Engineering Workflow API is a Python package that provides a
+common interface for interacting with Ansys engineering workflow engines,
+such as ModelCenter and OptiSLang.
+
 
 Installation
 ------------
@@ -34,24 +37,35 @@ version of the project with:
    pip install -e .
 
 
-Documentation
--------------
+Documentation building
+----------------------
 
-Install the required dependencies for the documentation with:
+Install the required dependencies for building the documentation with this
+command:
 
 .. code:: bash
 
     pip install .[doc]
 
+Build and view documentation with the one or more commands for your
+operating system:
+
+.. code:: bash
+
     # For Linux and MacOS
-    make -C doc/ html && your_browser_name doc/_build/html/index.html
+    make -C doc/ html && your_browser_name doc/build/html/index.html
 
     # For Windows
     .\doc\make.bat html
-    .\doc\_build\html\index.html
+    .\doc\build\html\index.html
+
+
+
+# to be removed:
 
 TODO
--------
+----
+
 - [ ] Finish documentation such that pre-commit works as intended
 - [ ] Copy (manually, automatically?) main package documentation to README
 - [ ] To/FromAPI String
