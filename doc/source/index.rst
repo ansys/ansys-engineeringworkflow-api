@@ -4,9 +4,7 @@
    here.
 
 .. include:: ../../README.rst
-
-.. include:: ./_static/README.rst
-
+   :end-line: 62
 
 .. toctree::
    :hidden:

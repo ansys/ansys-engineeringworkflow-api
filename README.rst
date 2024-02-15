@@ -60,7 +60,6 @@ operating system:
     .\doc\build\html\index.html
 
 
-
 # to be removed:
 
 TODO

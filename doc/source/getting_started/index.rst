@@ -6,23 +6,28 @@ Installation
 
 Two installation modes of the ``ansys-engineeringworkflow-api`` package are provided: user and developer.
 
-User installation
-^^^^^^^^^^^^^^^^^
+Install in user mode
+^^^^^^^^^^^^^^^^^^^^
 
-Install the latest release for use with this command:
+Before installing the ``ansys-engineeringworkflow-api`` package, make sure that you
+have the latest version of `pip`_ with this command:
+
+.. code:: bash
+
+    python -m pip install -U pip
+
+Then, install the latest ``ansys-engineeringworkflow-api`` package with this command:
 
 .. code:: bash
 
     python -m pip install ansys-engineeringworkflow-api
 
-
-For developers
-^^^^^^^^^^^^^^
+Install in developer mode
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installing the ``ansys-engineeringworkflow-api`` package in developer mode allows
 you to modify the source and enhance it.
-
-You can refer to the :ref:`ref_contribute` section.
+For more information, see :ref:`ref_contribute`.
 
 Style and testing
 -----------------
@@ -33,33 +38,19 @@ However, this does not guarantee that your project is being tested in an isolate
 environment, which is why you might consider using `tox`_.
 
 
-Documentation
--------------
-
-For building documentation, you can run the usual rules provided in the
-`Sphinx`_ Makefile:
-
-.. code:: bash
-
-    python -m pip install .[doc]
-    make -C doc/ html
-
-    # subsequently open the documentation with (under Linux):
-    your_browser_name doc/html/index.html
-
 Distributing
 ------------
 
-If you would like to create either source or wheel files, start by installing
-the building requirements:
+If you would like to create either source or wheel files, start by running this
+command to install the building requirements:
 
 .. code:: bash
 
     python -m pip install -e .[doc,tests]
 
-Then, execute these commands:
+Then, run these commands:
 
-    .. code:: bash
+.. code:: bash
 
-        python -m build
-        python -m twine check dist/*
+    python -m build
+    python -m twine check dist/*

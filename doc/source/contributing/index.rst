@@ -165,15 +165,11 @@ This way, it's not possible for you to push code that fails the style checks:
 .. code:: text
 
   $ git commit -am "added my cool feature"
+  Add License Headers......................................................Passed
   black....................................................................Passed
   blacken-docs.............................................................Passed
   isort....................................................................Passed
   flake8...................................................................Passed
   docformatter.............................................................Passed
   codespell................................................................Passed
-  check for merge conflicts................................................Passed
-  debug statements (python)................................................Passed
-  check yaml...............................................................Passed
-  trim trailing whitespace.................................................Passed
-  Add License Headers......................................................Passed
   Validate GitHub Workflows................................................Passed
