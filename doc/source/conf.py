@@ -32,7 +32,7 @@ html_theme_options = {
     "github_url": "https://github.com/ansys/ansys-engineeringworkflow-api",
     "show_prev_next": False,
     "show_breadcrumbs": True,
-    "collapse_navigation": True,
+    # "collapse_navigation": True,
     "use_edit_page_button": True,
     "additional_breadcrumbs": [
         ("PyAnsys", "https://docs.pyansys.com/"),
@@ -48,6 +48,7 @@ html_theme_options = {
         "json_url": f"https://{cname}/versions.json",
         "version_match": switcher_version,
     },
+    "check_switcher": False,
 }
 
 html_context = {
