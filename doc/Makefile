@@ -31,4 +31,4 @@ clean:
 pdf: .install-deps Makefile
 	@$(SPHINXBUILD) -M latex "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	cd $(BUILDDIR)/latex && latexmk -r latexmkrc -pdf *.tex -interaction=nonstopmode || true
-	(test -f $(BUILDDIR)/latex/pyansys-tools-variableinterop-Documentation-*.pdf && echo pdf exists) || exit 1
+	(test -f $(BUILDDIR)/latex/ansys-engineeringworkflow-api-Documentation-*.pdf && echo pdf exists) || exit 1
