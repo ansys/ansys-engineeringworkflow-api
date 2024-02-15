@@ -61,7 +61,7 @@ html_context = {
 # Sphinx extensions
 extensions = [
     "notfound.extension",  # for the not found page.
-    # "numpydoc",
+    "numpydoc",
     "autoapi.extension",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
