@@ -18,7 +18,7 @@ project = "ansys-engineeringworkflow-api"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS, Inc."
 release = version = __version__
-cname = os.getenv("DOCUMENTATION_CNAME", "<DEFAULT_CNAME>")
+cname = os.getenv("DOCUMENTATION_CNAME", default="engineeringworkflow.docs.pyansys.com")
 switcher_version = get_version_match(__version__)
 
 # use the default pyansys logo
