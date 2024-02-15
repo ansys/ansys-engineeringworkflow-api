@@ -2,6 +2,7 @@
 name: GitHub CI
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     tags:
@@ -88,7 +89,7 @@ jobs:
         uses: ansys/actions/doc-build@v5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          sphinxopts: -j auto
+          sphinxopts: -j auto -W
 
   package:
     name: Package library

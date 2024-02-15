@@ -1,19 +1,15 @@
 # Contributing
 
-We absolutely welcome any code contributions and we hope that this
-guide will facilitate an understanding of the PyAnsys Tools Variable
-Interop code repository. It is important to note that while the
-PyAnsys Tools Variable Interop software package is maintained by
-ANSYS and any submissions will be reviewed thoroughly before merging,
-we still seek to foster a community that can support user questions
-and develop new features to make this software a useful tool for all
-users. As such, we welcome and encourage any questions or submissions
-to this repository.
+All code contributions are welcome. WhileAnsys Engineering Workflow API is
+maintained by Ansys and all submissions are thoroughly reviewed by project maintainers
+before merging, the goal is to foster a community that can support user questions and develop
+new features to make this tool useful to all. As such, project maintainers encourage questions
+and submissions.
 
-For contributing to this project, please refer to the [PyAnsys Developer's Guide].
-Further information about contributing to PyAnsys Tools Variable Interop
+For contributing to this project, see the [PyAnsys Developer's Guide].
+Further information about contributing toAnsys Engineering Workflow API
 can be found in [Contributing].
 
-[PyAnsys Developer's Guide]: https://dev.docs.pyansys.com/index.html
-[Contributing]: https://engineeringworkflow.docs.pyansys.com/dev/contributing.html
+[PyAnsys Developer's Guide]: https://dev.docs.pyansys.com/how-to/contributing.html
+[Contributing]: https://engineeringworkflow.docs.pyansys.com/version/dev/contributing/index.html
 
