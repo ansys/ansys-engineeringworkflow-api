@@ -63,8 +63,6 @@ extensions = [
     "notfound.extension",  # for the not found page.
     "numpydoc",
     "autoapi.extension",
-    "sphinx.ext.autosectionlabel",
-    "sphinx.ext.coverage",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_design",
