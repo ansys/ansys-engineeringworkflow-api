@@ -6,7 +6,7 @@ repos:
   hooks:
   - id: add-license-headers
     args:
-    - --start_year=2024
+    - --start_year=2022
 
 - repo: https://github.com/psf/black
   rev: 23.9.1  # IF VERSION CHANGES --> MODIFY "blacken-docs" MANUALLY AS WELL!!
