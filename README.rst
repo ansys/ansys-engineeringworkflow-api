@@ -1,98 +1,83 @@
-PyAnsys Library Template
-########################
+Ansys Engineering Workflow API
+==============================
 
-This repository is a template repository where you can `Create a
-repository from a template`_ and create a new PyAnsys project that
-follows the guidelines specified in the `PyAnsys Developer's Guide`_.
-
-The following sections should be filled and documented for your project.
-
-.. _Create a repository from a template: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template
-.. _PyAnsys Developer's Guide: https://github.com/pyansys/about
-
-
-Project Overview
-----------------
-Provide a description of your PyAnsys Python library.
+Overview
+--------
+The Ansys Engineering Workflow API is a Python package that provides a
+common interface for interacting with Ansys engineering workflow engines,
+such as ModelCenter and OptiSLang.
 
 
 Installation
 ------------
-Include installation directions.  Note that this README will be
-included in your PyPI package, so be sure to include ``pip``
-directions along with developer installation directions.  For example.
+The ``ansys-engineeringworkflow-api`` package currently supports Python
+3.9 through 3.12 on Windows, MacOS and Linux.
 
-Install <PyAnsys Library> with:
-
-.. code::
-
-   pip install ansys-<product/service>-<library>
-
-Alternatively, clone and install in development mode with:
+You can install ``ansys-engineeringworkflow-api`` with:
 
 .. code::
 
-   git clone https://github.com/pyansys/
-   cd <PyAnsys-Library>
-   pip install poetry
-   poetry install
+   pip install ansys-engineeringworkflow-api
 
-This creates a new virtual environment, which can be activated with
+Alternatively, install the latest version from `ansys-engineeringworkflow-api GitHub
+<https://github.com/ansys/ansys-engineeringworkflow-api>`_ via:
 
 .. code::
 
-   poetry shell
-
-A third alternative is to use DevContainers, either from the cli or
-with Visual Studio Code. Install VS Code and the Dev Extensions plug-in,
-then use `Dev Containers: Open Folder in Container`. The `poetry install`
-should happen for you.
-
-Documentation
--------------
-Include a link to the full sphinx documentation.  For example `PyAnsys <https://docs.pyansys.com/>`_
+   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api
 
 
-Usage
------
-It's best to provide a sample code or even a figure demonstrating the usage of your library.  For example:
+For a local development version, you can install the development
+version of the project with:
 
-.. code:: python
+.. code::
 
-   >>> from ansys.<product/service> import <library>
-   >>> my_object.<library>()
-   >>> my_object.foo()
-   'bar'
+   git clone https://github.com/ansys/ansys-engineeringworkflow-api.git
+   cd ansys-engineeringworkflow-api
+   pip install -e .
 
 
-Testing
--------
-You can feel free to include this at the README level or in CONTRIBUTING.md
+Documentation building
+----------------------
 
+Install the required dependencies for building the documentation with this
+command:
 
-License
--------
-Be sure to point out your license (and any acknowledgments).  State
-that the full license can be found in the root directory of the
-repository.
+.. code:: bash
+
+    pip install .[doc]
+
+Build and view documentation with the one or more commands for your
+operating system:
+
+.. code:: bash
+
+    # For Linux and MacOS
+    make -C doc/ html && your_browser_name doc/build/html/index.html
+
+    # For Windows
+    .\doc\make.bat html
+    .\doc\build\html\index.html
+
 
 
 TODO
--------
-	- Finish documentation such that pre-commit works as intended
-	- Copy (manually, automatically?) main package documentation to README
-	- To/FromAPI String
-		- No extension methods in Python, add to base interface explicitly?
-		- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)
-	- To/From Formatted String
-	- Scalar Types
-	- Array Types
-		- Strong typing of ndarray in numpy only added in version of numpy that doesn't support Python 3.7
-	- File Types
-		- Use interface to separate behavior of files from library
-		- Implement default behavior
-	- Clone
-	- LinkingRules
-	- Variable Factory
-	- Variable State
-	- Variable Scope
+----
+
+- [ ] Finish documentation such that pre-commit works as intended
+- [ ] Copy (manually, automatically?) main package documentation to README
+- [ ] To/FromAPI String
+	- No extension methods in Python, add to base interface explicitly?
+	- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)
+- [ ] To/From Formatted String
+- [ ] Scalar Types
+- [ ] Array Types
+	- Strong typing of ndarray in numpy only added in version of numpy that doesn't support Python 3.7
+- [ ] File Types
+	- Use interface to separate behavior of files from library
+	- Implement default behavior
+- [ ] Clone
+- [ ] LinkingRules
+- [ ] Variable Factory
+- [ ] Variable State
+- [ ] Variable Scope

@@ -4,32 +4,13 @@
    here.
 
 .. include:: ../../README.rst
+   :end-line: 62
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
+   :maxdepth: 2
 
-   class_documentation
-
-
-Code Examples
-~~~~~~~~~~~~~
-Here's a quick preview for how Python code looks using the
-``ansys-common-variableinterop``.  For more examples, click the links at the
-top of the page to see function, method, and class documentation.
-
-
-Rendered Python Code
---------------------
-
-.. code:: python
-
-   >>> num = 10
-   >>> if num > 0:
-   ...     print("Positive number")
-   ... elif num == 0:
-   ...     print("Zero")
-   ... else:
-   ...     print("Negative number")
-   Positive number
-
+   getting_started/index.rst
+   user_guide/index.rst
+   api/index.rst
+   contributing/index.rst

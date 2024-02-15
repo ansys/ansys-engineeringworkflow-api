@@ -1,0 +1,147 @@
+# check spelling, codestyle
+name: GitHub CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    tags:
+      - "*"
+    branches:
+      - main
+
+env:
+  DOCUMENTATION_CNAME: 'engineeringworkflow.docs.pyansys.com'
+  MAIN_PYTHON_VERSION: '3.11'
+  PACKAGE_NAME: 'ansys-engineeringworkflow-api'
+  PACKAGE_NAMESPACE: 'ansys.engineeringworkflow.api'
+
+jobs:
+  code-style:
+    name: "Code style"
+    runs-on: ubuntu-latest
+    steps:
+      - name: PyAnsys code style checks
+        uses: ansys/actions/code-style@v5
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+  doc-style:
+    name: "Documentation Style Check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: PyAnsys documentation style checks
+        uses: ansys/actions/doc-style@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  smoke-tests:
+    name: "Build and Smoke tests"
+    runs-on: ${{ matrix.os }}
+    needs: [code-style]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+        should-release:
+          - ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags') }}
+        exclude:
+          - should-release: false
+            os: macos-latest
+
+    steps:
+      - name: Build wheelhouse and perform smoke test
+        uses: ansys/actions/build-wheelhouse@v5
+        with:
+          library-name: ${{ env.PACKAGE_NAME }}
+          operating-system: ${{ matrix.os }}
+          python-version: ${{ matrix.python-version }}
+
+  build-test:
+    name: "Build and unit testing"
+    runs-on: ubuntu-latest
+    needs: [smoke-tests]
+    steps:
+      - name: Run pytest
+        uses: ansys/actions/tests-pytest@v5
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          pytest-extra-args: -v --durations=10 --maxfail=10 --cov=${{ env.PACKAGE_NAMESPACE }} --cov-report=xml:coverage.xml --cov-report=html --cov-report term
+
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage.xml
+
+      - name: "Upload coverage artifacts"
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
+          path: htmlcov
+
+  doc-build:
+    name: "Documentation building"
+    runs-on: ubuntu-latest
+    needs: [doc-style]
+    steps:
+      - name: "Run Ansys documentation building action"
+        uses: ansys/actions/doc-build@v5
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+  package:
+    name: Package library
+    needs: [doc-build, build-test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build library source and wheel artifacts
+        uses: ansys/actions/build-library@v5
+        with:
+          library-name: ${{ env.PACKAGE_NAME }}
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+  doc-deploy-dev:
+    name: "Deploy development documentation"
+    # Deploy development only when merging to main
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [package]
+    steps:
+      - name: "Deploy the latest documentation"
+        uses: ansys/actions/doc-deploy-dev@v5
+        with:
+          cname: ${{ env.DOCUMENTATION_CNAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    name: "Release project to public PyPI and GitHub"
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    needs:  [package]
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: "Release to the public PyPI repository"
+      uses: ansys/actions/release-pypi-public@v5
+      with:
+        library-name: ${{ env.PACKAGE_NAME }}
+        twine-username: "__token__"
+        twine-token: ${{ secrets.PYPI_TOKEN }}
+
+    - name: "Release to GitHub"
+      uses: ansys/actions/release-github@v5
+      with:
+        library-name: ${{ env.PACKAGE_NAME }}
+
+  doc-deploy-stable:
+    name: "Deploy stable documentation"
+    # Deploy release documentation when creating a new tag
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    needs: [release]
+    steps:
+      - name: "Deploy the stable documentation"
+        uses: ansys/actions/doc-deploy-stable@v5
+        with:
+            cname: ${{ env.DOCUMENTATION_CNAME }}
+            token: ${{ secrets.GITHUB_TOKEN }}
