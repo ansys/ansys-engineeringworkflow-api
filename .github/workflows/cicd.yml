@@ -89,7 +89,6 @@ jobs:
         uses: ansys/actions/doc-build@v5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          sphinxopts: -j auto -W
 
   package:
     name: Package library
