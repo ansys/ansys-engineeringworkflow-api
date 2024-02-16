@@ -26,7 +26,7 @@ This module contains the common API for all Ansys workflow engines, written in a
 synchronous style. It has the exact same API as the ``iasyncworkflow`` module and any
 changes to one file must be made to the other.
 
-Generally speaking, in addition to the :ref:`exceptions` noted, implementations of
+Generally speaking, in addition to the exceptions already noted, implementations of
 this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
 that an internal error has been encountered and should be reported to the engine
 implementation maintainer.
@@ -111,7 +111,7 @@ class IWorkflowInstance(ABC):
             to ``True``, all run components and data links become invalid so that the
             workflow runs from the beginning. However, it does not reset any input values
             that have been set to non-default values. Note that setting datapin values
-            could also implicitly reset some the states of some components.
+            could also implicitly reset the states of some components.
         validation_names : AbstractSet[str]
             Names of the specific datapins or components that are required to be valid.
             Setting names may enable the workflow engine to shortcut evaluation of the
@@ -127,13 +127,12 @@ class IWorkflowInstance(ABC):
         -------
         Mapping[str, VariableState]
             Map of output datapin names to ``VariableState`` objects for each datapin specified by
-            the ``collect_names``` parameter.
+            the ``collect_names`` parameter.
 
         Raises
         ------
         ValueOutOfRangeError
             If one of the input values violates its datapin's bounds or enumerated values.
-            be included.
         """
         ...
 
@@ -147,14 +146,14 @@ class IWorkflowInstance(ABC):
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
-            Map of datapin names to ``VariableState`` objects`` for all inputs to
+            Map of datapin names to ``VariableState`` objects for all inputs to
             set before running the workflow.
         reset : bool
             Whether to reset the workflow before running. If this parameter is set
             to ``True``, all run components and data links become invalid so that the
             workflow runs from the beginning. However, it does not reset any input values
             that have been set to non-default values. Note that setting datapin values
-            could also implicitly reset some the states of some components.
+            could also implicitly reset the states of some components.
         validation_names : AbstractSet[str]
             Names of the specific datapins or components that are required to be valid.
             Setting names may enable the workflow engine to shortcut evaluation of the
@@ -184,7 +183,7 @@ class IWorkflowInstance(ABC):
         Parameters
         ----------
         element_name : str
-            Name of the element to retrieve in dotted notation.For example,
+            Name of the element to retrieve in dotted notation. For example,
             ``'Root.Component.Thing'``.
         """
         ...
@@ -196,7 +195,11 @@ class IElement(ABC):
     @property
     @abstractmethod
     def element_id(self) -> str:
-        """Unique ID for the element that is assigned by the system."""
+        """
+        Unique ID for the element.
+
+        This ID is assigned by the system.
+        """
         ...
 
     @property
@@ -212,7 +215,7 @@ class IElement(ABC):
     @abstractmethod
     def get_parent_element(self) -> Optional[IElement]:
         """
-        Get the parent object of this element.
+        Get the parent object of the element.
 
         If this is the root element of the workflow, the method returns ``None``.
         """
@@ -236,7 +239,7 @@ class IElement(ABC):
 
     @abstractmethod
     def get_property(self, property_name: str) -> Property:
-        """Get a property by its name."""
+        """Get a property by name."""
         ...
 
     @abstractmethod
@@ -320,8 +323,8 @@ class IComponent(IElement, IDatapinContainer, ABC):
     """
     Provides for a black box analysis.
 
-    A black box analysis is defined as taking a set of inputs, executing, and returning a set of
-    outputs.
+    A black box analysis is defined as taking a set of inputs, executing, and then returning a set
+    of outputs.
 
     The black box may be a solver, simulation, co-simulation, calculation, or other third-party
     analysis. While state may be kept as an optimization to help performance for slow-to-start
@@ -344,7 +347,7 @@ class IComponent(IElement, IDatapinContainer, ABC):
         definition. While all components are represented by PACZ definitions, in the short term,
         many components are not currently defined in this way. If there is not a PACZ definition of
         the component, the method returns ``None``. In such cases, you must fall back on
-        engine-specific methods to determine what type the component is.
+        engine-specific methods to determine what the component type is.
         """
 
     ...

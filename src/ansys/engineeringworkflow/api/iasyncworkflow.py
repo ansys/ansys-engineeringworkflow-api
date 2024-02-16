@@ -26,7 +26,7 @@ This module contains the common API for all Ansys workflow engines, written in a
 asynchronous style. It has the exact same API as the ``IWorkflow`` module and any
 changes to one file must be made to the other.
 
-Generally speaking, in addition to the :ref:`exceptions` noted, implementations of
+Generally speaking, in addition to the exceptions already noted, implementations of
 this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
 that an internal error has been encountered and should be reported to the engine
 implementation maintainer.
@@ -106,7 +106,7 @@ class IAsyncWorkflowInstance(ABC):
             to ``True``, all run components and data links become invalid so that the
             workflow runs from the beginning. However, it does not reset any input values
             that have been set to non-default values. Note that setting datapin values
-            could also implicitly reset some the states of some components.
+            could also implicitly reset the states of some components.
         validation_names : AbstractSet[str]
             Names of the specific datapins or components that are required to be valid.
             Setting names may enable the workflow engine to shortcut evaluation of the
@@ -135,7 +135,7 @@ class IAsyncWorkflowInstance(ABC):
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
-            Map of datapin names to ``VariableState`` objects`` for all inputs to
+            Map of datapin names to ``VariableState`` objects for all inputs to
             set before running the workflow.
         reset : bool
             Whether to reset the workflow before running. If this parameter is set
@@ -224,7 +224,7 @@ class IAsyncElement(ABC):
 
     @abstractmethod
     async def get_property(self, property_name: str) -> Property:
-        """Get a property by its name."""
+        """Get a property by name."""
         ...
 
     @abstractmethod
@@ -292,8 +292,8 @@ class IAsyncComponent(IAsyncElement, IAsyncDatapinContainer, ABC):
     """
     Provides for a black box analysis.
 
-    A black box analysis is defined as taking a set of inputs, executing, and returning a set of
-    outputs.
+    A black box analysis is defined as taking a set of inputs, executing, and then returning a set
+    of outputs.
 
     The black box may be a solver, simulation, co-simulation, calculation, or other third-party
     analysis. While state may be kept as an optimization to help performance for slow-to-start
@@ -314,7 +314,7 @@ class IAsyncComponent(IAsyncElement, IAsyncDatapinContainer, ABC):
         definition. While all components are represented by PACZ definitions, in the short term,
         many components are not currently defined in this way. If there is not a PACZ definition of
         the component, the method returns ``None``. In such cases, you must fall back on
-        engine-specific methods to determine what type the component is.
+        engine-specific methods to determine what the component type is.
         """
         ...
 

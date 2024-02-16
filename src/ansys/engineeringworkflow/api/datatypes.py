@@ -42,7 +42,7 @@ class WorkflowEngineInfo:
     """Build number."""
     is_release_build: bool
     """
-    Whether the release is a production release.
+    Flag indicating if the release is a production release.
 
     The value is ``False`` for development, alpha, beta, and other releases.
     """
@@ -51,7 +51,7 @@ class WorkflowEngineInfo:
     Build type.
 
     This attribute must be blank for a production release. For other release types, it may include
-    arbitrary information like the branch a development build was built from.
+    arbitrary information like the branch that a development build was built from.
     """
     version_as_string: str
     """
@@ -61,7 +61,7 @@ class WorkflowEngineInfo:
     """
     server_type: str
     """
-    Server type that is responding to the request.
+    Type of server that is responding to the request.
 
     The value is a string similar to ``'ModelCenter'`` or ``'optiSLang'``.
     """
@@ -69,8 +69,8 @@ class WorkflowEngineInfo:
     """
     Installation directory.
 
-    If the client is on the same box as the workflow engine, this attribute may optionally provide
-    the installation folder.
+    If the client is on the same box as the workflow engine, this optional attribute may provide the
+    installation folder.
 
     Typically server-based products do not provide this field for security reasons.
     """
@@ -79,7 +79,7 @@ class WorkflowEngineInfo:
     Base URL for clients to connect to.
 
     If this is a server-based product ready to receive incoming connections from remote clients,
-    this attribute may optionally provide the base URL for clients to connect to.
+    this optional attribute may provide the base URL for clients to connect to.
     """
 
 
@@ -99,10 +99,10 @@ class Property:
     """
     Provides a configurable setting on some component or algorithm in the workflow.
 
-    This class cannot be linked to other variables or properties. Unless a property is explicitly
-    documented as supporting it, these values should not be changed while the workflow is running.
-    Examples that may support modification would be convergence criteria for an optimization
-    algorithm.
+    This configurable setting cannot be linked to other variables or properties. Unless a property
+    is explicitly documented as supporting it, values should not be changed while the workflow is
+    running. Examples that may support modification would be convergence criteria for an
+    optimization algorithm.
     """
 
     parent_element_id: str
