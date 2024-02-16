@@ -5,67 +5,59 @@ Overview
 --------
 The Ansys Engineering Workflow API is a Python package that provides a
 common interface for interacting with Ansys engineering workflow engines,
-such as ModelCenter and OptiSLang.
+such as ModelCenter and optiSLang.
 
+Documentation and issues
+------------------------
 
-Installation
-------------
-The ``ansys-engineeringworkflow-api`` package currently supports Python
-3.9 through 3.12 on Windows, MacOS and Linux.
+Documentation for the latest stable release of the Ansys Engineering Workflow API is hosted
+at `Ansys Engineering Workflow API documentation <https://engineeringworkflow.docs.pyansys.com/version/dev/>`_.
 
-You can install ``ansys-engineeringworkflow-api`` with:
+The documentation has four sections:
 
-.. code::
+- `Getting started <https://engineeringworkflow.docs.pyansys.com/version/dev/getting_started/index.html>`_: Learn
+  how to install the Ansys Engineering Workflow API.
+- `User guide <https://engineeringworkflow.docs.pyansys.com/version/dev/user_guide/index.html>`_: Understand how to
+  use the Ansys Engineering Workflow API.
+- `API reference <https://rocky.docs.pyansys.com/version/dev/api/index.html>`_: Understand Ansys Engineering Workflow
+  API endpoints, their capabilities, and how to interact with them programmatically.
+- `Contribute <https://engineeringworkflow.docs.pyansys.com/version/dev/contributing/index.html>`_: Learn how to
+  contribute to the Ansys Engineering Workflow API codebase or documentation.
 
-   pip install ansys-engineeringworkflow-api
+In the upper right corner of the documentation's title bar, there is an option
+for switching from viewing the documentation for the latest stable release
+to viewing the documentation for the development version or previously
+released versions.
 
-Alternatively, install the latest version from `ansys-engineeringworkflow-api GitHub
-<https://github.com/ansys/ansys-engineeringworkflow-api>`_ via:
+On the `Ansys Engineering Workflow API Issues <https://github.com/ansys/ansys-engineeringworkflow-api/issues>`_
+page, you can create issues to report bugs and request new features. On the
+`Ansys Engineering Workflow API Discussions <https://github.com/ansys/ansys-engineeringworkflow-api/discussions>`_
+page or the `Discussions <https://discuss.ansys.com/>`_ page on the Ansys Developer portal,
+you can post questions, share ideas, and get community feedback.
 
-.. code::
+To reach the PyAnsys project support team, email `PyAnsys Core team <pyansys.core@ansys.com>`_.
 
-   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api
+License
+-------
 
+The Ansys Engineering Workflow API is licensed under the `MIT License <https://github.com/ansys/ansys-engineeringworkflow-api/blob/main/LICENSE>`_.
 
-For a local development version, you can install the development
-version of the project with:
+The Ansys Engineering Workflow API makes no commercial claim over Ansys whatsoever. This library extends the
+functionality of interacting with Ansys engineering workflow engines,
+such as ModelCenter and optiSLang, by adding a Python interface without changing the
+core behavior or license of the original software. The use of the Ansys Engineering Workflow
+API requires a legally licensed Ansys engineering workflow engine.
 
-.. code::
-
-   git clone https://github.com/ansys/ansys-engineeringworkflow-api.git
-   cd ansys-engineeringworkflow-api
-   pip install -e .
-
-
-Documentation building
-----------------------
-
-Install the required dependencies for building the documentation with this
-command:
-
-.. code:: bash
-
-    pip install .[doc]
-
-Build and view documentation with the one or more commands for your
-operating system:
-
-.. code:: bash
-
-    # For Linux and MacOS
-    make -C doc/ html && your_browser_name doc/build/html/index.html
-
-    # For Windows
-    .\doc\make.bat html
-    .\doc\build\html\index.html
-
-
+To get a copy of Ansys ModelCenter or optiSLang, see the `Ansys ModelCenter <https://www.ansys.com/products/connect/ansys-modelcenter>`_
+or `Ansys optiSLang <https://www.ansys.com/products/connect/ansys-optislang>`_ page on the Ansys website.
 
 TODO
 ----
 
+- [ ] Change URLs to use stable doc at release time
 - [ ] Finish documentation such that pre-commit works as intended
-- [ ] Copy (manually, automatically?) main package documentation to README
+- [ ] Copy (manually, automatically?) main package documentation to README (From Kathy: The README and doc landing
+      page should be different and are now working as intended.)
 - [ ] To/FromAPI String
 	- No extension methods in Python, add to base interface explicitly?
 	- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)

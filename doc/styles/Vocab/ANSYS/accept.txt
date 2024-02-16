@@ -5,5 +5,5 @@ API
 api
 Autosummary
 Makefile
-pytest
+PyTest
 Python
