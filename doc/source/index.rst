@@ -1,10 +1,47 @@
-..
-   Just reuse the root readme to avoid duplicating the documentation.
-   Provide any documentation specific to your online documentation
-   here.
+Ansys Engineering Workflow API documentation |version|
+======================================================
 
-.. include:: ../../README.rst
-   :end-line: 62
+
+.. grid:: 1 2 2 2
+
+
+    .. grid-item-card:: Getting started :fa:`person-running`
+        :padding: 2 2 2 2
+        :link: getting_started/index
+        :link-type: doc
+
+        Learn how to get started with the Ansys Engineering Workflow API.
+        This section guides you through the installation process.
+
+
+    .. grid-item-card:: User guide :fa:`book-open-reader`
+        :padding: 2 2 2 2
+        :link: user_guide/index
+        :link-type: doc
+      
+
+        Understand key concepts and learn how to use the Ansys Engineering Workflow API.
+
+
+    .. grid-item-card:: API reference :fa:`book-bookmark`
+        :padding: 2 2 2 2
+        :link: api/index
+        :link-type: doc
+      
+
+        Explore the Ansys Engineering Workflow API reference documentation.
+
+
+    .. grid-item-card:: Contribute :fa:`people-group`
+        :padding: 2 2 2 2
+        :link: contributing/index
+        :link-type: doc
+      
+
+        Learn how to contribute to the Ansys Engineering Workflow API codebase
+        or documentation.
+
+
 
 .. toctree::
    :hidden:
