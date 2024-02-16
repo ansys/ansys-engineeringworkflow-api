@@ -107,8 +107,8 @@ of the template categories, you can click the link for opening a blank issue.
 
 To reach the PyAnsys support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
 
-Style and test
---------------
+Verify style and unit tests
+---------------------------
 
 If required, from the command line, you can call commands like `black`_, `isort`_, and `flake8`_.
 You can also call unit testing commands like `PyTest`_. However, running these commands does not
