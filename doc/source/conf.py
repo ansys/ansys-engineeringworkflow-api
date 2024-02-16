@@ -171,6 +171,3 @@ latex_additional_files = [watermark, ansys_logo_white, ansys_logo_white_cropped]
 # variables are the title of pdf, watermark
 latex_elements = {"preamble": latex.generate_preamble(html_title)}
 sd_fontawesome_latex = True
-
-linkcheck_exclude_documents = ["index", "getting_started/local/index", "assets"]
-linkcheck_ignore = [r"https://github.com/ansys/pyansys-geometry-binaries/.*"]
