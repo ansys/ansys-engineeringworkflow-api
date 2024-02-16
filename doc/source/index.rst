@@ -10,6 +10,7 @@ Ansys Engineering Workflow API documentation |version|
         :link: getting_started/index
         :link-type: doc
 
+
         Learn how to install the Ansys Engineering Workflow API.
 
 
@@ -19,7 +20,7 @@ Ansys Engineering Workflow API documentation |version|
         :link-type: doc
       
 
-       Learn how to use the Ansys Engineering Workflow API.
+        Learn how to use the Ansys Engineering Workflow API.
 
 
     .. grid-item-card:: API reference :fa:`book-bookmark`
@@ -28,8 +29,8 @@ Ansys Engineering Workflow API documentation |version|
         :link-type: doc
       
 
-       Understand Ansys Engineering Workflow API endpoints, their capabilities,
-       and how to interact with them programmatically.
+        Understand Ansys Engineering Workflow API endpoints, their capabilities,
+        and how to interact with them programmatically.
 
 
     .. grid-item-card:: Contribute :fa:`people-group`

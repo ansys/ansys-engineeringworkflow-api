@@ -6,16 +6,16 @@ Contribute
 Overall guidance on contributing to a PyAnsys library appears in the
 `Contributing <dev_guide_contributing_>`_ topic
 in the *PyAnsys developer's guide*. Ensure that you are thoroughly familiar
-with this guide before attempting to contribute to Ansys Engineering Workflow API.
+with this guide before attempting to contribute to the Ansys Engineering Workflow API.
 
-The following contribution information is specific to Ansys Engineering Workflow API.
+The following contribution information is specific to the Ansys Engineering Workflow API.
 
 Install in developer mode
 -------------------------
 
 Installing the ``ansys-engineeringworkflow-api`` package in developer mode allows
-you to modify the source and enhance it. As mentioned in :ref:`getting_started`,
-this package supports Python 3.9 through 3.12 on Windows, MacOS, and Linux.
+you to modify the source and enhance it. This package supports Python 3.9 through 3.12
+on Windows, MacOS, and Linux.
 
 For a local development version, you can create a clean virtual environment with this command:
 
@@ -59,8 +59,8 @@ with these commands:
    pip install -e .
 
 
-Documentation
--------------
+Build documentation
+-------------------
 
 Install the required dependencies for the documentation with this command:
 
@@ -69,7 +69,7 @@ Install the required dependencies for the documentation with this command:
     pip install .[doc]
 
 
-For building documentation, you run the usual rules provided in the Sphinx
+To build documentation, run the usual rules provided in the Sphinx
 Makefile for your operating system:
 
 .. tab-set::
@@ -100,23 +100,23 @@ Post issues
 -----------
 
 Use the `Ansys Engineering Workflow API Issues <ansys-engineeringworkflow-api_issues_>`_
-page to submit questions, report bugs, and request new features.
+page to report bugs and request new features.
 
 When possible, use the issue templates provided. If your issue does not fit into one
-of thee template categories, you can click the link for opening a blank issue.
+of the template categories, you can click the link for opening a blank issue.
 
 To reach the PyAnsys support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
 
-Style and testing
------------------
+Style and test
+--------------
 
-If required, from the command line, you can call commands like `black`_, `isort`_, and `flake8`_. You can
-also call unit testing commands like `PyTest`_. However, running these commands does not
+If required, from the command line, you can call commands like `black`_, `isort`_, and `flake8`_.
+You can also call unit testing commands like `PyTest`_. However, running these commands does not
 guarantee that your project is being tested in an isolated environment, which is why you
 might consider using `tox`_.
 
-Testing
--------
+Test
+----
 You can install the dependencies required for testing with this command:
 
 .. code:: bash
@@ -165,8 +165,8 @@ This way, it's not possible for you to push code that fails the style checks:
   codespell................................................................Passed
   Validate GitHub Workflows................................................Passed
 
-Distributing
-------------
+Distribute
+----------
 
 If you would like to create either source or wheel files, start by running this
 command to install the building requirements:

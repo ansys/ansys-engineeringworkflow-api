@@ -30,7 +30,7 @@ Then, install the latest ``ansys-engineeringworkflow-api`` package with this com
 
     python -m pip install ansys-engineeringworkflow-api
 
-Alternatively, you can install the latest version from this project's `GitHub repository
+Alternatively, you can install the latest version from the project's `GitHub repository
 <https://github.com/ansys/ansys-engineeringworkflow-api>`_ with this command:
 
 .. code::
