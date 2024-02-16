@@ -164,6 +164,23 @@ rst_epilog = ""
 with open("links.rst") as f:
     rst_epilog += f.read()
 
+
+# -- Options for LaTeX output ------------------------------------------------
+latex_elements = {}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+    (
+        master_doc,
+        f"{project}-Documentation-{__version__}.tex",
+        f"{project} Documentation",
+        author,
+        "manual",
+    ),
+]
+
 # additional logos for the latex coverpage
 latex_additional_files = [watermark, ansys_logo_white, ansys_logo_white_cropped]
 
