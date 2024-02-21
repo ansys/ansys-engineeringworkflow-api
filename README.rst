@@ -50,26 +50,3 @@ API requires a legally licensed Ansys engineering workflow engine.
 
 To get a copy of Ansys ModelCenter or optiSLang, see the `Ansys ModelCenter <https://www.ansys.com/products/connect/ansys-modelcenter>`_
 or `Ansys optiSLang <https://www.ansys.com/products/connect/ansys-optislang>`_ page on the Ansys website.
-
-TODO
-----
-
-- [ ] Change URLs to use stable doc at release time
-- [ ] Finish documentation such that pre-commit works as intended
-- [ ] Copy (manually, automatically?) main package documentation to README (From Kathy: The README and doc landing
-      page should be different and are now working as intended.)
-- [ ] To/FromAPI String
-	- No extension methods in Python, add to base interface explicitly?
-	- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)
-- [ ] To/From Formatted String
-- [ ] Scalar Types
-- [ ] Array Types
-	- Strong typing of ndarray in numpy only added in version of numpy that doesn't support Python 3.7
-- [ ] File Types
-	- Use interface to separate behavior of files from library
-	- Implement default behavior
-- [ ] Clone
-- [ ] LinkingRules
-- [ ] Variable Factory
-- [ ] Variable State
-- [ ] Variable Scope
