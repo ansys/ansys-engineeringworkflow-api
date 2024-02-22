@@ -4,8 +4,10 @@ Ansys Engineering Workflow API
 Overview
 --------
 The Ansys Engineering Workflow API is a Python package that provides a
-common interface for interacting with Ansys engineering workflow engines,
-such as ModelCenter and optiSLang.
+common interface for interacting with Ansys engineering workflow engines.
+
+It is not a standalone package. It is intended to be used in conjunction with
+other PyAnsys libraries.
 
 Documentation and issues
 ------------------------
@@ -42,11 +44,5 @@ License
 
 The Ansys Engineering Workflow API is licensed under the `MIT License <https://github.com/ansys/ansys-engineeringworkflow-api/blob/main/LICENSE>`_.
 
-The Ansys Engineering Workflow API makes no commercial claim over Ansys whatsoever. This library extends the
-functionality of interacting with Ansys engineering workflow engines,
-such as ModelCenter and optiSLang, by adding a Python interface without changing the
-core behavior or license of the original software. The use of the Ansys Engineering Workflow
-API requires a legally licensed Ansys engineering workflow engine.
-
-To get a copy of Ansys ModelCenter or optiSLang, see the `Ansys ModelCenter <https://www.ansys.com/products/connect/ansys-modelcenter>`_
-or `Ansys optiSLang <https://www.ansys.com/products/connect/ansys-optislang>`_ page on the Ansys website.
+The Ansys Engineering Workflow API makes no commercial claim over Ansys whatsoever.
+This library is not intended for standalone use.
