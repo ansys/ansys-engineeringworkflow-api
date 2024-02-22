@@ -1,7 +1,7 @@
 User guide
 ==========
 
-This repository is not intended for standalone use.
+The Ansys Engineering Workflow API is not intended for standalone use.
 Links to the compatible libraries will soon be available on this page.
 
 .. Instead, refer to the 
