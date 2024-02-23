@@ -4,80 +4,45 @@ Ansys Engineering Workflow API
 Overview
 --------
 The Ansys Engineering Workflow API is a Python package that provides a
-common interface for interacting with Ansys engineering workflow engines,
-such as ModelCenter and OptiSLang.
+common interface for interacting with Ansys engineering workflow engines.
 
+It is not a standalone package. It is intended to be used in conjunction with
+other PyAnsys libraries.
 
-Installation
-------------
-The ``ansys-engineeringworkflow-api`` package currently supports Python
-3.9 through 3.12 on Windows, MacOS and Linux.
+Documentation and issues
+------------------------
 
-You can install ``ansys-engineeringworkflow-api`` with:
+Documentation for the latest stable release of the Ansys Engineering Workflow API is hosted
+at `Ansys Engineering Workflow API documentation <https://engineeringworkflow.docs.pyansys.com/version/dev/>`_.
 
-.. code::
+The documentation has four sections:
 
-   pip install ansys-engineeringworkflow-api
+- `Getting started <https://engineeringworkflow.docs.pyansys.com/version/dev/getting_started/index.html>`_: Learn
+  how to install the Ansys Engineering Workflow API.
+- `User guide <https://engineeringworkflow.docs.pyansys.com/version/dev/user_guide/index.html>`_: Understand how to
+  use the Ansys Engineering Workflow API.
+- `API reference <https://rocky.docs.pyansys.com/version/dev/api/index.html>`_: Understand Ansys Engineering Workflow
+  API endpoints, their capabilities, and how to interact with them programmatically.
+- `Contribute <https://engineeringworkflow.docs.pyansys.com/version/dev/contributing/index.html>`_: Learn how to
+  contribute to the Ansys Engineering Workflow API codebase or documentation.
 
-Alternatively, install the latest version from `ansys-engineeringworkflow-api GitHub
-<https://github.com/ansys/ansys-engineeringworkflow-api>`_ via:
+In the upper right corner of the documentation's title bar, there is an option
+for switching from viewing the documentation for the latest stable release
+to viewing the documentation for the development version or previously
+released versions.
 
-.. code::
+On the `Ansys Engineering Workflow API Issues <https://github.com/ansys/ansys-engineeringworkflow-api/issues>`_
+page, you can create issues to report bugs and request new features. On the
+`Ansys Engineering Workflow API Discussions <https://github.com/ansys/ansys-engineeringworkflow-api/discussions>`_
+page or the `Discussions <https://discuss.ansys.com/>`_ page on the Ansys Developer portal,
+you can post questions, share ideas, and get community feedback.
 
-   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api
+To reach the PyAnsys project support team, email `PyAnsys Core team <pyansys.core@ansys.com>`_.
 
+License
+-------
 
-For a local development version, you can install the development
-version of the project with:
+The Ansys Engineering Workflow API is licensed under the `MIT License <https://github.com/ansys/ansys-engineeringworkflow-api/blob/main/LICENSE>`_.
 
-.. code::
-
-   git clone https://github.com/ansys/ansys-engineeringworkflow-api.git
-   cd ansys-engineeringworkflow-api
-   pip install -e .
-
-
-Documentation building
-----------------------
-
-Install the required dependencies for building the documentation with this
-command:
-
-.. code:: bash
-
-    pip install .[doc]
-
-Build and view documentation with the one or more commands for your
-operating system:
-
-.. code:: bash
-
-    # For Linux and MacOS
-    make -C doc/ html && your_browser_name doc/build/html/index.html
-
-    # For Windows
-    .\doc\make.bat html
-    .\doc\build\html\index.html
-
-
-
-TODO
-----
-
-- [ ] Finish documentation such that pre-commit works as intended
-- [ ] Copy (manually, automatically?) main package documentation to README
-- [ ] To/FromAPI String
-	- No extension methods in Python, add to base interface explicitly?
-	- Our string quoting rules per standard doc (Phoenix.ModelCenter.Common.ModelCenterUtils.EscapeString and UnescapeString)
-- [ ] To/From Formatted String
-- [ ] Scalar Types
-- [ ] Array Types
-	- Strong typing of ndarray in numpy only added in version of numpy that doesn't support Python 3.7
-- [ ] File Types
-	- Use interface to separate behavior of files from library
-	- Implement default behavior
-- [ ] Clone
-- [ ] LinkingRules
-- [ ] Variable Factory
-- [ ] Variable State
-- [ ] Variable Scope
+The Ansys Engineering Workflow API makes no commercial claim over Ansys whatsoever.
+This library is not intended for standalone use.

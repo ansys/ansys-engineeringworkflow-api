@@ -5,37 +5,25 @@ Contribute
 
 Overall guidance on contributing to a PyAnsys library appears in the
 `Contributing <dev_guide_contributing_>`_ topic
-in the *PyAnsys Developer's Guide*. Ensure that you are thoroughly familiar
-with this guide before attempting to contribute to Ansys Engineering Workflow API.
+in the *PyAnsys developer's guide*. Ensure that you are thoroughly familiar
+with this guide before attempting to contribute to the Ansys Engineering Workflow API.
 
-The following contribution information is specific to Ansys Engineering Workflow API.
+The following contribution information is specific to the Ansys Engineering Workflow API.
 
-Installation
-------------
+Install in developer mode
+-------------------------
 
-The ``ansys-engineeringworkflow-api`` package currently supports Python
-3.9 through 3.12 on Windows, MacOS, and Linux.
+Installing the ``ansys-engineeringworkflow-api`` package in developer mode allows
+you to modify the source and enhance it. This package supports Python 3.9 through 3.12
+on Windows, MacOS, and Linux.
 
-You can install the ``ansys-engineeringworkflow-api`` package with this command:
-
-.. code::
-
-   pip install ansys-engineeringworkflow-api
-
-Alternatively, install the latest version from `ansys-engineeringworkflow-api GitHub
-<ansys-engineeringworkflow-api_repo_>`_ with this command:
-
-.. code::
-
-   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api
-
-For a local development version, you can create a new virtual environment with this command:
+For a local development version, you can create a clean virtual environment with this command:
 
 .. code:: bash
 
     python -m venv .venv
 
-You can then activate the virtual environment with the command appropriate for your operating system:
+You can then activate this virtual environment with the command appropriate for your operating system:
 
 .. tab-set::
 
@@ -61,7 +49,8 @@ You can then activate the virtual environment with the command appropriate for y
           .\.venv\Scripts\activate
 
 
-Next, install the development version of the project with these commands:
+Next, install the development version of the ``ansys-engineeringworkflow-api`` package
+with these commands:
 
 .. code::
 
@@ -70,8 +59,8 @@ Next, install the development version of the project with these commands:
    pip install -e .
 
 
-Documentation
--------------
+Build documentation
+-------------------
 
 Install the required dependencies for the documentation with this command:
 
@@ -80,7 +69,8 @@ Install the required dependencies for the documentation with this command:
     pip install .[doc]
 
 
-For building documentation, you run the usual rules provided in the Sphinx Makefile for your operating system:
+To build documentation, run the usual rules provided in the Sphinx
+Makefile for your operating system:
 
 .. tab-set::
 
@@ -106,26 +96,27 @@ For building documentation, you run the usual rules provided in the Sphinx Makef
         .\doc\make.bat html
         .\doc\build\html\index.html
 
-
 Post issues
 -----------
 
-Use the `Ansys Engineering Workflow API Issues <ansys-engineeringworkflow-api_issues_>`_ page to submit questions,
-report bugs, and request new features. When possible, use these issue
-templates:
+Use the `Ansys Engineering Workflow API Issues <ansys-engineeringworkflow-api_issues_>`_
+page to report bugs and request new features.
 
-* Bug report template
-* Feature request template
-* Documentation issue template
-* Example request template
-
-If your issue does not fit into one of these categories, create your own issue.
+When possible, use the issue templates provided. If your issue does not fit into one
+of the templates, you can click the link for opening a blank issue.
 
 To reach the PyAnsys support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
 
+Verify style and unit tests
+---------------------------
 
-Testing
--------
+If required, from the command line, you can call commands like `black`_, `isort`_, and `flake8`_.
+You can also call unit testing commands like `pytest`_. However, running these commands does not
+guarantee that your project is being tested in an isolated environment, which is why you
+might consider using `tox`_.
+
+Test
+----
 You can install the dependencies required for testing with this command:
 
 .. code:: bash
@@ -142,8 +133,8 @@ You can then run the tests via ``pytest`` with this command:
 Adhere to code style
 --------------------
 
-Ansys Engineering Workflow API follows the PEP8 standard as indicated in the 
-`PyAnsys Developer's Guide <dev_guide_pyansys_pep8_>`_ and implements style checking using
+The Ansys Engineering Workflow API follows the PEP8 standard as indicated in the 
+`PyAnsys developer's guide <dev_guide_pyansys_pep8_>`_ and implements style checking using
 `pre-commit <pre-commit_>`_.
 
 To ensure your code meets minimum code styling standards, run these commands:
@@ -173,3 +164,20 @@ This way, it's not possible for you to push code that fails the style checks:
   docformatter.............................................................Passed
   codespell................................................................Passed
   Validate GitHub Workflows................................................Passed
+
+Distribute
+----------
+
+If you would like to create either source or wheel files, start by running this
+command to install the building requirements:
+
+.. code:: bash
+
+    python -m pip install -e .[doc,tests]
+
+Then, run these commands:
+
+.. code:: bash
+
+    python -m build
+    python -m twine check dist/*

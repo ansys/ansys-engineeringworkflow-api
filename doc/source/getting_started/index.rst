@@ -1,13 +1,21 @@
+.. _getting_started:
+
 Getting started
 ===============
 
+The Ansys Engineering Workflow API supports Python 3.9 through 3.12 on Windows,
+MacOS, and Linux.
+
+Two installation modes of the ``ansys-engineeringworkflow-api`` package
+are provided: user and developer. This section describes how to install
+in user mode.
+
+.. note:: 
+    If you are interested in contributing to this package, see :ref:`ref_contribute`
+    for information on installing in developer mode.
+
 Installation
 ------------
-
-Two installation modes of the ``ansys-engineeringworkflow-api`` package are provided: user and developer.
-
-Install in user mode
-^^^^^^^^^^^^^^^^^^^^
 
 Before installing the ``ansys-engineeringworkflow-api`` package, make sure that you
 have the latest version of `pip`_ with this command:
@@ -22,35 +30,9 @@ Then, install the latest ``ansys-engineeringworkflow-api`` package with this com
 
     python -m pip install ansys-engineeringworkflow-api
 
-Install in developer mode
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Alternatively, you can install the latest version from the project's `GitHub repository
+<https://github.com/ansys/ansys-engineeringworkflow-api>`_ with this command:
 
-Installing the ``ansys-engineeringworkflow-api`` package in developer mode allows
-you to modify the source and enhance it.
-For more information, see :ref:`ref_contribute`.
+.. code::
 
-Style and testing
------------------
-
-If required, you can call style commands (such as `black`_, `isort`_,
-and `flake8`_) or unit testing commands (such as `pytest`_) from the command line.
-However, this does not guarantee that your project is being tested in an isolated
-environment, which is why you might consider using `tox`_.
-
-
-Distributing
-------------
-
-If you would like to create either source or wheel files, start by running this
-command to install the building requirements:
-
-.. code:: bash
-
-    python -m pip install -e .[doc,tests]
-
-Then, run these commands:
-
-.. code:: bash
-
-    python -m build
-    python -m twine check dist/*
+   pip install git+https://github.com/ansys/ansys-engineeringworkflow-api

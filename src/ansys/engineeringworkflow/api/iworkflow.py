@@ -23,13 +23,13 @@
 Synchronous API definitions.
 
 This module contains the common API for all Ansys workflow engines, written in a
-synchronous style. It has the exact same API as iasyncworkflow module and any
+synchronous style. It has the exact same API as the ``iasyncworkflow`` module and any
 changes to one file must be made to the other.
 
-Generally speaking, in addition to other exceptions that are otherwise noted,
-implementations of this API may raise :class:`.exceptions.EngineInternalError` to indicate that
-they have encountered an internal error that should be reported to the engine implementation
-maintainer.
+Generally speaking, in addition to the exceptions already noted, implementations of
+this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
+that an internal error has been encountered and should be reported to the engine
+implementation maintainer.
 """
 
 from __future__ import annotations
@@ -50,21 +50,21 @@ from .datatypes import Property, WorkflowEngineInfo, WorkflowInstanceState
 
 class IWorkflowEngine(ABC):
     """
-    Interface for the Workflow Engine.
+    Provides the interface for the workflow engine.
 
-    It defines the common behavior for an engineering workflow engine that can run and monitor
-    instances.
+    This interface defines the common behavior for an engineering workflow engine that can run and
+    monitor instances.
     """
 
     @abstractmethod
     def get_server_info(self) -> WorkflowEngineInfo:
         """
-        Get information about the server that is serving this request.
+        Get information about the server that is serving the request.
 
         Returns
         -------
         WorkflowEngineInfo
-            A WorkflowEngineInfo object with information about the server that is serving this
+            Object with information about the server that is serving the
             request.
         """
         ...
@@ -72,19 +72,19 @@ class IWorkflowEngine(ABC):
 
 class IFileBasedWorkflowEngine(IWorkflowEngine, ABC):
     """
-    Enable to extend IWorkflowEngine with calls.
+    Extends the ``IWorkflowEngine`` module with calls.
 
-    The calls need to be relevant for loading files from a local filesystem.
+    The calls must be relevant for loading files from a local filesystem.
     """
 
     @abstractmethod
     def load_workflow(self, file_name: Union[PathLike, str]) -> IWorkflowInstance:
-        """Load a workflow from a local file into the Engine."""
+        """Load a workflow from a local file into the engine."""
         ...
 
 
 class IWorkflowInstance(ABC):
-    """Representation of an instantiated workflow instance."""
+    """Represents an instantiated workflow instance."""
 
     @abstractmethod
     def get_state(self) -> WorkflowInstanceState:
@@ -104,33 +104,35 @@ class IWorkflowInstance(ABC):
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
-            A map of datapin name to a VariableState object for all inputs to
-            be set before running.
-        reset : bool
-            Setting this to true will cause the workflow to be reset before running.
-            Note that setting datapin values could also implicitly reset some component's states
+            Map of datapin names to ``VariableState`` objects for all inputs to
+            set before running the workflow.
+        reset : bool, default: False
+            Whether to reset the workflow before running. If this parameter is set
+            to ``True``, all run components and data links become invalid so that the
+            workflow runs from the beginning. However, it does not reset any input values
+            that have been set to non-default values. Note that setting datapin values
+            could also implicitly reset the states of some components.
         validation_names : AbstractSet[str]
-            Supplying the names of the specific datapins or components that are
-            required to be valid may enable the workflow engine to shortcut
-            evaluation of the workflow. If this list is non-empty, the workflow
-            engine may choose which portions of the workflow are run to satisfy
-            the given datapins with the minimum runtime.
+            Names of the specific datapins or components that are required to be valid.
+            Setting names may enable the workflow engine to shortcut evaluation of the
+            workflow. If the set is non-empty, the workflow engine may choose which
+            portions of the workflow are run to satisfy the given datapins with the
+            minimum runtime.
         collect_names : AbstractSet[str]
-            Supplying the names of the specific datapins or elements here
-            will cause this function to return those values after running. If
-            an element is chosen, all of the children datapins recursively will
+            Names of the specific datapins or elements that are to cause the method
+            to return these values after running. If an element is specified, all
+            child datapins are recursively included.
 
         Returns
         -------
         Mapping[str, VariableState]
-            A map of output datapin names to VariableState objects for each datapin specified in
-            `collect_names`.
+            Map of output datapin names to ``VariableState`` objects for each datapin specified by
+            the ``collect_names`` parameter.
 
         Raises
         ------
         ValueOutOfRangeError
-            If one of the values in inputs violates its datapin's bounds or enumerated values.
-            be included.
+            If one of the input values violates its datapin's bounds or enumerated values.
         """
         ...
 
@@ -144,23 +146,25 @@ class IWorkflowInstance(ABC):
         Parameters
         ----------
         inputs : Mapping[str, VariableState]
-            A map of datapin name to a VariableState object for all inputs to
-            be set before running.
+            Map of datapin names to ``VariableState`` objects for all inputs to
+            set before running the workflow.
         reset : bool
-            Setting this to true will cause the workflow to be reset before running.
-            Note that setting datapin values could also implicitly reset some component's states
+            Whether to reset the workflow before running. If this parameter is set
+            to ``True``, all run components and data links become invalid so that the
+            workflow runs from the beginning. However, it does not reset any input values
+            that have been set to non-default values. Note that setting datapin values
+            could also implicitly reset the states of some components.
         validation_names : AbstractSet[str]
-            Supplying the names of the specific datapin or components that are
-            required to be valid may enable the workflow engine to shortcut
-            evaluation of the workflow. If this list is non-empty, the workflow
-            engine may choose which portions of the workflow are run to satisfy
-            the given datapins with the minimum runtime.
+            Names of the specific datapins or components that are required to be valid.
+            Setting names may enable the workflow engine to shortcut evaluation of the
+            workflow. If the set is non-empty, the workflow engine may choose which
+            portions of the workflow are run to satisfy the given datapins with the
+            minimum runtime.
 
         Raises
         ------
         ValueOutOfRangeError
-            If one of the values in inputs violates its datapin's bounds or enumerated values.
-            be included.
+            If one of the input values violates its datapin's bounds or enumerated values.
         """
         ...
 
@@ -179,81 +183,86 @@ class IWorkflowInstance(ABC):
         Parameters
         ----------
         element_name : str
-            The name of the element to retrieve in dotted notation, e.g. "Root.Component.Thing".
+            Name of the element to retrieve in dotted notation. For example,
+            ``'Root.Component.Thing'``.
         """
         ...
 
 
 class IElement(ABC):
-    """Any one of Component, Control Statement, or Variable."""
+    """Provides a component, control statement, or datapin."""
 
     @property
     @abstractmethod
     def element_id(self) -> str:
-        """A unique ID for this element, assigned by the system."""
+        """
+        Unique ID for the element.
+
+        This ID is assigned by the system.
+        """
         ...
 
     @property
     @abstractmethod
     def parent_element_id(self) -> str:
         """
-        The parent element's id.
+        Parent element's ID.
 
-        If this is the root element of the workflow, it will be a blank string.
+        If this is the root element of the workflow, the parent ID is a blank string.
         """
         ...
 
     @abstractmethod
     def get_parent_element(self) -> Optional[IElement]:
         """
-        Return the parent object of this element.
+        Get the parent object of the element.
 
-        If this is the root element of the workflow., it will return None.
+        If this is the root element of the workflow, the method returns ``None``.
         """
         ...
 
     @property
     @abstractmethod
     def name(self) -> str:
-        """The name of this element."""
+        """Name of the element."""
         ...
 
     @property
     @abstractmethod
     def full_name(self) -> str:
         """
-        The full name of this element.
+        Full name of the element.
 
-        It is returned in dotted notation starting from the root of the workflow.
+        The full name is returned in dotted notation, starting from the root of the workflow.
         """
         ...
 
     @abstractmethod
     def get_property(self, property_name: str) -> Property:
-        """Get a property by its property name."""
+        """Get a property by name."""
         ...
 
     @abstractmethod
     def get_property_names(self) -> AbstractSet[str]:
-        """Get the names of all of the properties."""
+        """Get the names of all properties."""
         ...
 
     @abstractmethod
     def get_properties(self) -> Mapping[str, Property]:
-        """Get all of the properties of this element."""
+        """Get all properties of the element."""
         ...
 
     @abstractmethod
     def set_property(self, property_name: str, property_value: IVariableValue) -> None:
         """
-        Create or set a property on this element.
+        Create or set a property on the element.
 
         Parameters
         ----------
         property_name : str
-           The name of the property to create or set
+           Name of the property to create or set.
         property_value : IVariableValue
-           The value of the property
+           Value of the property.
         """
         ...
 
@@ -262,17 +271,17 @@ class IElement(ABC):
 
 
 class IDatapinContainer(ABC):
-    """An abstract base class for something that can contain datapins."""
+    """Provides an abstract base class for something that can contain datapins."""
 
     @abstractmethod
     def get_datapins(self) -> Mapping[str, IDatapin]:
         """
-        Get the datapins in this container.
+        Get the datapins in the container.
 
         Returns
         -------
         Mapping[str, IDatapin]
-            A map of the datapins in the container. The keys in the map are the short names of the
+            Map of the datapins in the container. The keys in the map are the short names of the
             datapins (relative to the container's name).
         """
         ...
@@ -280,48 +289,50 @@ class IDatapinContainer(ABC):
 
 class IControlStatement(IElement, IDatapinContainer, ABC):
     """
-    Element in the workflow that contains children and how they will be executed.
+    Provides an element in the workflow that contains children and how they are executed.
 
-    For example it can be a sequential, a parallel, a looping, a conditional or a Trade Study.
+    For example, it can be a sequential, parallel, looping, or conditional element or a trade study.
     """
 
     @property
     @abstractmethod
     def control_type(self) -> str:
-        """Get the type of this control statement."""
+        """Type of the control statement."""
         ...
 
     @abstractmethod
     def get_elements(self) -> Mapping[str, IElement]:
         """
-        Get all the elements of this control statement.
+        Get all elements of the control statement.
 
         Because Python dictionaries are ordered, the order in which elements appear in the map
-        may be significant depending on the engine / workflow instance implementation;
-        for example, some workflows may execute each element in a control statement
+        may be significant, depending on the engine/workflow instance implementation.
+        For example, some workflows may execute each element in a control statement
         in a defined order, which should be reflected here.
 
         Returns
         -------
         Mapping[str, IElement]
-            The child elements of this control statement.
-            Each key is the short name (relative to the parent element) of the corresponding
-            element object.
+            Child elements of the control statement. Each key is the short name (relative to
+            the parent element) of the corresponding element object.
         """
         ...
 
 
 class IComponent(IElement, IDatapinContainer, ABC):
     """
-    A black box analysis.
+    Provides for a black box analysis.
 
-    It is defined as taking a set of inputs, executing, and resulting in a set of outputs.
+    A black box analysis is defined as taking a set of inputs, executing, and then returning a set
+    of outputs.
 
-    May be a solver, simulation, co-simulation, calculation, or other third party analysis. While
-    state may be kept as an optimization to help performance for slow to start tools, the component
-    definition does not require it so that we can parallelize the work onto an HPC cluster.
-    Synonymous in our context with Integrations and Analysis. This is the preferred go forward term
-    to use in API and documentation about Engineering Workflow
+    The black box may be a solver, simulation, co-simulation, calculation, or other third-party
+    analysis. While state may be kept as an optimization to help performance for slow-to-start
+    tools, the component definition does not require it so that the work can be parallelize onto an
+    HPC cluster.
+
+    The "black box" term is synonymous with integration and analysis. It is the preferred term used
+    in the Ansys Engineering Workflow API and documentation.
     """
 
     # TODO: Is there a URL type in Python instead of using string below?
@@ -330,13 +341,13 @@ class IComponent(IElement, IDatapinContainer, ABC):
     @abstractmethod
     def pacz_url(self) -> Optional[str]:
         """
-        The URL Reference to the PACZ file or directory.
+        URL to the PACZ file or directory.
 
-        May be an absolute or a relative URL. If relative, it is relative to the workflow
-        definition. While all components will be represented by PACZ definitions, in the short term
-        many components are not currently defined this way. If there is not a PACZ definition of
-        this component, this method will return None. In those cases you will have to fall back on
-        the engine specific methods to determine what type of component this is.
+        The URL may be absolute or relative. If relative, the URL must be relative to the workflow
+        definition. While all components are represented by PACZ definitions, in the short term,
+        many components are not currently defined in this way. If there is not a PACZ definition of
+        the component, the method returns ``None``. In such cases, you must fall back on
+        engine-specific methods to determine what the component type is.
         """
 
     ...
@@ -348,43 +359,43 @@ class IComponent(IElement, IDatapinContainer, ABC):
 
 class IDatapin(IElement, ABC):
     """
-    A runtime placeholder for some value of a particular type.
+    Provides a runtime placeholder for some value of a particular type.
 
-    Will change as the workflow runs and can be linked to other datapins via direct links or
-    equations
+    The placeholder changes as the workflow runs. It can be linked to other datapins via direct
+    links or equations.
     """
 
     @abstractmethod
     def get_metadata(self) -> CommonVariableMetadata:
-        """Get the metadata for this datapin."""
+        """Get the metadata for the datapin."""
         ...
 
     @property
     @abstractmethod
     def value_type(self) -> VariableType:
-        """Get the type of value this datapin stores."""
+        """Get the type of value that the datapin stores."""
 
     @abstractmethod
     def get_state(self, hid: Optional[str] = None) -> VariableState:
-        """Get the state of this datapin."""
+        """Get the state of the datapin."""
         ...
 
     @abstractmethod
     def set_state(self, state: VariableState) -> None:
-        """Set the state of this datapin."""
+        """Set the state of the datapin."""
         ...
 
     @property
     @abstractmethod
     def is_input_to_component(self) -> bool:
-        """Get whether this datapin is an input in the context of the component it is on."""
+        """Flag indicating if the datapin is an input in the context of the component it is on."""
 
     @property
     @abstractmethod
     def is_input_to_workflow(self) -> bool:
         """
-        Get whether this datapin is an input in the context of the overall workflow.
+        Flag indicating if the datapin is an input in the context of the overall workflow.
 
-        Variables which are inputs in the context of their component will not be in the overall
+        Variables that are inputs in the context of their components are not included in the overall
         workflow if they are the target of a link.
         """
