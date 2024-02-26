@@ -30,7 +30,7 @@ dependencies = [
 
 [project.optional-dependencies]
 doc = [
-    "ansys-sphinx-theme==0.13.4",
+    "ansys-sphinx-theme==0.14.0",
     "anyio==4.2.0",
     "numpy==1.26.4",
     "numpydoc==1.6.0",
