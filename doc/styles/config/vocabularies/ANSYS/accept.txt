@@ -1,0 +1,10 @@
+ANSYS
+Ansys
+ansys
+API
+api
+Autosummary
+Makefile
+optiSLang 
+pytest
+Python
