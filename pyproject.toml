@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "ansys-engineeringworkflow-api"
-version = "0.1.dev0"
+version = "0.1.0"
 description = "API specification for an engineering workflow engine"
 readme = "README.rst"
 requires-python = ">=3.9,<4"
