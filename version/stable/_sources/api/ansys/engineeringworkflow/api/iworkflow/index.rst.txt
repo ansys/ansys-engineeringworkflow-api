@@ -1,0 +1,137 @@
+
+
+
+
+
+The ``iworkflow.py`` module
+===========================
+
+.. py:module:: ansys.engineeringworkflow.api.iworkflow
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: iworkflow
+.. tab-set::
+
+
+
+    .. tab-item:: Interfaces
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~IWorkflowEngine`
+            - Provides the interface for the workflow engine.
+
+
+          * - :py:attr:`~IFileBasedWorkflowEngine`
+            - Extends the ``IWorkflowEngine`` module with calls.
+
+
+          * - :py:attr:`~IWorkflowInstance`
+            - Represents an instantiated workflow instance.
+
+
+          * - :py:attr:`~IElement`
+            - Provides a component, control statement, or datapin.
+
+
+          * - :py:attr:`~IDatapinContainer`
+            - Provides an abstract base class for something that can contain datapins.
+
+
+          * - :py:attr:`~IControlStatement`
+            - Provides an element in the workflow that contains children and how they are executed.
+
+
+          * - :py:attr:`~IComponent`
+            - Provides for a black box analysis.
+
+
+          * - :py:attr:`~IDatapin`
+            - Provides a runtime placeholder for some value of a particular type.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🝆 IWorkflowEngine<IWorkflowEngine>
+    🝆 IFileBasedWorkflowEngine<IFileBasedWorkflowEngine>
+    🝆 IWorkflowInstance<IWorkflowInstance>
+    🝆 IElement<IElement>
+    🝆 IDatapinContainer<IDatapinContainer>
+    🝆 IControlStatement<IControlStatement>
+    🝆 IComponent<IComponent>
+    🝆 IDatapin<IDatapin>
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Synchronous API definitions.
+
+This module contains the common API for all Ansys workflow engines, written in a
+synchronous style. It has the exact same API as the ``iasyncworkflow`` module and any
+changes to one file must be made to the other.
+
+Generally speaking, in addition to the exceptions already noted, implementations of
+this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
+that an internal error has been encountered and should be reported to the engine
+implementation maintainer.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

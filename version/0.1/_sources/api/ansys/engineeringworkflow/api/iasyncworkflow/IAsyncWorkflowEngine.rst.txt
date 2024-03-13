@@ -1,0 +1,113 @@
+
+
+
+
+IAsyncWorkflowEngine
+====================
+
+.. py:class:: IAsyncWorkflowEngine
+   :canonical: ansys.engineeringworkflow.api.iasyncworkflow.IAsyncWorkflowEngine
+
+
+
+Bases: :py:obj:`abc.ABC`
+
+
+   Provides the interface defining the common behavior for an engineering workflow engine.
+
+   This interface can run and monitor instances.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: IAsyncWorkflowEngine
+.. tab-set::
+
+    .. tab-item:: Abstract methods
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_server_info`
+            - Get information about the server that is serving the request.
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iasyncworkflow import IAsyncWorkflowEngine
+
+
+
+
+Method detail
+-------------
+.. py:method:: get_server_info() -> ansys.engineeringworkflow.api.datatypes.WorkflowEngineInfo
+   :abstractmethod:
+   :async:
+
+   
+   Get information about the server that is serving the request.
+
+
+
+   :Returns:
+
+       :obj:`WorkflowEngineInfo`
+           Object with the information about the server that is serving the
+           request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

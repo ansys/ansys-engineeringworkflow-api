@@ -1,0 +1,127 @@
+
+
+
+
+
+The ``ansys.engineeringworkflow.api`` library
+=============================================
+
+.. py:module:: ansys.engineeringworkflow.api
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: api
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~ansys.engineeringworkflow.api.datatypes`
+            - API datatype definitions.
+
+
+          * - :py:attr:`~ansys.engineeringworkflow.api.exceptions`
+            - Exception types, which allow for handling expressive errors in common situations.
+
+
+          * - :py:attr:`~ansys.engineeringworkflow.api.iasyncworkflow`
+            - Asynchronous API definitions.
+
+
+          * - :py:attr:`~ansys.engineeringworkflow.api.iworkflow`
+            - Synchronous API definitions.
+
+
+
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~__version__`
+            - 
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🗎 datatypes<datatypes/index.rst>
+    🗎 exceptions<exceptions/index.rst>
+    🗎 iasyncworkflow<iasyncworkflow/index.rst>
+    🗎 iworkflow<iworkflow/index.rst>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Common API specification for all automated engineering workflow engines at Ansys.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: __version__
+
+   
+
+
+

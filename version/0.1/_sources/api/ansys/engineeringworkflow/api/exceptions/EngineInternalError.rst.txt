@@ -1,0 +1,60 @@
+
+
+
+
+EngineInternalError
+===================
+
+.. py:exception:: EngineInternalError
+   :canonical: ansys.engineeringworkflow.api.exceptions.EngineInternalError
+
+
+
+Bases: :py:obj:`Exception`
+
+
+   Indicates that the workflow engine has encountered an internal error.
+
+   An error of this type means that something has gone wrong with the workflow engine itself during
+   the requested operation. Such an error should not usually be encountered and may indicate the
+   presence of a bug that should be reported to the engine maintainer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.exceptions import EngineInternalError
+
+
+
+
+

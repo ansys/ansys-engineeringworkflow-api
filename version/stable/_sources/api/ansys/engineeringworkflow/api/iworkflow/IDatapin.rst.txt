@@ -1,0 +1,261 @@
+
+
+
+
+IDatapin
+========
+
+.. py:class:: IDatapin
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IDatapin
+
+
+
+Bases: :py:obj:`IElement`, :py:obj:`abc.ABC`
+
+
+   Provides a runtime placeholder for some value of a particular type.
+
+   The placeholder changes as the workflow runs. It can be linked to other datapins via direct
+   links or equations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: IDatapin
+.. tab-set::
+
+    .. tab-item:: Abstract methods
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_metadata`
+            - Get the metadata for the datapin.
+          * - :py:attr:`~get_state`
+            - Get the state of the datapin.
+          * - :py:attr:`~set_state`
+            - Set the state of the datapin.
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~value_type`
+            - Get the type of value that the datapin stores.
+          * - :py:attr:`~is_input_to_component`
+            - Flag indicating if the datapin is an input in the context of the component it is on.
+          * - :py:attr:`~is_input_to_workflow`
+            - Flag indicating if the datapin is an input in the context of the overall workflow.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iworkflow import IDatapin
+
+
+Property detail
+---------------
+.. py:property:: value_type
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IDatapin.value_type
+   :type: ansys.tools.variableinterop.VariableType
+
+   :abstractmethod:
+
+   
+   Get the type of value that the datapin stores.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: is_input_to_component
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IDatapin.is_input_to_component
+   :type: bool
+
+   :abstractmethod:
+
+   
+   Flag indicating if the datapin is an input in the context of the component it is on.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: is_input_to_workflow
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IDatapin.is_input_to_workflow
+   :type: bool
+
+   :abstractmethod:
+
+   
+   Flag indicating if the datapin is an input in the context of the overall workflow.
+
+   Variables that are inputs in the context of their components are not included in the overall
+   workflow if they are the target of a link.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+Method detail
+-------------
+.. py:method:: get_metadata() -> ansys.tools.variableinterop.CommonVariableMetadata
+   :abstractmethod:
+
+   
+   Get the metadata for the datapin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: get_state(hid: Optional[str] = None) -> ansys.tools.variableinterop.VariableState
+   :abstractmethod:
+
+   
+   Get the state of the datapin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: set_state(state: ansys.tools.variableinterop.VariableState) -> None
+   :abstractmethod:
+
+   
+   Set the state of the datapin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

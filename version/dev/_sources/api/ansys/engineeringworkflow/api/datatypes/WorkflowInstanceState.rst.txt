@@ -1,0 +1,121 @@
+
+
+
+
+WorkflowInstanceState
+=====================
+
+.. py:class:: WorkflowInstanceState(*args, **kwds)
+   :canonical: ansys.engineeringworkflow.api.datatypes.WorkflowInstanceState
+
+
+
+Bases: :py:obj:`enum.Enum`
+
+
+   Provides an enum with the states that a workflow instance can be in.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: WorkflowInstanceState
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~UNKNOWN`
+            - 
+          * - :py:attr:`~INVALID`
+            - 
+          * - :py:attr:`~RUNNING`
+            - 
+          * - :py:attr:`~PAUSED`
+            - 
+          * - :py:attr:`~FAILED`
+            - 
+          * - :py:attr:`~SUCCESS`
+            - 
+      
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.datatypes import WorkflowInstanceState
+
+
+
+Attribute detail
+----------------
+.. py:attribute:: UNKNOWN
+   :value: 0
+
+   
+
+.. py:attribute:: INVALID
+   :value: 1
+
+   
+
+.. py:attribute:: RUNNING
+   :value: 2
+
+   
+
+.. py:attribute:: PAUSED
+   :value: 3
+
+   
+
+.. py:attribute:: FAILED
+   :value: 4
+
+   
+
+.. py:attribute:: SUCCESS
+   :value: 5
+
+   
+
+
+

@@ -1,0 +1,61 @@
+
+
+
+
+NameCollisionError
+==================
+
+.. py:exception:: NameCollisionError
+   :canonical: ansys.engineeringworkflow.api.exceptions.NameCollisionError
+
+
+
+Bases: :py:obj:`ValueError`
+
+
+   Indicates that an operation has failed because of a name collision.
+
+   An error of this type means that the name requested is already in use and cannot be reused.
+
+   Engine maintainers should only raise this error if the operation in question is otherwise valid
+   and could be retried successfully with a different, unique name.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.exceptions import NameCollisionError
+
+
+
+
+
