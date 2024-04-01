@@ -33,7 +33,7 @@ doc = [
     "ansys-sphinx-theme==0.14.0",
     "anyio==4.3.0",
     "numpy==1.26.4",
-    "numpydoc==1.6.0",
+    "numpydoc==1.7.0",
     "pyansys-tools-variableinterop==0.1.1",
     "Sphinx==7.2.6",
     "sphinx-copybutton==0.5.2",
