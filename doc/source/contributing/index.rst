@@ -14,7 +14,7 @@ Install in developer mode
 -------------------------
 
 Installing the ``ansys-engineeringworkflow-api`` package in developer mode allows
-you to modify the source and enhance it. This package supports Python 3.9 through 3.12
+you to modify the source and enhance it. This package supports Python 3.10 through 3.13
 on Windows, MacOS, and Linux.
 
 For a local development version, you can create a clean virtual environment with this command:
@@ -79,14 +79,14 @@ Makefile for your operating system:
 
       ::
 
-        make -C doc/ html && your_browser_name doc/build/html/index.html
+        make -C doc/ html && your_browser_name doc/_build/html/index.html
 
     .. tab-item:: macOS
       :sync: macos
 
       ::
 
-        make -C doc/ html && your_browser_name doc/build/html/index.html
+        make -C doc/ html && your_browser_name doc/_build/html/index.html
 
     .. tab-item:: Windows
       :sync: windows
@@ -94,7 +94,7 @@ Makefile for your operating system:
       ::
 
         .\doc\make.bat html
-        .\doc\build\html\index.html
+        .\doc\_build\html\index.html
 
 Post issues
 -----------

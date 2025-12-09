@@ -7,7 +7,7 @@ name = "ansys-engineeringworkflow-api"
 version = "0.1.dev0"
 description = "API specification for an engineering workflow engine"
 readme = "README.rst"
-requires-python = ">=3.9,<4"
+requires-python = ">=3.10,<4"
 license = {file = "LICENSE"}
 authors = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
 maintainers = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
@@ -16,37 +16,33 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 dependencies = [
     "anyio>=3.6",
-    "numpy>=1.20.3",
+    "numpy>=2.1.0",
     "pyansys-tools-variableinterop>=0.1.0",
 ]
 
 [project.optional-dependencies]
 doc = [
-    "ansys-sphinx-theme==0.14.0",
+    "ansys-sphinx-theme[autoapi]==1.6.3",
     "anyio==4.3.0",
-    "numpy==1.26.4",
-    "numpydoc==1.6.0",
+    "numpydoc==1.8.0",
     "pyansys-tools-variableinterop==0.1.1",
-    "Sphinx==7.2.6",
+    "Sphinx==8.2.3",
     "sphinx-copybutton==0.5.2",
-    "sphinx-design==0.5.0",
-    "sphinx-gallery==0.15.0",
-    "sphinx-notfound-page==1.0.0",
-    "sphinx-autoapi==3.1.0a2",
-    "pytest-sphinx==0.6.0",
+    "sphinx-gallery==0.19.0",
+    "sphinx-notfound-page==1.1.0",
+    "pytest-sphinx==0.6.3",
 ]
 
 tests = [
     "anyio==4.3.0",
-    "numpy==1.26.4",
     "pytest==8.1.1",
     "pytest-cov==4.1.0",
     "pyansys-tools-variableinterop==0.1.1",
