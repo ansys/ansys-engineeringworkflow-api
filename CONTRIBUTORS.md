@@ -6,8 +6,9 @@
 
 ## Individual Contributors
 
-* [Camille Latapie](https://github.com/clatapie)
-* [Michel Pascale](https://github.com/phx-mpascale)
-* [Roberto Pastor Muela](https://github.com/RobPasMue)
+* [Camille](https://github.com/clatapie)
 * [Kathy Pippert](https://github.com/PipKat)
+* [Michel Pascale](https://github.com/phx-mpascale)
+* [Mike Belcher](https://github.com/mike-belcher)
 * [Nathan Sharp](https://github.com/phxnsharp)
+* [Roberto Pastor Muela](https://github.com/RobPasMue)
