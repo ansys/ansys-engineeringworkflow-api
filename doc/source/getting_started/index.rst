@@ -3,7 +3,7 @@
 Getting started
 ===============
 
-The Ansys Engineering Workflow API supports Python 3.9 through 3.12 on Windows,
+The Ansys Engineering Workflow API supports Python 3.10 through 3.13 on Windows,
 MacOS, and Linux.
 
 Two installation modes of the ``ansys-engineeringworkflow-api`` package
