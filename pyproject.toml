@@ -44,7 +44,7 @@ doc = [
 tests = [
     "anyio==4.3.0",
     "pytest==8.1.1",
-    "pytest-cov==4.1.0",
+    "pytest-cov==7.0.0",
     "pyansys-tools-variableinterop==0.1.1",
 ]
 
