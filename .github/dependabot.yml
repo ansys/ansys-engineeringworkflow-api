@@ -7,8 +7,30 @@ updates:
     labels:
       - "maintenance"
       - "dependencies"
+    commit-message:
+      prefix: "build"
+    cooldown:
+      default-days: 10
+      include:
+        - "*"  # Include all dependencies in cooldown
+      exclude:
+        - "ansys/actions"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - "maintenance"
+    commit-message:
+      prefix: "ci"
+    cooldown:
+      default-days: 10
+      include:
+        - "*"  # Include all dependencies in cooldown
+      exclude:
+        - "ansys/actions"
+    groups:
+       actions:
+          patterns:
+            - "*"
