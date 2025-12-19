@@ -136,6 +136,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: [package]
+    permissions:
+      contents: write # Needed to push built docs to gh-pages during dev deploy
     steps:
       - name: "Deploy the latest documentation"
         uses: ansys/actions/doc-deploy-dev@010ddbe522e0a9aed3cbd850b4e226dcfae4ecda # v8.2.30
