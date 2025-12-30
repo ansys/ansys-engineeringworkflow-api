@@ -1,0 +1,126 @@
+
+
+
+
+
+
+The ``ansys.engineeringworkflow.api`` library
+=============================================
+
+.. py:module:: ansys.engineeringworkflow.api
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: api
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.datatypes`
+            - API datatype definitions.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.exceptions`
+            - Exception types, which allow for handling expressive errors in common situations.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow`
+            - Asynchronous API definitions.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow`
+            - Synchronous API definitions.
+
+
+
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~__version__`
+            - 
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-fa-file"></span> datatypes</api/ansys/engineeringworkflow/api/datatypes/index>
+    <span class="nf nf-fa-file"></span> exceptions</api/ansys/engineeringworkflow/api/exceptions/index>
+    <span class="nf nf-fa-file"></span> iasyncworkflow</api/ansys/engineeringworkflow/api/iasyncworkflow/index>
+    <span class="nf nf-fa-file"></span> iworkflow</api/ansys/engineeringworkflow/api/iworkflow/index>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Common API specification for all automated engineering workflow engines at Ansys.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: __version__
+
+
+

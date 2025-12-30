@@ -1,0 +1,119 @@
+
+
+
+
+
+
+:class:`IComponent`
+===================
+
+
+.. py:class:: ansys.engineeringworkflow.api.iworkflow.IComponent
+
+   Bases: :py:obj:`IElement`, :py:obj:`IDatapinContainer`, :py:obj:`abc.ABC`
+
+
+   
+   Provides for a black box analysis.
+
+   A black box analysis is defined as taking a set of inputs, executing, and then returning a set
+   of outputs.
+
+   The black box may be a solver, simulation, co-simulation, calculation, or other third-party
+   analysis. While state may be kept as an optimization to help performance for slow-to-start
+   tools, the component definition does not require it so that the work can be parallelize onto an
+   HPC cluster.
+
+   The "black box" term is synonymous with integration and analysis. It is the preferred term used
+   in the Ansys Engineering Workflow API and documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. py:currentmodule:: IComponent
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~pacz_url`
+            - URL to the PACZ file or directory.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iworkflow import IComponent
+
+Property detail
+---------------
+
+.. py:property:: pacz_url
+   :type: Optional[str]
+
+   :abstractmethod:
+
+
+   
+   URL to the PACZ file or directory.
+
+   The URL may be absolute or relative. If relative, the URL must be relative to the workflow
+   definition. While all components are represented by PACZ definitions, in the short term,
+   many components are not currently defined in this way. If there is not a PACZ definition of
+   the component, the method returns ``None``. In such cases, you must fall back on
+   engine-specific methods to determine what the component type is.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

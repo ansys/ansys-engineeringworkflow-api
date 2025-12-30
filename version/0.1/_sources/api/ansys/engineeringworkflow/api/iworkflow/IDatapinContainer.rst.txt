@@ -1,0 +1,111 @@
+
+
+
+
+IDatapinContainer
+=================
+
+.. py:class:: IDatapinContainer
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IDatapinContainer
+
+
+
+Bases: :py:obj:`abc.ABC`
+
+
+   Provides an abstract base class for something that can contain datapins.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: IDatapinContainer
+.. tab-set::
+
+    .. tab-item:: Abstract methods
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_datapins`
+            - Get the datapins in the container.
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iworkflow import IDatapinContainer
+
+
+
+
+Method detail
+-------------
+.. py:method:: get_datapins() -> Mapping[str, IDatapin]
+   :abstractmethod:
+
+   
+   Get the datapins in the container.
+
+
+
+   :Returns:
+
+       :obj:`Mapping`\[:class:`python:str`, :obj:`IDatapin`]
+           Map of the datapins in the container. The keys in the map are the short names of the
+           datapins (relative to the container's name).
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

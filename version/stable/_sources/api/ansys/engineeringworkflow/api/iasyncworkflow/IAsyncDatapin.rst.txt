@@ -1,0 +1,165 @@
+
+
+
+
+IAsyncDatapin
+=============
+
+.. py:class:: IAsyncDatapin
+   :canonical: ansys.engineeringworkflow.api.iasyncworkflow.IAsyncDatapin
+
+
+
+Bases: :py:obj:`IAsyncElement`, :py:obj:`abc.ABC`
+
+
+   Provides a runtime placeholder for some value of a particular type.
+
+   The placeholder changes as the workflow runs. It can be linked to other datapins via direct
+   links or equations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: IAsyncDatapin
+.. tab-set::
+
+    .. tab-item:: Abstract methods
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_metadata`
+            - Get the metadata for the datapin.
+          * - :py:attr:`~get_state`
+            - Get the state of the datapin.
+          * - :py:attr:`~set_state`
+            - Set the state of the datapin.
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iasyncworkflow import IAsyncDatapin
+
+
+
+
+Method detail
+-------------
+.. py:method:: get_metadata() -> ansys.tools.variableinterop.CommonVariableMetadata
+   :abstractmethod:
+   :async:
+
+   
+   Get the metadata for the datapin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: get_state(hid: Optional[str] = None) -> ansys.tools.variableinterop.VariableState
+   :abstractmethod:
+   :async:
+
+   
+   Get the state of the datapin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: set_state(state: ansys.tools.variableinterop.VariableState) -> None
+   :abstractmethod:
+   :async:
+
+   
+   Set the state of the datapin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

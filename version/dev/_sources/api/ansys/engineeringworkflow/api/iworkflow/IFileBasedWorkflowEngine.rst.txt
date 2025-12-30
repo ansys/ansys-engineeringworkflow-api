@@ -1,0 +1,104 @@
+
+
+
+
+
+
+:class:`IFileBasedWorkflowEngine`
+=================================
+
+
+.. py:class:: ansys.engineeringworkflow.api.iworkflow.IFileBasedWorkflowEngine
+
+   Bases: :py:obj:`IWorkflowEngine`, :py:obj:`abc.ABC`
+
+
+   
+   Extends the ``IWorkflowEngine`` module with calls.
+
+   The calls must be relevant for loading files from a local filesystem.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: IFileBasedWorkflowEngine
+
+Overview
+--------
+
+.. tab-set::
+
+   .. tab-item:: Abstract methods
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~load_workflow`
+            - Load a workflow from a local file into the engine.
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iworkflow import IFileBasedWorkflowEngine
+
+
+
+Method detail
+-------------
+
+.. py:method:: load_workflow(file_name: Union[os.PathLike, str]) -> IWorkflowInstance
+   :abstractmethod:
+
+
+   
+   Load a workflow from a local file into the engine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+

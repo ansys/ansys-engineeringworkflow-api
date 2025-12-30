@@ -1,0 +1,62 @@
+
+
+
+
+ValueOutOfRangeError
+====================
+
+.. py:exception:: ValueOutOfRangeError
+   :canonical: ansys.engineeringworkflow.api.exceptions.ValueOutOfRangeError
+
+
+
+Bases: :py:obj:`ValueError`
+
+
+   Indicates that an operation has failed because the requested value is out of range.
+
+   An error of this type is most commonly used when an attempt to set a datapin value fails
+   for one of these reasons:
+
+   - The requested value violates the datapin's boundaries.
+   - The datapin has enumerated values and the requested value is not in the enumeration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.exceptions import ValueOutOfRangeError
+
+
+
+
+

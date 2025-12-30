@@ -1,0 +1,323 @@
+
+
+
+
+WorkflowEngineInfo
+==================
+
+.. py:class:: WorkflowEngineInfo
+   :canonical: ansys.engineeringworkflow.api.datatypes.WorkflowEngineInfo
+
+
+
+
+
+   Stores workflow engine information collected by the ``get_server_info`` call.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: WorkflowEngineInfo
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~release_year`
+            - Year portion of the release, such as ``2022``.
+          * - :py:attr:`~release_id`
+            - ID portion of the release, such as ``2`` for 2022 R2.
+          * - :py:attr:`~build`
+            - Build number.
+          * - :py:attr:`~is_release_build`
+            - Flag indicating if the release is a production release.
+          * - :py:attr:`~build_type`
+            - Build type.
+          * - :py:attr:`~version_as_string`
+            - Version of the workflow engine encoded for human consumption.
+          * - :py:attr:`~server_type`
+            - Type of server that is responding to the request.
+          * - :py:attr:`~install_location`
+            - Installation directory.
+          * - :py:attr:`~base_url`
+            - Base URL for clients to connect to.
+      
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.datatypes import WorkflowEngineInfo
+
+
+
+Attribute detail
+----------------
+.. py:attribute:: release_year
+   :type: int
+
+   
+   Year portion of the release, such as ``2022``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: release_id
+   :type: int
+
+   
+   ID portion of the release, such as ``2`` for 2022 R2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: build
+   :type: int
+
+   
+   Build number.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: is_release_build
+   :type: bool
+
+   
+   Flag indicating if the release is a production release.
+
+   The value is ``False`` for development, alpha, beta, and other releases.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: build_type
+   :type: str
+
+   
+   Build type.
+
+   This attribute must be blank for a production release. For other release types, it may include
+   arbitrary information like the branch that a development build was built from.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: version_as_string
+   :type: str
+
+   
+   Version of the workflow engine encoded for human consumption.
+
+   For example, ```2022r1 build 333 ALPHA```.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: server_type
+   :type: str
+
+   
+   Type of server that is responding to the request.
+
+   The value is a string similar to ``'ModelCenter'`` or ``'optiSLang'``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: install_location
+   :type: Optional[str]
+
+   
+   Installation directory.
+
+   If the client is on the same box as the workflow engine, this optional attribute may provide the
+   installation folder.
+
+   Typically server-based products do not provide this field for security reasons.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:attribute:: base_url
+   :type: Optional[str]
+
+   
+   Base URL for clients to connect to.
+
+   If this is a server-based product ready to receive incoming connections from remote clients,
+   this optional attribute may provide the base URL for clients to connect to.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+

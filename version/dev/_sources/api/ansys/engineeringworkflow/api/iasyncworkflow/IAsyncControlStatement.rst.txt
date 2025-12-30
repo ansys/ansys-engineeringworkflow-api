@@ -1,0 +1,146 @@
+
+
+
+
+
+
+:class:`IAsyncControlStatement`
+===============================
+
+
+.. py:class:: ansys.engineeringworkflow.api.iasyncworkflow.IAsyncControlStatement
+
+   Bases: :py:obj:`IAsyncElement`, :py:obj:`IAsyncDatapinContainer`, :py:obj:`abc.ABC`
+
+
+   
+   Provides an element in the workflow that contains children and how they are executed.
+
+   For example, it can be a sequential, parallel, looping, or conditional element or a trade study.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: IAsyncControlStatement
+
+Overview
+--------
+
+.. tab-set::
+
+   .. tab-item:: Abstract methods
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_elements`
+            - Get all elements of the control statement.
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~control_type`
+            - Type of the control statement.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iasyncworkflow import IAsyncControlStatement
+
+Property detail
+---------------
+
+.. py:property:: control_type
+   :type: str
+
+   :abstractmethod:
+
+
+   
+   Type of the control statement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+Method detail
+-------------
+
+.. py:method:: get_elements() -> Collection[IAsyncElement]
+   :abstractmethod:
+
+   :async:
+
+
+   
+   Get all elements of the control statement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
