@@ -177,6 +177,7 @@ jobs:
         uses: ansys/actions/release-github@010ddbe522e0a9aed3cbd850b4e226dcfae4ecda # v8.2.30
         with:
           library-name: ${{ env.PACKAGE_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   doc-deploy-stable:
     name: "Deploy stable documentation"
