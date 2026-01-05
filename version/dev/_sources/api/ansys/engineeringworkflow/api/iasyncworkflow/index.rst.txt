@@ -1,0 +1,138 @@
+
+
+
+
+
+
+The ``iasyncworkflow.py`` module
+================================
+
+.. py:module:: ansys.engineeringworkflow.api.iasyncworkflow
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: iasyncworkflow
+.. tab-set::
+
+
+
+    .. tab-item:: Interfaces
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncWorkflowEngine`
+            - Provides the interface defining the common behavior for an engineering workflow engine.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncFileBasedWorkflowEngine`
+            - Extends the ``IWorkflowEngine`` module with calls.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncWorkflowInstance`
+            - Represents an instantiated workflow instance.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncElement`
+            - Provides a component, control statement, or datapin.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncDatapinContainer`
+            - Provides an abstract base class for something that can contain datapins.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncControlStatement`
+            - Provides an element in the workflow that contains children and how they are executed.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncComponent`
+            - Provides for a black box analysis.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iasyncworkflow.IAsyncDatapin`
+            - Provides a runtime placeholder for some value of a particular type.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncWorkflowEngine</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncWorkflowEngine>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncFileBasedWorkflowEngine</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncFileBasedWorkflowEngine>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncWorkflowInstance</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncWorkflowInstance>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncElement</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncElement>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncDatapinContainer</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncDatapinContainer>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncControlStatement</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncControlStatement>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncComponent</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncComponent>
+    <span class="nf nf-cod-symbol_interface"></span> IAsyncDatapin</api/ansys/engineeringworkflow/api/iasyncworkflow/IAsyncDatapin>
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Asynchronous API definitions.
+
+This module contains the common API for all Ansys workflow engines, written in an
+asynchronous style. It has the exact same API as the ``IWorkflow`` module and any
+changes to one file must be made to the other.
+
+Generally speaking, in addition to the exceptions already noted, implementations of
+this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
+that an internal error has been encountered and should be reported to the engine
+implementation maintainer.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

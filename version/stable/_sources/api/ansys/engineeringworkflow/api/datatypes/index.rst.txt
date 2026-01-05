@@ -1,0 +1,106 @@
+
+
+
+
+
+The ``datatypes.py`` module
+===========================
+
+.. py:module:: ansys.engineeringworkflow.api.datatypes
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: datatypes
+.. tab-set::
+
+
+
+
+    .. tab-item:: Classes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~WorkflowEngineInfo`
+            - Stores workflow engine information collected by the ``get_server_info`` call.
+
+
+          * - :py:attr:`~Property`
+            - Provides a configurable setting on some component or algorithm in the workflow.
+
+
+
+    .. tab-item:: Enums
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~WorkflowInstanceState`
+            - Provides an enum with the states that a workflow instance can be in.
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🝆 WorkflowEngineInfo<WorkflowEngineInfo>
+    🝆 Property<Property>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    ≔ WorkflowInstanceState<WorkflowInstanceState>
+
+
+
+
+
+
+
+
+Description
+-----------
+
+API datatype definitions.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

@@ -1,0 +1,138 @@
+
+
+
+
+
+
+The ``iworkflow.py`` module
+===========================
+
+.. py:module:: ansys.engineeringworkflow.api.iworkflow
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: iworkflow
+.. tab-set::
+
+
+
+    .. tab-item:: Interfaces
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IWorkflowEngine`
+            - Provides the interface for the workflow engine.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IFileBasedWorkflowEngine`
+            - Extends the ``IWorkflowEngine`` module with calls.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IWorkflowInstance`
+            - Represents an instantiated workflow instance.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IElement`
+            - Provides a component, control statement, or datapin.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IDatapinContainer`
+            - Provides an abstract base class for something that can contain datapins.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IControlStatement`
+            - Provides an element in the workflow that contains children and how they are executed.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IComponent`
+            - Provides for a black box analysis.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.iworkflow.IDatapin`
+            - Provides a runtime placeholder for some value of a particular type.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_interface"></span> IWorkflowEngine</api/ansys/engineeringworkflow/api/iworkflow/IWorkflowEngine>
+    <span class="nf nf-cod-symbol_interface"></span> IFileBasedWorkflowEngine</api/ansys/engineeringworkflow/api/iworkflow/IFileBasedWorkflowEngine>
+    <span class="nf nf-cod-symbol_interface"></span> IWorkflowInstance</api/ansys/engineeringworkflow/api/iworkflow/IWorkflowInstance>
+    <span class="nf nf-cod-symbol_interface"></span> IElement</api/ansys/engineeringworkflow/api/iworkflow/IElement>
+    <span class="nf nf-cod-symbol_interface"></span> IDatapinContainer</api/ansys/engineeringworkflow/api/iworkflow/IDatapinContainer>
+    <span class="nf nf-cod-symbol_interface"></span> IControlStatement</api/ansys/engineeringworkflow/api/iworkflow/IControlStatement>
+    <span class="nf nf-cod-symbol_interface"></span> IComponent</api/ansys/engineeringworkflow/api/iworkflow/IComponent>
+    <span class="nf nf-cod-symbol_interface"></span> IDatapin</api/ansys/engineeringworkflow/api/iworkflow/IDatapin>
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Synchronous API definitions.
+
+This module contains the common API for all Ansys workflow engines, written in a
+synchronous style. It has the exact same API as the ``iasyncworkflow`` module and any
+changes to one file must be made to the other.
+
+Generally speaking, in addition to the exceptions already noted, implementations of
+this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
+that an internal error has been encountered and should be reported to the engine
+implementation maintainer.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

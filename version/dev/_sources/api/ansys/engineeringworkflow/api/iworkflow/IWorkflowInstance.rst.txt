@@ -1,0 +1,280 @@
+
+
+
+
+
+
+:class:`IWorkflowInstance`
+==========================
+
+
+.. py:class:: ansys.engineeringworkflow.api.iworkflow.IWorkflowInstance
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   
+   Represents an instantiated workflow instance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+.. py:currentmodule:: IWorkflowInstance
+
+Overview
+--------
+
+.. tab-set::
+
+   .. tab-item:: Abstract methods
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_state`
+            - Get the state of the workflow instance.
+          * - :py:attr:`~start_run`
+            - Set a workflow's input datapins and start running the workflow.
+          * - :py:attr:`~get_root`
+            - Get the root element of the workflow instance.
+          * - :py:attr:`~get_element_by_name`
+            - Get an element of the workflow instance by name.
+
+
+
+   .. tab-item:: Methods
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~run`
+            - Set a workflow's input datapins and run it.
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iworkflow import IWorkflowInstance
+
+
+
+Method detail
+-------------
+
+.. py:method:: get_state() -> ansys.engineeringworkflow.api.datatypes.WorkflowInstanceState
+   :abstractmethod:
+
+
+   
+   Get the state of the workflow instance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: run(inputs: Mapping[str, ansys.tools.variableinterop.VariableState] = {}, reset: bool = False, validation_names: AbstractSet[str] = set(), collect_names: AbstractSet[str] = set()) -> Mapping[str, ansys.tools.variableinterop.VariableState]
+
+   
+   Set a workflow's input datapins and run it.
+
+
+   :Parameters:
+
+       **inputs** : :obj:`Mapping`\[:class:`python:str`, :obj:`VariableState`]
+           Map of datapin names to ``VariableState`` objects for all inputs to
+           set before running the workflow.
+
+       **reset** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+           Whether to reset the workflow before running. If this parameter is set
+           to ``True``, all run components and data links become invalid so that the
+           workflow runs from the beginning. However, it does not reset any input values
+           that have been set to non-default values. Note that setting datapin values
+           could also implicitly reset the states of some components.
+
+       **validation_names** : :obj:`AbstractSet`\[:class:`python:str`]
+           Names of the specific datapins or components that are required to be valid.
+           Setting names may enable the workflow engine to shortcut evaluation of the
+           workflow. If the set is non-empty, the workflow engine may choose which
+           portions of the workflow are run to satisfy the given datapins with the
+           minimum runtime.
+
+       **collect_names** : :obj:`AbstractSet`\[:class:`python:str`]
+           Names of the specific datapins or elements that are to cause the method
+           to return these values after running. If an element is specified, all
+           child datapins are recursively included.
+
+
+
+   :Returns:
+
+       :obj:`Mapping`\[:class:`python:str`, :obj:`VariableState`]
+           Map of output datapin names to ``VariableState`` objects for each datapin specified by
+           the ``collect_names`` parameter.
+
+
+
+
+   :Raises:
+
+       :obj:`ValueOutOfRangeError`
+           If one of the input values violates its datapin's bounds or enumerated values.
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: start_run(inputs: Mapping[str, ansys.tools.variableinterop.VariableState], reset: bool, validation_names: AbstractSet[str]) -> None
+   :abstractmethod:
+
+
+   
+   Set a workflow's input datapins and start running the workflow.
+
+
+   :Parameters:
+
+       **inputs** : :obj:`Mapping`\[:class:`python:str`, :obj:`VariableState`]
+           Map of datapin names to ``VariableState`` objects for all inputs to
+           set before running the workflow.
+
+       **reset** : :ref:`bool <python:bltin-boolean-values>`
+           Whether to reset the workflow before running. If this parameter is set
+           to ``True``, all run components and data links become invalid so that the
+           workflow runs from the beginning. However, it does not reset any input values
+           that have been set to non-default values. Note that setting datapin values
+           could also implicitly reset the states of some components.
+
+       **validation_names** : :obj:`AbstractSet`\[:class:`python:str`]
+           Names of the specific datapins or components that are required to be valid.
+           Setting names may enable the workflow engine to shortcut evaluation of the
+           workflow. If the set is non-empty, the workflow engine may choose which
+           portions of the workflow are run to satisfy the given datapins with the
+           minimum runtime.
+
+
+
+
+
+
+
+   :Raises:
+
+       :obj:`ValueOutOfRangeError`
+           If one of the input values violates its datapin's bounds or enumerated values.
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: get_root() -> IControlStatement
+   :abstractmethod:
+
+
+   
+   Get the root element of the workflow instance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:method:: get_element_by_name(element_name: str) -> IElement
+   :abstractmethod:
+
+
+   
+   Get an element of the workflow instance by name.
+
+
+   :Parameters:
+
+       **element_name** : :class:`python:str`
+           Name of the element to retrieve in dotted notation. For example,
+           ``'Root.Component.Thing'``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+

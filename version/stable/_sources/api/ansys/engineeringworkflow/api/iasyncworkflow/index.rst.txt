@@ -1,0 +1,137 @@
+
+
+
+
+
+The ``iasyncworkflow.py`` module
+================================
+
+.. py:module:: ansys.engineeringworkflow.api.iasyncworkflow
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: iasyncworkflow
+.. tab-set::
+
+
+
+    .. tab-item:: Interfaces
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~IAsyncWorkflowEngine`
+            - Provides the interface defining the common behavior for an engineering workflow engine.
+
+
+          * - :py:attr:`~IAsyncFileBasedWorkflowEngine`
+            - Extends the ``IWorkflowEngine`` module with calls.
+
+
+          * - :py:attr:`~IAsyncWorkflowInstance`
+            - Represents an instantiated workflow instance.
+
+
+          * - :py:attr:`~IAsyncElement`
+            - Provides a component, control statement, or datapin.
+
+
+          * - :py:attr:`~IAsyncDatapinContainer`
+            - Provides an abstract base class for something that can contain datapins.
+
+
+          * - :py:attr:`~IAsyncControlStatement`
+            - Provides an element in the workflow that contains children and how they are executed.
+
+
+          * - :py:attr:`~IAsyncComponent`
+            - Provides for a black box analysis.
+
+
+          * - :py:attr:`~IAsyncDatapin`
+            - Provides a runtime placeholder for some value of a particular type.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🝆 IAsyncWorkflowEngine<IAsyncWorkflowEngine>
+    🝆 IAsyncFileBasedWorkflowEngine<IAsyncFileBasedWorkflowEngine>
+    🝆 IAsyncWorkflowInstance<IAsyncWorkflowInstance>
+    🝆 IAsyncElement<IAsyncElement>
+    🝆 IAsyncDatapinContainer<IAsyncDatapinContainer>
+    🝆 IAsyncControlStatement<IAsyncControlStatement>
+    🝆 IAsyncComponent<IAsyncComponent>
+    🝆 IAsyncDatapin<IAsyncDatapin>
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Asynchronous API definitions.
+
+This module contains the common API for all Ansys workflow engines, written in an
+asynchronous style. It has the exact same API as the ``IWorkflow`` module and any
+changes to one file must be made to the other.
+
+Generally speaking, in addition to the exceptions already noted, implementations of
+this API may raise the :class:`.exceptions.EngineInternalError` class to indicate
+that an internal error has been encountered and should be reported to the engine
+implementation maintainer.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

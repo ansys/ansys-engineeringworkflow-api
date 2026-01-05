@@ -1,0 +1,88 @@
+
+
+
+
+
+
+The ``exceptions.py`` module
+============================
+
+.. py:module:: ansys.engineeringworkflow.api.exceptions
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: exceptions
+.. tab-set::
+
+
+
+
+
+
+    .. tab-item:: Exceptions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.exceptions.EngineInternalError`
+            - Indicates that the workflow engine has encountered an internal error.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.exceptions.NameCollisionError`
+            - Indicates that an operation has failed because of a name collision.
+
+
+          * - :py:obj:`~ansys.engineeringworkflow.api.exceptions.ValueOutOfRangeError`
+            - Indicates that an operation has failed because the requested value is out of range.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-lightning_bolt"></span> EngineInternalError</api/ansys/engineeringworkflow/api/exceptions/EngineInternalError>
+    <span class="nf nf-md-lightning_bolt"></span> NameCollisionError</api/ansys/engineeringworkflow/api/exceptions/NameCollisionError>
+    <span class="nf nf-md-lightning_bolt"></span> ValueOutOfRangeError</api/ansys/engineeringworkflow/api/exceptions/ValueOutOfRangeError>
+
+
+
+
+
+
+
+Description
+-----------
+
+Exception types, which allow for handling expressive errors in common situations.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

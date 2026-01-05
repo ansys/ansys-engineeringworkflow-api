@@ -1,0 +1,155 @@
+
+
+
+
+IControlStatement
+=================
+
+.. py:class:: IControlStatement
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IControlStatement
+
+
+
+Bases: :py:obj:`IElement`, :py:obj:`IDatapinContainer`, :py:obj:`abc.ABC`
+
+
+   Provides an element in the workflow that contains children and how they are executed.
+
+   For example, it can be a sequential, parallel, looping, or conditional element or a trade study.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: IControlStatement
+.. tab-set::
+
+    .. tab-item:: Abstract methods
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~get_elements`
+            - Get all elements of the control statement.
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~control_type`
+            - Type of the control statement.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.engineeringworkflow.api.iworkflow import IControlStatement
+
+
+Property detail
+---------------
+.. py:property:: control_type
+   :canonical: ansys.engineeringworkflow.api.iworkflow.IControlStatement.control_type
+   :type: str
+
+   :abstractmethod:
+
+   
+   Type of the control statement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+Method detail
+-------------
+.. py:method:: get_elements() -> Mapping[str, IElement]
+   :abstractmethod:
+
+   
+   Get all elements of the control statement.
+
+   Because Python dictionaries are ordered, the order in which elements appear in the map
+   may be significant, depending on the engine/workflow instance implementation.
+   For example, some workflows may execute each element in a control statement
+   in a defined order, which should be reflected here.
+
+
+   :Returns:
+
+       :obj:`Mapping`\[:class:`python:str`, :obj:`IElement`]
+           Child elements of the control statement. Each key is the short name (relative to
+           the parent element) of the corresponding element object.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
