@@ -24,7 +24,7 @@ classifiers = [
 
 dependencies = [
     "anyio>=4.4",
-    "numpy>=2.1.0",
+    "numpy>=1.20.3",
     "pyansys-tools-variableinterop>=0.1.0",
 ]
 
