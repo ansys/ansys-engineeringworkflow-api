@@ -3,7 +3,7 @@
 {
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:0-3.8",
+	"image": "mcr.microsoft.com/devcontainers/python:0-3.9",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -17,7 +17,7 @@
 		"ghcr.io/devcontainers-contrib/features/poetry:2": {
 			"version": "latest"
 		}
-	},
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
@@ -27,7 +27,6 @@
 	// file is copied in, preventing access to ansys-common-variableinterop for me. This
 	// has the side-effect of running it every time you start the container, which
 	// might not be what we want?
-	"postStartCommand": "git config --list && poetry -vv install -E dev"
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
