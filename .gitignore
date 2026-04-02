@@ -72,3 +72,8 @@ test-output.xml
 .\#*
 /.ipynb_checkpoints
 
+# Files part of the ansys/check_vulnerabilities script
+check_vulnerabilities.py
+info_bandit.json
+info_safety.json
+requirements.txt

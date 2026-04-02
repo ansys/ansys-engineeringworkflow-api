@@ -1,16 +1,12 @@
-# Contributing
+# Contribute
 
-Please, refer to the [PyAnsys Developer's Guide] for contributing to this project.
+Overall guidance on contributing to a PyAnsys library appears in the
+[Contributing] topic in the *PyAnsys developer's guide*. Ensure that you
+are thoroughly familiar with this guide before attempting to contribute to
+Ansys Engineering Workflow API.
 
-All code contributions are welcome. While Ansys Engineering Workflow API is
-maintained by Ansys and all submissions are thoroughly reviewed by project maintainers
-before merging, the goal is to foster a community that can support user questions and develop
-new features to make this tool useful to all. As such, project maintainers encourage questions
-and submissions.
+The following contribution information is specific to Ansys Engineering Workflow API.
 
-Further information about contributing to Ansys Engineering Workflow API
-can be found in [Contributing].
+[Contributing]: https://dev.docs.pyansys.com/how-to/contributing.html
 
-[PyAnsys Developer's Guide]: https://dev.docs.pyansys.com/how-to/contributing.html
-[Contributing]: https://engineeringworkflow.docs.pyansys.com/version/dev/contributing/index.html
-
+<!-- Begin content specific to your library here. -->
