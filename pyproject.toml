@@ -8,24 +8,24 @@ version = "0.1.dev0"
 description = "API specification for an engineering workflow engine"
 readme = "README.rst"
 requires-python = ">=3.10,<4"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
 maintainers = [{name = "ANSYS, Inc.", email = "pyansys.core@ansys.com"}]
 
 classifiers = [
     "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.13"
 ]
 
 dependencies = [
     "anyio>=4.4",
     "numpy>=1.20.3",
-    "pyansys-tools-variableinterop>=0.1.0",
+    "pyansys-tools-variableinterop>=0.1.0"
 ]
 
 [project.optional-dependencies]
@@ -37,13 +37,13 @@ doc = [
     "sphinx-copybutton==0.5.2",
     "sphinx-gallery==0.20.0",
     "sphinx-notfound-page==1.1.0",
-    "pytest-sphinx==0.6.3",
+    "pytest-sphinx==0.6.3"
 ]
 
 tests = [
     "pytest==9.0.2",
     "pytest-cov==7.0.0",
-    "pyansys-tools-variableinterop==0.1.1",
+    "pyansys-tools-variableinterop==0.1.1"
 ]
 
 [tool.flit.module]
@@ -80,5 +80,5 @@ show_missing = true
 minversion = "7.1"
 addopts = "-ra --cov=ansys.engineeringworkflow.api --cov-report html:.cov/html --cov-report xml:.cov/xml --cov-report term -vv"
 testpaths = [
-    "tests",
+    "tests"
 ]
